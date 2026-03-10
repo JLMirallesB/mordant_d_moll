@@ -8,7 +8,9 @@ const ASSET = path => `./assets/bwv565/${path}`;
 
 /* ── Boot ─────────────────────────────────────────────── */
 document.addEventListener('DOMContentLoaded', () => {
+  initAboutCard();
   initAxis();
+  initAxisFilter();
   initStickyPlayer();
   initWaveformSection();
   initSpectrogramSection();
@@ -51,6 +53,49 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 });
+
+/* ══════════════════════════════════════════════════════
+   ABOUT CARD
+   ══════════════════════════════════════════════════════ */
+function initAboutCard() {
+  const btn  = document.getElementById('about-btn');
+  const card = document.getElementById('about-card');
+  if (!btn || !card) return;
+  btn.addEventListener('click', () => {
+    const open = card.hasAttribute('hidden');
+    if (open) {
+      card.removeAttribute('hidden');
+      btn.setAttribute('aria-expanded', 'true');
+    } else {
+      card.setAttribute('hidden', '');
+      btn.setAttribute('aria-expanded', 'false');
+    }
+  });
+}
+
+/* ══════════════════════════════════════════════════════
+   AXIS FILTER — category buttons highlight/show dot labels
+   ══════════════════════════════════════════════════════ */
+function initAxisFilter() {
+  const axis = document.getElementById('axis');
+  const btns = document.querySelectorAll('.cat-filter-btn');
+
+  btns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      btn.classList.toggle('active');
+
+      const active = [...btns]
+        .filter(b => b.classList.contains('active'))
+        .map(b => b.dataset.filter);
+
+      if (active.length > 0) {
+        axis.dataset.filter = active.join(' ');
+      } else {
+        delete axis.dataset.filter;
+      }
+    });
+  });
+}
 
 /* ══════════════════════════════════════════════════════
    AXIS — Intersection Observer syncs dots with scroll

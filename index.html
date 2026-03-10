@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>BWV 565 · 20 Representaciones Musicales</title>
-  <meta name="description" content="Las primeras notas de la Toccata und Fuge BWV 565 de Bach en 20 representaciones distintas."/>
+  <title>Mordant d-Moll · BWV 565</title>
+  <meta name="description" content="La nota inicial de la Toccata und Fuge d-Moll (BWV 565) de Bach en 19 representaciones distintas."/>
 
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
@@ -15,44 +15,88 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css"/>
 
   <!-- App CSS -->
-  <link rel="stylesheet" href="css/style.css?v=6"/>
+  <link rel="stylesheet" href="css/style.css?v=11"/>
 </head>
 <body>
 
   <!-- ═══════════════════════════════════════════════════ HEADER -->
   <header id="site-header">
     <div class="header-inner">
-      <div class="piece-meta-top">BWV 565 · Johann Sebastian Bach · c. 1703–1707</div>
-      <h1>Toccata und Fuge<br><em>d-Moll</em></h1>
-      <p class="site-tagline">Las notas iniciales en <strong>20 representaciones</strong> distintas</p>
+      <div class="header-top-row">
+        <p class="piece-meta-top">BWV 565 · Johann Sebastian Bach · c. 1703–1707 · <em>Toccata und Fuge d-Moll</em></p>
+        <button id="about-btn" aria-expanded="false" aria-controls="about-card">acerca de</button>
+      </div>
+      <h1>Mordant d-Moll</h1>
+      <p class="site-tagline">La nota inicial en <strong>19 representaciones</strong> distintas</p>
+    </div>
+    <div id="about-card" hidden>
+      <div class="about-inner">
+        <p class="about-author">Idea original de <a href="https://www.jlmirall.es" target="_blank" rel="noopener">José Luis Miralles Bono</a></p>
+        <nav class="about-links">
+          <a href="https://github.com/jlmirallesb/mordant_d_moll" target="_blank" rel="noopener">↗ Repositorio en GitHub</a>
+          <a href="https://ko-fi.com/miralles" target="_blank" rel="noopener">☕ Invitar a una horchata</a>
+        </nav>
+        <p class="about-credit">Realizado con Claude</p>
+      </div>
     </div>
   </header>
 
   <!-- ═══════════════════════════════════════════════════ AXIS -->
   <nav id="axis" aria-label="Representaciones musicales">
-    <span class="pole-label">FÍSICO</span>
-    <div class="dots-track" id="dots-track">
-      <button class="axis-dot" data-target="s-audio"       data-cat="fisico"   title="01 · Audio"><span>Audio</span></button>
-      <button class="axis-dot" data-target="s-waveform"    data-cat="fisico"   title="02 · Forma de onda"><span>Waveform</span></button>
-      <button class="axis-dot" data-target="s-spectrogram" data-cat="fisico"   title="03 · Espectrograma"><span>Spectro</span></button>
-      <button class="axis-dot" data-target="s-manuscript"  data-cat="visual"   title="04 · Manuscrito"><span>Manus.</span></button>
-      <button class="axis-dot" data-target="s-scan"        data-cat="visual"   title="05 · PDF escaneado"><span>Scan</span></button>
-      <button class="axis-dot" data-target="s-vector"      data-cat="visual"   title="06 · PDF vectorial"><span>Vector</span></button>
-      <button class="axis-dot" data-target="s-png"         data-cat="visual"   title="07 · PNG"><span>PNG</span></button>
-      <button class="axis-dot" data-target="s-svg"         data-cat="visual"   title="08 · SVG"><span>SVG</span></button>
-      <button class="axis-dot" data-target="s-midi-lit"    data-cat="notacion" title="09 · MIDI literal"><span>MIDI lit.</span></button>
-      <button class="axis-dot" data-target="s-midi-int"    data-cat="notacion" title="10 · MIDI interpretado"><span>MIDI int.</span></button>
-      <button class="axis-dot" data-target="s-mscz"        data-cat="binario"  title="11 · MSCZ"><span>MSCZ</span></button>
-      <button class="axis-dot" data-target="s-mxl"         data-cat="binario"  title="12 · MXL"><span>MXL</span></button>
-      <button class="axis-dot" data-target="s-musicxml"    data-cat="codigo"   title="13 · MusicXML"><span>MusicXML</span></button>
-      <button class="axis-dot" data-target="s-lilypond"    data-cat="codigo"   title="14 · LilyPond"><span>LilyPond</span></button>
-      <button class="axis-dot" data-target="s-abc"         data-cat="codigo"   title="15 · ABC Music"><span>ABC</span></button>
-      <button class="axis-dot" data-target="s-mei"         data-cat="codigo"   title="16 · MEI"><span>MEI</span></button>
-      <button class="axis-dot" data-target="s-kern"        data-cat="codigo"   title="17 · **kern"><span>**kern</span></button>
-      <button class="axis-dot" data-target="s-musedata"    data-cat="codigo"   title="18 · Musedata"><span>Musedata</span></button>
-      <button class="axis-dot" data-target="s-braille"     data-cat="especial" title="19 · Braille"><span>Braille</span></button>
+    <div class="axis-top">
+      <p class="axis-title">del sonido a sus modos de inscripción</p>
+      <div class="axis-cats" id="axis-cats">
+        <button class="cat-filter-btn" data-filter="sonido">sonido</button>
+        <button class="cat-filter-btn" data-filter="senal">señal</button>
+        <button class="cat-filter-btn" data-filter="partitura">partitura</button>
+        <button class="cat-filter-btn" data-filter="evento">evento</button>
+        <button class="cat-filter-btn" data-filter="fuente">fuente</button>
+        <button class="cat-filter-btn" data-filter="codigo">código</button>
+        <button class="cat-filter-btn" data-filter="braille">braille</button>
+      </div>
     </div>
-    <span class="pole-label">ABSTRACTO</span>
+    <div class="axis-scroll">
+    <div class="axis-body">
+
+      <!-- Tronco común -->
+      <div class="axis-trunk">
+        <button class="axis-dot" data-target="s-audio"       data-cat="sonido" title="01 · Audio"><span>Audio</span></button>
+        <button class="axis-dot" data-target="s-waveform"    data-cat="senal"  title="02 · Forma de onda"><span>Waveform</span></button>
+        <button class="axis-dot" data-target="s-spectrogram" data-cat="senal"  title="03 · Espectrograma"><span>Spectro</span></button>
+      </div>
+
+      <!-- Bifurcación -->
+      <div class="axis-branches">
+
+        <!-- Rama: inscripción para lectura -->
+        <div class="axis-branch axis-branch--lectura">
+          <span class="branch-label">lectura</span>
+          <button class="axis-dot" data-target="s-manuscript" data-cat="partitura" title="04 · Manuscrito"><span>Manus.</span></button>
+          <button class="axis-dot" data-target="s-scan"       data-cat="partitura" title="05 · PDF escaneado"><span>Scan</span></button>
+          <button class="axis-dot" data-target="s-vector"     data-cat="partitura" title="06 · PDF vectorial"><span>Vector</span></button>
+          <button class="axis-dot" data-target="s-png"        data-cat="partitura" title="07 · PNG"><span>PNG</span></button>
+          <button class="axis-dot" data-target="s-svg"        data-cat="partitura" title="08 · SVG"><span>SVG</span></button>
+          <button class="axis-dot" data-target="s-braille"    data-cat="braille"   title="19 · Braille Musical"><span>Braille</span></button>
+        </div>
+
+        <!-- Rama: ejecución y procesamiento -->
+        <div class="axis-branch axis-branch--proceso">
+          <span class="branch-label">ejecución · procesamiento</span>
+          <button class="axis-dot" data-target="s-midi-lit"  data-cat="evento"  title="09 · MIDI literal"><span>MIDI lit.</span></button>
+          <button class="axis-dot" data-target="s-midi-int"  data-cat="evento"  title="10 · MIDI interpretado"><span>MIDI int.</span></button>
+          <button class="axis-dot" data-target="s-mscz"      data-cat="fuente"  title="11 · MSCZ"><span>MSCZ</span></button>
+          <button class="axis-dot" data-target="s-mxl"       data-cat="codigo"  title="12 · MXL"><span>MXL</span></button>
+          <button class="axis-dot" data-target="s-musicxml"  data-cat="codigo"  title="13 · MusicXML"><span>MusicXML</span></button>
+          <button class="axis-dot" data-target="s-lilypond"  data-cat="codigo"  title="14 · LilyPond"><span>LilyPond</span></button>
+          <button class="axis-dot" data-target="s-abc"       data-cat="codigo"  title="15 · ABC Music"><span>ABC</span></button>
+          <button class="axis-dot" data-target="s-mei"       data-cat="codigo"  title="16 · MEI"><span>MEI</span></button>
+          <button class="axis-dot" data-target="s-kern"      data-cat="codigo"  title="17 · **kern"><span>**kern</span></button>
+          <button class="axis-dot" data-target="s-musedata"  data-cat="codigo"  title="18 · Musedata"><span>Musedata</span></button>
+        </div>
+
+      </div>
+    </div>
+    </div><!-- /axis-scroll -->
   </nav>
 
   <!-- ═══════════════════════════════════════════════════ FIXED PLAYER -->
@@ -74,13 +118,13 @@
   <main id="main">
 
     <!-- 01 · AUDIO -->
-    <section id="s-audio" class="rep-section" data-cat="fisico" data-index="1">
+    <section id="s-audio" class="rep-section" data-cat="sonido" data-index="1">
       <div class="section-inner">
         <header class="section-head">
           <div class="section-num">01</div>
           <div class="section-title-group">
             <h2>Audio</h2>
-            <span class="cat-badge" data-cat="fisico">FÍSICO</span>
+            <span class="cat-badge" data-cat="sonido">SONIDO</span>
           </div>
           <div class="section-ext">.WAV</div>
         </header>
@@ -113,13 +157,13 @@
     </section>
 
     <!-- 02 · WAVEFORM -->
-    <section id="s-waveform" class="rep-section" data-cat="fisico" data-index="2">
+    <section id="s-waveform" class="rep-section" data-cat="senal" data-index="2">
       <div class="section-inner">
         <header class="section-head">
           <div class="section-num">02</div>
           <div class="section-title-group">
             <h2>Forma de onda</h2>
-            <span class="cat-badge" data-cat="fisico">FÍSICO</span>
+            <span class="cat-badge" data-cat="senal">SEÑAL</span>
           </div>
           <div class="section-ext">Waveform</div>
         </header>
@@ -166,13 +210,13 @@
     </section>
 
     <!-- 03 · SPECTROGRAM -->
-    <section id="s-spectrogram" class="rep-section" data-cat="fisico" data-index="3">
+    <section id="s-spectrogram" class="rep-section" data-cat="senal" data-index="3">
       <div class="section-inner">
         <header class="section-head">
           <div class="section-num">03</div>
           <div class="section-title-group">
             <h2>Espectrograma</h2>
-            <span class="cat-badge" data-cat="fisico">FÍSICO</span>
+            <span class="cat-badge" data-cat="senal">SEÑAL</span>
           </div>
           <div class="section-ext">STFT</div>
         </header>
@@ -224,13 +268,13 @@
     </section>
 
     <!-- 04 · MANUSCRIPT -->
-    <section id="s-manuscript" class="rep-section" data-cat="visual" data-index="4">
+    <section id="s-manuscript" class="rep-section" data-cat="partitura" data-index="4">
       <div class="section-inner">
         <header class="section-head">
           <div class="section-num">04</div>
           <div class="section-title-group">
             <h2>Manuscrito</h2>
-            <span class="cat-badge" data-cat="visual">VISUAL</span>
+            <span class="cat-badge" data-cat="partitura">PARTITURA</span>
           </div>
           <div class="section-ext">.PDF</div>
         </header>
@@ -264,13 +308,13 @@
     </section>
 
     <!-- 05 · PDF SCAN -->
-    <section id="s-scan" class="rep-section" data-cat="visual" data-index="5">
+    <section id="s-scan" class="rep-section" data-cat="partitura" data-index="5">
       <div class="section-inner">
         <header class="section-head">
           <div class="section-num">05</div>
           <div class="section-title-group">
             <h2>PDF escaneado</h2>
-            <span class="cat-badge" data-cat="visual">VISUAL</span>
+            <span class="cat-badge" data-cat="partitura">PARTITURA</span>
           </div>
           <div class="section-ext">.PDF</div>
         </header>
@@ -316,20 +360,22 @@
     </section>
 
     <!-- 06 · PDF VECTOR -->
-    <section id="s-vector" class="rep-section" data-cat="visual" data-index="6">
+    <section id="s-vector" class="rep-section" data-cat="partitura" data-index="6">
       <div class="section-inner">
         <header class="section-head">
           <div class="section-num">06</div>
           <div class="section-title-group">
             <h2>PDF vectorial</h2>
-            <span class="cat-badge" data-cat="visual">VISUAL</span>
+            <span class="cat-badge" data-cat="partitura">PARTITURA</span>
           </div>
           <div class="section-ext">.PDF</div>
         </header>
         <div class="section-content">
           <div class="pdf-container">
-            <canvas id="canvas-vector" style="cursor:zoom-in;display:block;max-width:100%;height:auto;margin:0 auto;"></canvas>
-            <div class="pdf-loading" id="load-vector">Cargando…</div>
+            <div class="pdf-scroll">
+              <canvas id="canvas-vector" style="cursor:zoom-in;display:block;max-width:100%;height:auto;margin:0 auto;"></canvas>
+              <div class="pdf-loading" id="load-vector">Cargando…</div>
+            </div>
             <div class="scan-zoom-hint" id="vector-hint">clic → mordente</div>
           </div>
           <div class="scan-zoom-info-bar">
@@ -365,13 +411,13 @@
     </section>
 
     <!-- 07 · PNG -->
-    <section id="s-png" class="rep-section" data-cat="visual" data-index="7">
+    <section id="s-png" class="rep-section" data-cat="partitura" data-index="7">
       <div class="section-inner">
         <header class="section-head">
           <div class="section-num">07</div>
           <div class="section-title-group">
             <h2>PNG Raster</h2>
-            <span class="cat-badge" data-cat="visual">VISUAL</span>
+            <span class="cat-badge" data-cat="partitura">PARTITURA</span>
           </div>
           <div class="section-ext">.PNG</div>
         </header>
@@ -379,9 +425,11 @@
         <p class="section-desc">Este PNG fue exportado por <strong>LilyPond 2.24.4</strong>, que rasteriza su representación vectorial interna a una cuadrícula de píxeles. A diferencia del PDF escaneado —donde la partitura impresa fue fotografiada—, aquí no existe proceso fotográfico: el software convierte cada curva de Bézier, cada glifo Feta y cada línea de pentagrama en una matriz de puntos de color con total precisión matemática.</p>
 
         <div class="section-content">
-          <div class="pdf-container" style="position:relative;">
-            <canvas id="canvas-png" style="display:block;max-width:100%;cursor:zoom-in;"></canvas>
-            <div class="pdf-loading" id="load-png">Cargando PNG…</div>
+          <div class="pdf-container">
+            <div class="pdf-scroll">
+              <canvas id="canvas-png" style="display:block;max-width:100%;cursor:zoom-in;"></canvas>
+              <div class="pdf-loading" id="load-png">Cargando PNG…</div>
+            </div>
             <div class="scan-zoom-hint" id="png-hint">clic → ver píxeles</div>
           </div>
           <div class="scan-zoom-info-bar">
@@ -409,13 +457,13 @@
     </section>
 
     <!-- 08 · SVG -->
-    <section id="s-svg" class="rep-section" data-cat="visual" data-index="8">
+    <section id="s-svg" class="rep-section" data-cat="partitura" data-index="8">
       <div class="section-inner">
         <header class="section-head">
           <div class="section-num">08</div>
           <div class="section-title-group">
             <h2>SVG</h2>
-            <span class="cat-badge" data-cat="visual">VISUAL</span>
+            <span class="cat-badge" data-cat="partitura">PARTITURA</span>
           </div>
           <div class="section-ext">.SVG</div>
         </header>
@@ -473,13 +521,13 @@
     </section>
 
     <!-- 09 · MIDI LITERAL -->
-    <section id="s-midi-lit" class="rep-section" data-cat="notacion" data-index="9">
+    <section id="s-midi-lit" class="rep-section" data-cat="evento" data-index="9">
       <div class="section-inner">
         <header class="section-head">
           <div class="section-num">09</div>
           <div class="section-title-group">
             <h2>MIDI literal</h2>
-            <span class="cat-badge" data-cat="notacion">NOTACIÓN</span>
+            <span class="cat-badge" data-cat="evento">EVENTO</span>
           </div>
           <div class="section-ext">.MID</div>
         </header>
@@ -579,13 +627,13 @@
     </section>
 
     <!-- 10 · MIDI INTERPRETADO -->
-    <section id="s-midi-int" class="rep-section" data-cat="notacion" data-index="10">
+    <section id="s-midi-int" class="rep-section" data-cat="evento" data-index="10">
       <div class="section-inner">
         <header class="section-head">
           <div class="section-num">10</div>
           <div class="section-title-group">
             <h2>MIDI interpretado</h2>
-            <span class="cat-badge" data-cat="notacion">NOTACIÓN</span>
+            <span class="cat-badge" data-cat="evento">EVENTO</span>
           </div>
           <div class="section-ext">.MID</div>
         </header>
@@ -635,13 +683,13 @@
     </section>
 
     <!-- 11 · MSCZ -->
-    <section id="s-mscz" class="rep-section" data-cat="binario" data-index="11">
+    <section id="s-mscz" class="rep-section" data-cat="fuente" data-index="11">
       <div class="section-inner">
         <header class="section-head">
           <div class="section-num">11</div>
           <div class="section-title-group">
             <h2>MSCZ</h2>
-            <span class="cat-badge" data-cat="binario">BINARIO</span>
+            <span class="cat-badge" data-cat="fuente">FUENTE</span>
           </div>
           <div class="section-ext">.MSCZ</div>
         </header>
@@ -696,13 +744,13 @@
     </section>
 
     <!-- 12 · MXL -->
-    <section id="s-mxl" class="rep-section" data-cat="binario" data-index="12">
+    <section id="s-mxl" class="rep-section" data-cat="codigo" data-index="12">
       <div class="section-inner">
         <header class="section-head">
           <div class="section-num">12</div>
           <div class="section-title-group">
             <h2>MXL</h2>
-            <span class="cat-badge" data-cat="binario">BINARIO</span>
+            <span class="cat-badge" data-cat="codigo">CÓDIGO</span>
           </div>
           <div class="section-ext">.MXL</div>
         </header>
@@ -950,13 +998,13 @@
     </section>
 
     <!-- 19 · BRAILLE -->
-    <section id="s-braille" class="rep-section" data-cat="especial" data-index="19">
+    <section id="s-braille" class="rep-section" data-cat="braille" data-index="19">
       <div class="section-inner">
         <header class="section-head">
           <div class="section-num">19</div>
           <div class="section-title-group">
             <h2>Braille Musical</h2>
-            <span class="cat-badge" data-cat="especial">ESPECIAL</span>
+            <span class="cat-badge" data-cat="braille">BRAILLE</span>
           </div>
           <div class="section-ext">.BRL</div>
         </header>
@@ -1006,7 +1054,7 @@
   <footer id="site-footer">
     <div class="footer-inner">
       <p>Johann Sebastian Bach · <em>Toccata und Fuge d-Moll</em> · BWV 565 · c. 1703–1707</p>
-      <p class="footer-note">Proyecto educativo sobre representaciones musicales digitales.</p>
+      <p class="footer-note">Mordant d-Moll · <a href="https://www.jlmirall.es" target="_blank" rel="noopener">José Luis Miralles Bono</a> · Realizado con Claude</p>
     </div>
   </footer>
 
@@ -1031,6 +1079,6 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
 
   <!-- App -->
-  <script src="js/app.js?v=7"></script>
+  <script src="js/app.js?v=10"></script>
 </body>
 </html>
