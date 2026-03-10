@@ -709,7 +709,7 @@ async function initScanSection() {
     const HINTS   = ['clic → mordente', 'clic → píxeles', 'clic → vista completa'];
     const INFOS   = [
       'Vista completa · PDF escaneado · haz clic para ampliar el mordente inicial',
-      'Ampliación · mordente inicial — Re con Pralltriller · haz clic para ver los píxeles',
+      'Ampliación · mordente inicial — Re con Mordant · haz clic para ver los píxeles',
       'Píxeles del escáner · naturaleza ráster del archivo · haz clic para volver',
     ];
 
@@ -772,7 +772,7 @@ async function initVectorSection() {
     const HINTS   = ['clic → mordente', 'clic → detalle vectorial', 'clic → vista completa'];
     const INFOS   = [
       'Vista completa · PDF vectorial · haz clic para ampliar el mordente inicial',
-      'Ampliación · mordente inicial — La con Pralltriller · haz clic para ver el detalle vectorial',
+      'Ampliación · mordente inicial — La con Mordant · haz clic para ver el detalle vectorial',
       'Detalle vectorial · curvas perfectas sin píxeles · haz clic para volver',
     ];
 
@@ -858,7 +858,7 @@ function initSVGLayerDemo() {
     { id: 'demo-ledger',   label: '② Línea auxiliar',  code: '<line x1="88" y1="34" x2="120" y2="34"\n  stroke="currentColor" stroke-width="1.2"/>' },
     { id: 'demo-notehead', label: '③ Cabeza de nota',  code: '<ellipse cx="103" cy="34" rx="7" ry="5"\n  fill="currentColor"\n  transform="rotate(-15,103,34)"/>' },
     { id: 'demo-stem',     label: '④ Plica',            code: '<line x1="110" y1="30" x2="110" y2="74"\n  stroke="currentColor" stroke-width="1.5"/>' },
-    { id: 'demo-ornament', label: '⑤ Pralltriller',    code: '<path d="M83,20 Q89,12 95,20 Q101,12 107,20\n  Q113,12 119,20 Q125,12 127,20"\n  stroke="currentColor" fill="none"\n  stroke-width="1.5"/>' },
+    { id: 'demo-ornament', label: '⑤ Mordant',    code: '<path d="M83,20 Q89,12 95,20 Q101,12 107,20\n  Q113,12 119,20 Q125,12 127,20"\n  stroke="currentColor" fill="none"\n  stroke-width="1.5"/>' },
   ];
 
   const visible = new Set(LAYERS.map(l => l.id));

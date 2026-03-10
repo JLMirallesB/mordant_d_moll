@@ -561,6 +561,40 @@ a { color: var(--accent); text-decoration: none; }
   color: #FFFFFF;
 }
 
+/* Tool links — open-in-editor row inside section-meta */
+.tool-links {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+  flex-basis: 100%;
+  padding-top: 14px;
+  border-top: 1px solid var(--border);
+}
+.tool-links-label {
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  white-space: nowrap;
+  margin-right: 2px;
+}
+.tool-link {
+  font-size: 0.68rem;
+  padding: 2px 9px;
+  border: 1px solid var(--border);
+  border-radius: 0;
+  color: var(--text-muted);
+  text-decoration: none;
+  font-family: 'JetBrains Mono', monospace;
+  transition: color .15s, border-color .15s;
+}
+.tool-link:hover {
+  color: var(--accent);
+  border-color: var(--accent);
+}
+
 /* ── AUDIO ────────────────────────────────────────────── */
 #audio-player-container {
   background: var(--bg-card);
@@ -1180,6 +1214,11 @@ mark.xml-note-hl {
   white-space: nowrap;
 }
 .bin-size { font-size: 0.75rem; color: #777777; white-space: nowrap; flex-shrink: 0; }
+
+/* MSCZ tree panel: size on new line so filename gets full width */
+.mscz-tree-panel .bin-item { flex-wrap: wrap; gap: 4px 12px; }
+.mscz-tree-panel .bin-size  { flex-basis: 100%; padding-left: 28px; font-size: 0.65rem; }
+
 .bin-note {
   margin-top: 14px;
   font-size: 0.8rem;
