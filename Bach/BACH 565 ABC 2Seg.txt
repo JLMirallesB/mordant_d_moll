@@ -1,0 +1,13 @@
+X:1
+T:Toccata und Fuge d-Moll
+C:J. S. Bach (BWV 565)
+M:4/4
+L:1/8
+Q:1/4=40
+K:Dm
+%%MIDI program 19
+%%staves {RH LH}
+V:RH clef=treble
+V:LH clef=treble
+[V:RH] !fermata!!mordent!a z7 |]
+[V:LH] !fermata!!mordent!A z7 |]

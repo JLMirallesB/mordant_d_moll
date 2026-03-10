@@ -1,0 +1,33 @@
+WK#:565  MVT:1
+FILEID: BWV565_incipit
+ENCODER: Codificación manual con fines educativos
+WORK TITLE: Toccata und Fuge d-Moll
+WORK NUMBER: BWV 565
+MOVEMENT TITLE: Toccata — Incipit
+COMPOSER: Bach, Johann Sebastian
+DATE: 1703/07
+STAGE: B
+
+PART: 1 of 2 (Manuale I — voz superior, A5)
+$ K:f   Q:2   T:4/4   C:22   X:C5
+!! Q=2: la negra vale 2 unidades de tiempo
+!! K:f = un bemol (Re menor / Fa mayor)
+!! T:4/4 = compasillo
+*>Adagio
+=1                      ; inicio del compás 1
+nA5  fm       1 1       ; La5, corchea (1 unidad), fermata (f), mordente (m)
+r            1          ; silencio de corchea
+r            2          ; silencio de negra
+r            4          ; silencio de blanca
+/                       ; fin de compás
+/END
+
+PART: 2 of 2 (Manuale I — voz inferior, A4)
+$ K:f   Q:2   T:4/4   C:22   X:C4
+=1
+nA4  fm       1 1       ; La4, corchea, fermata, mordente (calderón invertido)
+r            1
+r            2
+r            4
+/
+/END

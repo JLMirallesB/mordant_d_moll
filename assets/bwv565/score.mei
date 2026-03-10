@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="https://music-encoding.org/schema/4.0.0/mei-all.rng"
+            type="application/xml"
+            schematypens="http://relaxng.org/ns/structure/1.0"?>
+<mei xmlns="http://www.music-encoding.org/ns/mei" meiversion="4.0.0">
+  <meiHead>
+    <fileDesc>
+      <titleStmt>
+        <title type="main">Toccata und Fuge d-Moll</title>
+        <title type="subordinate">BWV 565 — Incipit (primeras notas)</title>
+        <respStmt>
+          <persName role="composer" auth="GND" auth.uri="https://d-nb.info/gnd/" codedval="11850553X">
+            Johann Sebastian Bach
+          </persName>
+        </respStmt>
+      </titleStmt>
+      <pubStmt>
+        <unpub/>
+      </pubStmt>
+      <sourceDesc>
+        <source>
+          <bibl>Codificación manual con fines educativos, 2026</bibl>
+        </source>
+      </sourceDesc>
+    </fileDesc>
+    <encodingDesc>
+      <appInfo>
+        <application xml:id="mei_enc" version="1.0">
+          <name>Codificación manual</name>
+          <ptr target="https://music-encoding.org"/>
+        </application>
+      </appInfo>
+      <editorialDecl>
+        <p>Solo se codifican las primeras notas antes del primer silencio estructural.</p>
+      </editorialDecl>
+    </encodingDesc>
+    <workList>
+      <work>
+        <title>Toccata und Fuge d-Moll</title>
+        <identifier type="BWV">565</identifier>
+        <composer>
+          <persName>Johann Sebastian Bach</persName>
+        </composer>
+        <key pname="d" mode="minor"/>
+        <meter count="4" unit="4"/>
+        <tempo>Adagio</tempo>
+        <perfMedium>
+          <perfResList>
+            <perfRes>Órgano (2 manuales + pedal)</perfRes>
+          </perfResList>
+        </perfMedium>
+      </work>
+    </workList>
+  </meiHead>
+
+  <music>
+    <body>
+      <mdiv xml:id="mdiv1">
+        <score>
+          <scoreDef meter.count="4" meter.unit="4" key.sig="1f" key.mode="minor">
+            <staffGrp xml:id="sg1" symbol="bracket" barthru="true">
+              <staffGrp xml:id="sg2" symbol="brace">
+                <staffDef xml:id="s1" n="1" lines="5"
+                          clef.shape="G" clef.line="2"
+                          label="Manuale I"/>
+                <staffDef xml:id="s2" n="2" lines="5"
+                          clef.shape="G" clef.line="2"
+                          label="Manuale II"/>
+              </staffGrp>
+              <staffDef xml:id="s3" n="3" lines="5"
+                        clef.shape="F" clef.line="4"
+                        label="Pedale"/>
+            </staffGrp>
+          </scoreDef>
+
+          <section xml:id="sec1">
+            <measure xml:id="m1" n="1" right="end">
+
+              <!-- Manuale I: A5 (voz superior) + A4 (voz inferior) -->
+              <staff xml:id="staff1" n="1">
+                <layer xml:id="lay1a" n="1">
+                  <note xml:id="n1" pname="a" oct="5" dur="8" stem.dir="up"/>
+                  <rest xml:id="r1" dur="8"/>
+                  <rest xml:id="r2" dur="4"/>
+                  <rest xml:id="r3" dur="2"/>
+                </layer>
+                <layer xml:id="lay1b" n="2">
+                  <note xml:id="n2" pname="a" oct="4" dur="8" stem.dir="down"/>
+                  <rest xml:id="r4" dur="8"/>
+                  <rest xml:id="r5" dur="4"/>
+                  <rest xml:id="r6" dur="2"/>
+                </layer>
+              </staff>
+
+              <!-- Manuale II: silencio completo -->
+              <staff xml:id="staff2" n="2">
+                <layer xml:id="lay2" n="1">
+                  <mRest xml:id="mr1"/>
+                </layer>
+              </staff>
+
+              <!-- Pedale: silencio completo -->
+              <staff xml:id="staff3" n="3">
+                <layer xml:id="lay3" n="1">
+                  <mRest xml:id="mr2"/>
+                </layer>
+              </staff>
+
+              <!-- Ornamentos y articulaciones -->
+              <mordent xml:id="mo1" startid="#n1" place="above"/>
+              <mordent xml:id="mo2" startid="#n2" place="below"/>
+              <fermata xml:id="f1" startid="#n1" place="above" form="norm"/>
+              <fermata xml:id="f2" startid="#n2" place="below" form="inv"/>
+              <dir xml:id="d1" startid="#n1" place="above">Adagio</dir>
+
+            </measure>
+          </section>
+        </score>
+      </mdiv>
+    </body>
+  </music>
+</mei>
