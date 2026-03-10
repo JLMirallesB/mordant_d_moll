@@ -165,7 +165,7 @@ function initStickyPlayer() {
   wsMain.on('finish',() => { iconPlay.style.display = ''; iconPause.style.display = 'none'; });
 
   wsMain.on('audioprocess', t => { timeCur.textContent = fmt(t); });
-  wsMain.on('ready', dur => { timeTotal.textContent = fmt(dur); });
+  wsMain.on('ready', () => { timeTotal.textContent = fmt(wsMain.getDuration()); });
 
   function fmt(s) {
     const m = Math.floor(s / 60);

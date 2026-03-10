@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mordant d-Moll — Propuestas de estilo</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=EB+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500;700&family=DM+Sans:opsz,wght@9..40,400;9..40,700;9..40,900&family=Playfair+Display:ital,wght@0,700;1,700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: #0e0e0e;
+      color: #ccc;
+      font-family: system-ui, sans-serif;
+      padding: 56px 24px 120px;
+    }
+
+    .page-header {
+      max-width: 880px;
+      margin: 0 auto 72px;
+      border-bottom: 1px solid #222;
+      padding-bottom: 28px;
+    }
+    .page-header h1 {
+      font-size: 0.65rem;
+      font-weight: 600;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: #444;
+      margin-bottom: 10px;
+    }
+    .page-header p { font-size: 0.9rem; color: #444; line-height: 1.6; }
+
+    .grid {
+      max-width: 880px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 96px;
+    }
+
+    /* proposal meta */
+    .prop-num  { font-size: 0.6rem; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; color: #333; margin-bottom: 8px; }
+    .prop-name { font-size: 1.35rem; font-weight: 700; color: #ddd; margin-bottom: 6px; }
+    .prop-desc { font-size: 0.82rem; color: #555; line-height: 1.65; margin-bottom: 24px; }
+
+    /* swatches */
+    .swatches { display: flex; gap: 10px; margin-bottom: 28px; align-items: flex-end; flex-wrap: wrap; }
+    .sw { display: flex; flex-direction: column; align-items: center; gap: 7px; }
+    .sw-box { width: 44px; height: 44px; border-radius: 8px; }
+    .sw-label { font-size: 0.56rem; font-family: monospace; color: #3a3a3a; }
+
+    /* preview chrome */
+    .preview {
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 8px 48px rgba(0,0,0,.6);
+    }
+  </style>
+</head>
+<body>
+
+<div class="page-header">
+  <h1>Mordant d-Moll · Exploración de estilo</h1>
+  <p>5 propuestas de paleta, tipografía y atmósfera — elige una dirección o combina elementos de varias.</p>
+</div>
+
+<div class="grid">
+
+
+  <!-- ══════════════════════════════════════════════════
+       01 · CLEAN DIGITAL
+  ══════════════════════════════════════════════════ -->
+  <div>
+    <div class="prop-num">01 / 05</div>
+    <div class="prop-name">Clean Digital</div>
+    <div class="prop-desc">Fondo blanco roto, Inter, acento azul eléctrico. Minimalismo de producto software. Evoca Notion, Linear, Vercel — familiar y eficiente.</div>
+    <div class="swatches">
+      <div class="sw"><div class="sw-box" style="background:#F7F7F5;border:1px solid #E2E8F0"></div><span class="sw-label">#F7F7F5</span></div>
+      <div class="sw"><div class="sw-box" style="background:#FFFFFF;border:1px solid #E2E8F0"></div><span class="sw-label">#FFFFFF</span></div>
+      <div class="sw"><div class="sw-box" style="background:#111827"></div><span class="sw-label">#111827</span></div>
+      <div class="sw"><div class="sw-box" style="background:#3B5BDB"></div><span class="sw-label">#3B5BDB</span></div>
+      <div class="sw"><div class="sw-box" style="background:#6B7280"></div><span class="sw-label">#6B7280</span></div>
+      <div class="sw"><div class="sw-box" style="background:#E2E8F0;border:1px solid #ccc"></div><span class="sw-label">#E2E8F0</span></div>
+    </div>
+    <div class="preview">
+      <div style="font-family:'Inter',system-ui;background:#F7F7F5;color:#111827;">
+        <!-- header -->
+        <div style="background:#fff;border-bottom:1px solid #E2E8F0;padding:22px 36px 18px;display:flex;align-items:center;justify-content:space-between;gap:16px;">
+          <div>
+            <div style="font-size:0.62rem;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:#6B7280;margin-bottom:6px">BWV 565 · Johann Sebastian Bach · <em style="font-style:italic;text-transform:none;letter-spacing:0">Toccata und Fuge d-Moll</em></div>
+            <div style="font-size:1.85rem;font-weight:700;letter-spacing:-0.025em;color:#111827;line-height:1.1">Mordant d-Moll</div>
+            <div style="font-size:0.78rem;color:#6B7280;margin-top:5px">La nota inicial en <strong style="color:#111827">19 representaciones</strong> distintas</div>
+          </div>
+          <button style="font-size:0.62rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;padding:7px 14px;border:1px solid #E2E8F0;border-radius:6px;background:#fff;color:#6B7280;cursor:pointer">Acerca de</button>
+        </div>
+        <!-- section -->
+        <div style="padding:32px 36px;">
+          <div style="background:#fff;border:1px solid #E2E8F0;border-radius:10px;overflow:hidden;">
+            <div style="padding:18px 24px 14px;border-bottom:1px solid #E2E8F0;display:flex;align-items:center;gap:16px;">
+              <span style="font-size:1.8rem;font-weight:700;color:#E2E8F0;line-height:1">01</span>
+              <div>
+                <div style="font-size:0.6rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:#6B7280;margin-bottom:2px">Sonido</div>
+                <div style="font-size:1rem;font-weight:600;color:#111827">Audio</div>
+              </div>
+              <span style="margin-left:auto;font-size:0.6rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;background:#EEF2FF;color:#3B5BDB;padding:4px 10px;border-radius:20px">SONIDO</span>
+            </div>
+            <div style="padding:22px 24px;background:#F7F7F5;border-bottom:1px solid #E2E8F0;">
+              <div style="height:54px;background:#E2E8F0;border-radius:8px;display:flex;align-items:center;justify-content:center;gap:12px;">
+                <span style="width:28px;height:28px;background:#3B5BDB;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;color:#fff;font-size:0.7rem">▶</span>
+                <div style="flex:1;height:4px;background:#CBD5E1;border-radius:2px;max-width:280px"><div style="width:0%;height:4px;background:#3B5BDB;border-radius:2px"></div></div>
+                <span style="font-size:0.7rem;color:#6B7280">0:00 / 0:02</span>
+              </div>
+            </div>
+            <div style="padding:10px 20px;background:#fff;border-bottom:1px solid #E2E8F0;display:flex;align-items:center;gap:8px;cursor:pointer;">
+              <span style="font-size:0.5rem;color:#CBD5E1;transition:transform 0.2s">▶</span>
+              <span style="font-size:0.62rem;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:#6B7280">Explicación</span>
+            </div>
+            <div style="padding:16px 24px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;">
+              <div style="display:flex;gap:28px;flex-wrap:wrap;">
+                <div><div style="font-size:0.6rem;font-weight:600;text-transform:uppercase;letter-spacing:0.1em;color:#CBD5E1">Formato</div><div style="font-size:0.82rem;color:#374151;margin-top:3px">PCM WAV, 16 bit</div></div>
+                <div><div style="font-size:0.6rem;font-weight:600;text-transform:uppercase;letter-spacing:0.1em;color:#CBD5E1">Tamaño</div><div style="font-size:0.82rem;color:#374151;margin-top:3px">360 KB</div></div>
+              </div>
+              <button style="font-size:0.72rem;font-weight:600;padding:9px 18px;background:#3B5BDB;color:#fff;border:none;border-radius:7px;cursor:pointer">↓ Descargar .WAV</button>
+            </div>
+          </div>
+        </div>
+        <div style="padding:14px 36px;border-top:1px solid #E2E8F0;text-align:center;">
+          <span style="font-size:0.72rem;color:#CBD5E1">Johann Sebastian Bach · Toccata und Fuge d-Moll · BWV 565 · c. 1703–1707</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ══════════════════════════════════════════════════
+       02 · MUSICÓLOGO
+  ══════════════════════════════════════════════════ -->
+  <div>
+    <div class="prop-num">02 / 05</div>
+    <div class="prop-name">Musicólogo · Edición Crítica</div>
+    <div class="prop-desc">Pergamino, EB Garamond, carmesí oscuro. Atmósfera de biblioteca universitaria, Neue Bach-Ausgabe, artículo de musicología.</div>
+    <div class="swatches">
+      <div class="sw"><div class="sw-box" style="background:#F4EDD5;border:1px solid #D6C8A8"></div><span class="sw-label">#F4EDD5</span></div>
+      <div class="sw"><div class="sw-box" style="background:#FDFAF0;border:1px solid #D6C8A8"></div><span class="sw-label">#FDFAF0</span></div>
+      <div class="sw"><div class="sw-box" style="background:#2A180E"></div><span class="sw-label">#2A180E</span></div>
+      <div class="sw"><div class="sw-box" style="background:#8C1515"></div><span class="sw-label">#8C1515</span></div>
+      <div class="sw"><div class="sw-box" style="background:#786050"></div><span class="sw-label">#786050</span></div>
+      <div class="sw"><div class="sw-box" style="background:#C8B896;border:1px solid #b5a07e"></div><span class="sw-label">#C8B896</span></div>
+    </div>
+    <div class="preview">
+      <div style="font-family:'EB Garamond','Times New Roman',serif;background:#F4EDD5;color:#2A180E;">
+        <div style="background:#FDFAF0;border-bottom:2px solid #8C1515;padding:28px 44px 22px;text-align:center;">
+          <div style="font-size:0.62rem;letter-spacing:0.2em;text-transform:uppercase;color:#786050;margin-bottom:10px;font-style:italic">BWV 565 · Johann Sebastian Bach · c. 1703–1707 · Toccata und Fuge d-Moll</div>
+          <div style="font-size:2.3rem;font-weight:700;color:#2A180E;letter-spacing:0.02em;line-height:1.1">Mordant d-Moll</div>
+          <div style="width:60px;height:1px;background:#C8B896;margin:14px auto 12px"></div>
+          <div style="font-size:0.95rem;color:#786050;font-style:italic">La nota inicial en 19 representaciones distintas</div>
+        </div>
+        <div style="padding:32px 44px;">
+          <div style="background:#FDFAF0;border:1px solid #C8B896;overflow:hidden;">
+            <div style="padding:18px 26px 14px;border-bottom:1px solid #C8B896;display:flex;align-items:baseline;gap:18px;">
+              <span style="font-size:2.2rem;font-weight:400;font-style:italic;color:#D6C8A8;line-height:1">01</span>
+              <div>
+                <div style="font-size:0.6rem;letter-spacing:0.15em;text-transform:uppercase;color:#786050;margin-bottom:3px">Sonido</div>
+                <div style="font-size:1.15rem;font-weight:600;color:#2A180E">Audio</div>
+              </div>
+              <span style="margin-left:auto;font-size:0.6rem;letter-spacing:0.1em;text-transform:uppercase;border:1px solid #8C1515;color:#8C1515;padding:3px 10px">SONIDO</span>
+            </div>
+            <div style="padding:22px 26px;background:#F4EDD5;border-bottom:1px solid #C8B896;">
+              <div style="height:52px;background:#EDE3CA;border:1px solid #C8B896;display:flex;align-items:center;justify-content:center;gap:10px;">
+                <span style="font-style:italic;color:#786050;font-size:0.8rem">▶</span>
+                <span style="font-size:0.78rem;color:#786050;font-style:italic">0:00 / 0:02 ──────────────────────</span>
+              </div>
+            </div>
+            <div style="padding:9px 22px;background:#FDFAF0;border-bottom:1px solid #C8B896;display:flex;align-items:center;gap:8px;cursor:pointer;">
+              <span style="font-size:0.52rem;color:#D6C8A8">▶</span>
+              <span style="font-size:0.6rem;letter-spacing:0.15em;text-transform:uppercase;color:#786050;font-style:italic">Explicación</span>
+            </div>
+            <div style="padding:16px 26px;display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;">
+              <div style="display:flex;gap:30px;flex-wrap:wrap;">
+                <div><div style="font-size:0.6rem;letter-spacing:0.12em;text-transform:uppercase;color:#786050">Formato</div><div style="font-size:0.9rem;color:#2A180E;margin-top:3px">PCM WAV, 16 bit</div></div>
+                <div><div style="font-size:0.6rem;letter-spacing:0.12em;text-transform:uppercase;color:#786050">Tamaño</div><div style="font-size:0.9rem;color:#2A180E;margin-top:3px">360 KB</div></div>
+              </div>
+              <button style="font-size:0.72rem;padding:8px 18px;background:transparent;color:#8C1515;border:1px solid #8C1515;cursor:pointer;font-family:'EB Garamond',serif">↓ Descargar .WAV</button>
+            </div>
+          </div>
+        </div>
+        <div style="padding:16px 44px;border-top:1px solid #C8B896;text-align:center;">
+          <span style="font-size:0.82rem;color:#786050;font-style:italic">Johann Sebastian Bach · Toccata und Fuge d-Moll · BWV 565 · c. 1703–1707</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ══════════════════════════════════════════════════
+       03 · TERMINAL
+  ══════════════════════════════════════════════════ -->
+  <div>
+    <div class="prop-num">03 / 05</div>
+    <div class="prop-name">Terminal · Código</div>
+    <div class="prop-desc">Negro profundo, verde fosforescente, JetBrains Mono. Estética de terminal UNIX, IDE oscuro, software libre. Coherente con las secciones de código del propio sitio.</div>
+    <div class="swatches">
+      <div class="sw"><div class="sw-box" style="background:#080C08"></div><span class="sw-label">#080C08</span></div>
+      <div class="sw"><div class="sw-box" style="background:#0F150F"></div><span class="sw-label">#0F150F</span></div>
+      <div class="sw"><div class="sw-box" style="background:#182018"></div><span class="sw-label">#182018</span></div>
+      <div class="sw"><div class="sw-box" style="background:#00C840"></div><span class="sw-label">#00C840</span></div>
+      <div class="sw"><div class="sw-box" style="background:#3A8050"></div><span class="sw-label">#3A8050</span></div>
+      <div class="sw"><div class="sw-box" style="background:#1C3020"></div><span class="sw-label">#1C3020</span></div>
+    </div>
+    <div class="preview">
+      <div style="font-family:'JetBrains Mono',monospace;background:#080C08;color:#C8F0C8;">
+        <div style="background:#0F150F;border-bottom:1px solid #1C3020;padding:20px 32px 16px;display:flex;align-items:center;justify-content:space-between;gap:16px;">
+          <div>
+            <div style="font-size:0.6rem;color:#3A8050;letter-spacing:0.05em;margin-bottom:6px">// BWV_565 · J.S._Bach · c.1703-1707</div>
+            <div style="font-size:1.55rem;font-weight:700;color:#00C840;letter-spacing:0">MORDANT_D_MOLL</div>
+            <div style="font-size:0.65rem;color:#3A8050;margin-top:4px">/* la nota inicial en 19 representaciones */</div>
+          </div>
+          <button style="font-size:0.6rem;font-weight:700;letter-spacing:0.05em;padding:6px 12px;border:1px solid #1C3020;border-radius:2px;background:transparent;color:#3A8050;cursor:pointer;font-family:inherit">[ about ]</button>
+        </div>
+        <div style="padding:26px 32px;">
+          <div style="background:#0F150F;border:1px solid #1C3020;overflow:hidden;">
+            <div style="padding:14px 22px;border-bottom:1px solid #1C3020;display:flex;align-items:center;gap:14px;">
+              <span style="font-size:1.4rem;font-weight:700;color:#1C3020">01</span>
+              <div>
+                <div style="font-size:0.56rem;color:#3A8050;letter-spacing:0.08em;margin-bottom:2px">// SONIDO</div>
+                <div style="font-size:0.88rem;font-weight:700;color:#00C840">audio.wav</div>
+              </div>
+              <span style="margin-left:auto;font-size:0.56rem;font-weight:700;background:#1C3020;color:#00C840;padding:3px 8px">SOUND</span>
+            </div>
+            <div style="padding:20px 22px;background:#080C08;border-bottom:1px solid #1C3020;">
+              <div style="height:46px;background:#0F150F;border:1px solid #1C3020;display:flex;align-items:center;justify-content:center;gap:10px;">
+                <span style="color:#00C840;font-size:0.65rem">▶ 00:00 / 00:02</span>
+                <span style="color:#1C3020;font-size:0.58rem;letter-spacing:-0.05em">━━━━━━━━━━━━━━━━━━━━━━━━</span>
+              </div>
+            </div>
+            <div style="padding:9px 18px;background:#0F150F;border-bottom:1px solid #1C3020;display:flex;align-items:center;gap:8px;cursor:pointer;">
+              <span style="font-size:0.52rem;color:#1C3020">▶</span>
+              <span style="font-size:0.58rem;letter-spacing:0.1em;color:#3A8050">// EXPLICACIÓN</span>
+            </div>
+            <div style="padding:14px 22px;display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;">
+              <span style="font-size:0.68rem;color:#3A8050">formato=<span style="color:#C8F0C8">PCM_WAV_16bit</span>  size=<span style="color:#C8F0C8">360KB</span></span>
+              <button style="font-size:0.62rem;font-weight:700;padding:7px 14px;background:#1C3020;color:#00C840;border:1px solid #00C840;cursor:pointer;font-family:inherit">$ get ./audio.wav</button>
+            </div>
+          </div>
+        </div>
+        <div style="padding:12px 32px;border-top:1px solid #1C3020;">
+          <span style="font-size:0.62rem;color:#1C3020">// bach BWV565 toccata-und-fuge-d-moll © public domain</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ══════════════════════════════════════════════════
+       04 · BAUHAUS  (sorpresa)
+  ══════════════════════════════════════════════════ -->
+  <div>
+    <div class="prop-num">04 / 05 · ✦ sorpresa</div>
+    <div class="prop-name">Bauhaus · Konstruktivismus</div>
+    <div class="prop-desc">Blanco puro, negro estructura, rojo / amarillo / azul puros. Tipografía geométrica ultra-bold. Influencia de Rodchenko, Moholy-Nagy y el cartelismo constructivista de los años 20. Radical — puede ser demasiado para algunos, perfecto para otros.</div>
+    <div class="swatches">
+      <div class="sw"><div class="sw-box" style="background:#F9F9F7;border:2px solid #111"></div><span class="sw-label">#F9F9F7</span></div>
+      <div class="sw"><div class="sw-box" style="background:#111111"></div><span class="sw-label">#111111</span></div>
+      <div class="sw"><div class="sw-box" style="background:#CC2200"></div><span class="sw-label">#CC2200</span></div>
+      <div class="sw"><div class="sw-box" style="background:#1133BB"></div><span class="sw-label">#1133BB</span></div>
+      <div class="sw"><div class="sw-box" style="background:#F5B800"></div><span class="sw-label">#F5B800</span></div>
+      <div class="sw"><div class="sw-box" style="background:#EBEBEA;border:2px solid #ccc"></div><span class="sw-label">#EBEBEA</span></div>
+    </div>
+    <div class="preview">
+      <div style="font-family:'DM Sans',system-ui;background:#F9F9F7;color:#111111;">
+        <!-- header negro -->
+        <div style="background:#111111;padding:22px 36px;display:flex;align-items:center;justify-content:space-between;gap:20px;">
+          <div>
+            <div style="font-size:0.58rem;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:#555;margin-bottom:6px">BWV 565 · Toccata und Fuge d-Moll</div>
+            <div style="font-size:1.9rem;font-weight:900;color:#F9F9F7;text-transform:uppercase;letter-spacing:-0.02em;line-height:1.05">MORDANT D-MOLL</div>
+          </div>
+          <!-- formas geométricas decorativas -->
+          <div style="display:flex;flex-direction:column;gap:6px;flex-shrink:0;">
+            <div style="display:flex;gap:6px">
+              <div style="width:18px;height:18px;background:#CC2200;border-radius:50%"></div>
+              <div style="width:18px;height:18px;background:#F5B800"></div>
+            </div>
+            <div style="display:flex;gap:6px">
+              <div style="width:18px;height:18px;background:#1133BB;border-radius:50% 0 50% 0"></div>
+              <div style="width:18px;height:18px;background:#CC2200;transform:rotate(45deg)"></div>
+            </div>
+          </div>
+        </div>
+        <!-- franja roja -->
+        <div style="background:#CC2200;padding:7px 36px;">
+          <span style="font-size:0.68rem;font-weight:900;letter-spacing:0.22em;text-transform:uppercase;color:#F9F9F7">19 representaciones distintas</span>
+        </div>
+        <!-- sección -->
+        <div style="padding:28px 36px;">
+          <div style="border:2px solid #111111;overflow:hidden;">
+            <div style="padding:16px 22px;border-bottom:2px solid #111;background:#EBEBEA;display:flex;align-items:center;gap:16px;">
+              <span style="font-size:2.6rem;font-weight:900;color:#CC2200;line-height:1">01</span>
+              <div style="flex:1">
+                <div style="font-size:1rem;font-weight:900;text-transform:uppercase;letter-spacing:0.04em">Audio</div>
+              </div>
+              <span style="font-size:0.58rem;font-weight:900;text-transform:uppercase;letter-spacing:0.12em;background:#F5B800;color:#111;padding:5px 11px;border:2px solid #111">SONIDO</span>
+            </div>
+            <div style="padding:22px;background:#F9F9F7;border-bottom:2px solid #111;">
+              <div style="height:50px;background:#EBEBEA;border:2px solid #111;display:flex;align-items:center;justify-content:center;gap:12px;">
+                <span style="width:28px;height:28px;background:#111;display:inline-flex;align-items:center;justify-content:center;color:#F9F9F7;font-weight:900;font-size:0.7rem">▶</span>
+                <span style="font-size:0.72rem;font-weight:700;color:#888">0:00 / 0:02 ────────────────────</span>
+              </div>
+            </div>
+            <div style="padding:9px 20px;background:#EBEBEA;border-bottom:2px solid #111;display:flex;align-items:center;gap:8px;cursor:pointer;">
+              <span style="font-size:0.58rem;font-weight:900;color:#1133BB">▶</span>
+              <span style="font-size:0.6rem;font-weight:900;letter-spacing:0.16em;text-transform:uppercase;color:#1133BB">Explicación</span>
+            </div>
+            <div style="padding:16px 22px;display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;background:#F9F9F7;">
+              <div style="display:flex;gap:24px;flex-wrap:wrap;">
+                <div><div style="font-size:0.55rem;font-weight:900;text-transform:uppercase;letter-spacing:0.1em;color:#aaa">Formato</div><div style="font-size:0.82rem;font-weight:700;color:#111;margin-top:3px">PCM WAV, 16 bit</div></div>
+                <div><div style="font-size:0.55rem;font-weight:900;text-transform:uppercase;letter-spacing:0.1em;color:#aaa">Tamaño</div><div style="font-size:0.82rem;font-weight:700;color:#111;margin-top:3px">360 KB</div></div>
+              </div>
+              <button style="font-size:0.68rem;font-weight:900;text-transform:uppercase;letter-spacing:0.06em;padding:10px 18px;background:#1133BB;color:#F9F9F7;border:2px solid #111;cursor:pointer;font-family:inherit">↓ DESCARGAR .WAV</button>
+            </div>
+          </div>
+        </div>
+        <div style="padding:14px 36px;border-top:2px solid #111;display:flex;justify-content:center;align-items:center;gap:20px;">
+          <span style="font-size:0.7rem;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:#999">Johann Sebastian Bach</span>
+          <span style="color:#CC2200;font-weight:900;font-size:1rem">×</span>
+          <span style="font-size:0.7rem;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:#999">BWV 565</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ══════════════════════════════════════════════════
+       05 · NOCHE DE CONCIERTO  (sorpresa)
+  ══════════════════════════════════════════════════ -->
+  <div>
+    <div class="prop-num">05 / 05 · ✦ sorpresa</div>
+    <div class="prop-name">Noche de Concierto</div>
+    <div class="prop-desc">Azul medianoche, oro antiguo, Playfair Display + Inter. Evoca el programa de mano impreso, la sala de conciertos, el escenario iluminado. Elegancia del mundo clásico sin caer en el cliché.</div>
+    <div class="swatches">
+      <div class="sw"><div class="sw-box" style="background:#090D18"></div><span class="sw-label">#090D18</span></div>
+      <div class="sw"><div class="sw-box" style="background:#0F1628"></div><span class="sw-label">#0F1628</span></div>
+      <div class="sw"><div class="sw-box" style="background:#182040"></div><span class="sw-label">#182040</span></div>
+      <div class="sw"><div class="sw-box" style="background:#C8943A"></div><span class="sw-label">#C8943A</span></div>
+      <div class="sw"><div class="sw-box" style="background:#7A8FBE"></div><span class="sw-label">#7A8FBE</span></div>
+      <div class="sw"><div class="sw-box" style="background:#243060"></div><span class="sw-label">#243060</span></div>
+    </div>
+    <div class="preview">
+      <div style="font-family:'Inter',system-ui;background:#090D18;color:#B8CCE8;">
+        <!-- header -->
+        <div style="background:#0F1628;border-bottom:1px solid #182040;padding:28px 44px 22px;text-align:center;">
+          <div style="font-size:0.58rem;font-weight:500;letter-spacing:0.22em;text-transform:uppercase;color:#3A4870;margin-bottom:10px">BWV 565 · Johann Sebastian Bach · <em style="text-transform:none;letter-spacing:0;font-style:italic">Toccata und Fuge d-Moll</em></div>
+          <div style="font-family:'Playfair Display',Georgia,serif;font-size:2.2rem;font-weight:700;font-style:italic;color:#EAD898;letter-spacing:0.02em;line-height:1.1">Mordant d-Moll</div>
+          <!-- ornamento -->
+          <div style="margin:14px 0;display:flex;align-items:center;justify-content:center;gap:0;">
+            <div style="flex:1;max-width:80px;height:1px;background:linear-gradient(to right,transparent,#C8943A)"></div>
+            <span style="color:#C8943A;font-size:0.75rem;padding:0 12px">✦</span>
+            <div style="flex:1;max-width:80px;height:1px;background:linear-gradient(to left,transparent,#C8943A)"></div>
+          </div>
+          <div style="font-size:0.78rem;color:#3A4870;font-style:italic">La nota inicial en <em style="color:#7A8FBE;font-style:normal">19 representaciones</em> distintas</div>
+        </div>
+        <!-- sección -->
+        <div style="padding:30px 44px;">
+          <div style="background:#0F1628;border:1px solid #182040;border-radius:6px;overflow:hidden;">
+            <div style="padding:18px 26px 14px;border-bottom:1px solid #182040;display:flex;align-items:center;gap:16px;">
+              <span style="font-family:'Playfair Display',serif;font-size:1.7rem;font-style:italic;color:#182040;line-height:1">01</span>
+              <div>
+                <div style="font-size:0.58rem;font-weight:500;letter-spacing:0.16em;text-transform:uppercase;color:#3A4870;margin-bottom:2px">Sonido</div>
+                <div style="font-size:0.95rem;font-weight:500;color:#B8CCE8">Audio</div>
+              </div>
+              <span style="margin-left:auto;font-size:0.58rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;border:1px solid #C8943A;color:#C8943A;padding:3px 10px;border-radius:3px">SONIDO</span>
+            </div>
+            <div style="padding:22px 26px;background:#090D18;border-bottom:1px solid #182040;">
+              <div style="height:52px;background:#0F1628;border:1px solid #182040;border-radius:4px;display:flex;align-items:center;justify-content:center;gap:12px;">
+                <span style="width:26px;height:26px;border:1px solid #C8943A;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;color:#C8943A;font-size:0.65rem">▶</span>
+                <div style="flex:1;height:3px;background:#182040;border-radius:2px;max-width:260px"></div>
+                <span style="font-size:0.7rem;color:#3A4870">0:00 / 0:02</span>
+              </div>
+            </div>
+            <div style="padding:10px 22px;background:#0F1628;border-bottom:1px solid #182040;display:flex;align-items:center;gap:8px;cursor:pointer;">
+              <span style="font-size:0.48rem;color:#243060">▶</span>
+              <span style="font-size:0.58rem;font-weight:500;letter-spacing:0.16em;text-transform:uppercase;color:#3A4870">Explicación</span>
+            </div>
+            <div style="padding:16px 26px;display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;">
+              <div style="display:flex;gap:28px;flex-wrap:wrap;">
+                <div><div style="font-size:0.58rem;font-weight:500;text-transform:uppercase;letter-spacing:0.12em;color:#243060">Formato</div><div style="font-size:0.82rem;color:#7A8FBE;margin-top:3px">PCM WAV, 16 bit</div></div>
+                <div><div style="font-size:0.58rem;font-weight:500;text-transform:uppercase;letter-spacing:0.12em;color:#243060">Tamaño</div><div style="font-size:0.82rem;color:#7A8FBE;margin-top:3px">360 KB</div></div>
+              </div>
+              <button style="font-size:0.7rem;font-weight:500;padding:9px 20px;background:transparent;color:#C8943A;border:1px solid #C8943A;border-radius:4px;cursor:pointer">↓ Descargar .WAV</button>
+            </div>
+          </div>
+        </div>
+        <div style="padding:16px 44px;border-top:1px solid #182040;text-align:center;">
+          <span style="font-family:'Playfair Display',serif;font-size:0.78rem;font-style:italic;color:#243060">Johann Sebastian Bach · Toccata und Fuge d-Moll · BWV 565 · c. 1703–1707</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+</div>
+</body>
+</html>
