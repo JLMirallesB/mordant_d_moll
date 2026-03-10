@@ -1031,6 +1031,9 @@ midi-visualizer::part(note) {
 }
 .section-explain-body a { color: var(--accent); }
 .section-explain-body strong { color: var(--text); }
+/* Dentro del explain la section-desc no debe tener max-width (ya está
+   acotada por .section-inner; el 760px global crearía un hueco derecho) */
+.section-explain-body .section-desc { max-width: none; }
 
 .section-body {
   padding: 4px 0 8px;
@@ -1428,11 +1431,64 @@ pre[class*="language-"], code[class*="language-"] {
 
 /* ── RESPONSIVE ──────────────────────────────────────── */
 @media (max-width: 640px) {
+
+  /* ── Variables móvil ── */
+  :root {
+    --axis-h: 60px;   /* el eje es más compacto en móvil */
+  }
+
+  /* ── Axis ── */
+  #axis {
+    padding: 5px 12px 4px;
+    overflow-x: hidden;   /* evita desbordamiento lateral */
+  }
+  .axis-title { display: none; }   /* ahorra espacio, queda los botones */
+  .axis-top { gap: 4px; }
+  /* Botones de categoría: fila scrollable en lugar de desbordarse */
+  .axis-cats {
+    overflow-x: auto;
+    flex-wrap: nowrap;
+    scrollbar-width: none;
+    padding-bottom: 2px;
+  }
+  .axis-cats::-webkit-scrollbar { display: none; }
+  .cat-filter-btn { font-size: 0.45rem; padding: 2px 5px; }
+
+  /* ── Secciones ── */
+  .section-inner { padding: 40px 16px 36px; }
   .section-head { gap: 10px; }
   .section-num { font-size: 2rem; }
   .section-meta { flex-direction: column; gap: 16px; }
-  .download-btn { margin-left: 0; }
+  .download-btn { margin-left: 0; width: 100%; justify-content: center; }
+  .tool-links { padding-top: 10px; }
+
+  /* ── MSCZ s.11: árbol encima, código/imagen debajo ── */
+  .mscz-explorer {
+    flex-direction: column;
+    min-height: auto;
+  }
+  .mscz-tree-panel {
+    width: 100%;
+    border-right: none;
+    border-bottom: 1px solid var(--border);
+    max-height: 220px;
+    overflow-y: auto;
+  }
+  .mscz-viewer-panel { min-height: 280px; }
+
+  /* ── Player flotante ── */
+  #sticky-player {
+    gap: 8px;
+    padding: 0 12px;
+  }
   .player-piece { display: none; }
+  #mini-wave { min-width: 0; }
+  .player-time { font-size: 0.68rem; gap: 2px; }
+
+  /* ── Otros ── */
   .braille-text { font-size: 1.4rem; }
   .bin-item { flex-wrap: wrap; }
+
+  /* Explain body: menos padding lateral en pantallas pequeñas */
+  .section-explain-body { padding: 16px 16px 20px; }
 }
