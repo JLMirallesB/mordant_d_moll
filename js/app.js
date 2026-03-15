@@ -8,6 +8,10 @@ const ASSET = path => `./assets/bwv565/${path}`;
 
 /* ── Boot ─────────────────────────────────────────────── */
 document.addEventListener('DOMContentLoaded', () => {
+  I18N.applyLang();
+  document.getElementById('lang-btn')?.addEventListener('click', () => {
+    I18N.setLang(I18N.getLang() === 'es' ? 'en' : 'es');
+  });
   initAboutCard();
   initAxis();
   initAxisFilter();
@@ -198,7 +202,7 @@ function initWaveformSection() {
       if (loadingEl) loadingEl.style.display = 'none';
       resize();
     })
-    .catch(() => { if (loadingEl) loadingEl.textContent = 'Disponible solo con servidor HTTP.'; });
+    .catch(() => { if (loadingEl) loadingEl.textContent = I18N.t('ui.httpOnly'); });
 
   /* ── Draw ──────────────────────────────────────── */
   function draw() {
@@ -283,8 +287,9 @@ function initWaveformSection() {
     if (el) {
       const t0 = (offset / sampleRate).toFixed(4);
       const t1 = ((offset + avis - 1) / sampleRate).toFixed(4);
-      const mode = avis <= THRESH ? ' · modo muestra individual' : '';
-      el.textContent = `Muestras ${offset.toLocaleString('es')}–${(offset + avis - 1).toLocaleString('es')} · ${t0}s–${t1}s · ${avis.toLocaleString('es')} visibles${mode}`;
+      const mode = avis <= THRESH ? I18N.t('wf.sampleMode') : '';
+      const loc  = I18N.t('locale');
+      el.textContent = `${I18N.t('wf.samples')} ${offset.toLocaleString(loc)}–${(offset + avis - 1).toLocaleString(loc)} · ${t0}s–${t1}s · ${avis.toLocaleString(loc)} ${I18N.t('wf.visible')}${mode}`;
     }
   }
 
@@ -480,7 +485,7 @@ function initSpectrogramSection() {
       }, 0);
     })
     .catch(() => {
-      if (loadingEl) loadingEl.textContent = 'Disponible solo con servidor HTTP.';
+      if (loadingEl) loadingEl.textContent = I18N.t('ui.httpOnly');
     });
 
   /* ── Draw ──────────────────────────────────────── */
@@ -705,13 +710,9 @@ async function initScanSection() {
 
     if (loading) loading.classList.add('done');
 
-    const SOURCES = [off, img1, img2];
-    const HINTS   = ['clic → mordente', 'clic → píxeles', 'clic → vista completa'];
-    const INFOS   = [
-      'Vista completa · PDF escaneado · haz clic para ampliar el mordente inicial',
-      'Ampliación · mordente inicial — Re con Mordant · haz clic para ver los píxeles',
-      'Píxeles del escáner · naturaleza ráster del archivo · haz clic para volver',
-    ];
+    const SOURCES    = [off, img1, img2];
+    const HINT_KEYS  = ['scan.hint0', 'scan.hint1', 'scan.hint2'];
+    const INFO_KEYS  = ['scan.info0', 'scan.info1', 'scan.info2'];
 
     let state = 0;
 
@@ -721,8 +722,8 @@ async function initScanSection() {
       ctx.imageSmoothingQuality = 'high';
       ctx.drawImage(SOURCES[state], 0, 0, canvas.width, canvas.height);
       canvas.style.cursor = state === 2 ? 'zoom-out' : 'zoom-in';
-      if (hint) hint.textContent = HINTS[state];
-      if (info) info.textContent = INFOS[state];
+      if (hint) hint.textContent = I18N.t(HINT_KEYS[state]);
+      if (info) info.textContent = I18N.t(INFO_KEYS[state]);
     }
 
     canvas.addEventListener('click', () => {
@@ -733,7 +734,7 @@ async function initScanSection() {
     draw();
 
   } catch (e) {
-    if (loading) loading.textContent = 'Error al cargar el PDF.';
+    if (loading) loading.textContent = I18N.t('ui.errorPDF');
     console.error('Scan section error:', e);
   }
 }
@@ -768,13 +769,9 @@ async function initVectorSection() {
 
     if (loading) loading.classList.add('done');
 
-    const SOURCES = [off, img1, img2];
-    const HINTS   = ['clic → mordente', 'clic → detalle vectorial', 'clic → vista completa'];
-    const INFOS   = [
-      'Vista completa · PDF vectorial · haz clic para ampliar el mordente inicial',
-      'Ampliación · mordente inicial — La con Mordant · haz clic para ver el detalle vectorial',
-      'Detalle vectorial · curvas perfectas sin píxeles · haz clic para volver',
-    ];
+    const SOURCES    = [off, img1, img2];
+    const HINT_KEYS  = ['vec.hint0', 'vec.hint1', 'vec.hint2'];
+    const INFO_KEYS  = ['vec.info0', 'vec.info1', 'vec.info2'];
 
     let state = 0;
 
@@ -784,8 +781,8 @@ async function initVectorSection() {
       ctx.imageSmoothingQuality = 'high';
       ctx.drawImage(SOURCES[state], 0, 0, canvas.width, canvas.height);
       canvas.style.cursor = state === 2 ? 'zoom-out' : 'zoom-in';
-      if (hint) hint.textContent = HINTS[state];
-      if (info) info.textContent = INFOS[state];
+      if (hint) hint.textContent = I18N.t(HINT_KEYS[state]);
+      if (info) info.textContent = I18N.t(INFO_KEYS[state]);
     }
 
     canvas.addEventListener('click', () => {
@@ -796,7 +793,7 @@ async function initVectorSection() {
     draw();
 
   } catch (e) {
-    if (loading) loading.textContent = 'Error al cargar el PDF.';
+    if (loading) loading.textContent = I18N.t('ui.errorPDF');
     console.error('Vector section error:', e);
   }
 }
@@ -820,12 +817,9 @@ async function initPNGSection() {
 
     if (loading) loading.classList.add('done');
 
-    const SOURCES = [img0, img1];
-    const HINTS   = ['clic → ver píxeles', 'clic → vista completa'];
-    const INFOS   = [
-      'Vista completa · PNG exportado por LilyPond 2.24.4 · haz clic para ampliar',
-      'Píxeles del PNG · aliasing en bordes de líneas · haz clic para volver',
-    ];
+    const SOURCES   = [img0, img1];
+    const HINT_KEYS = ['png.hint0', 'png.hint1'];
+    const INFO_KEYS = ['png.info0', 'png.info1'];
 
     let state = 0;
 
@@ -835,15 +829,15 @@ async function initPNGSection() {
       ctx.imageSmoothingQuality = 'high';
       ctx.drawImage(SOURCES[state], 0, 0, canvas.width, canvas.height);
       canvas.style.cursor = state === 1 ? 'zoom-out' : 'zoom-in';
-      if (hint) hint.textContent = HINTS[state];
-      if (info) info.textContent = INFOS[state];
+      if (hint) hint.textContent = I18N.t(HINT_KEYS[state]);
+      if (info) info.textContent = I18N.t(INFO_KEYS[state]);
     }
 
     canvas.addEventListener('click', () => { state = (state + 1) % 2; draw(); });
     draw();
 
   } catch (e) {
-    if (loading) loading.textContent = 'Error al cargar la imagen.';
+    if (loading) loading.textContent = I18N.t('ui.errorImg');
     console.error('PNG section error:', e);
   }
 }
@@ -854,19 +848,20 @@ function initSVGLayerDemo() {
   if (!controls || !snip) return;
 
   const LAYERS = [
-    { id: 'demo-staff',    label: '① Pentagrama',      code: '<line x1="20" y1="50" x2="200" y2="50"\n  stroke="currentColor" stroke-width="1.2"/>' },
-    { id: 'demo-ledger',   label: '② Línea auxiliar',  code: '<line x1="88" y1="34" x2="120" y2="34"\n  stroke="currentColor" stroke-width="1.2"/>' },
-    { id: 'demo-notehead', label: '③ Cabeza de nota',  code: '<ellipse cx="103" cy="34" rx="7" ry="5"\n  fill="currentColor"\n  transform="rotate(-15,103,34)"/>' },
-    { id: 'demo-stem',     label: '④ Plica',            code: '<line x1="110" y1="30" x2="110" y2="74"\n  stroke="currentColor" stroke-width="1.5"/>' },
-    { id: 'demo-ornament', label: '⑤ Mordant',    code: '<path d="M83,20 Q89,12 95,20 Q101,12 107,20\n  Q113,12 119,20 Q125,12 127,20"\n  stroke="currentColor" fill="none"\n  stroke-width="1.5"/>' },
+    { id: 'demo-staff',    i18nKey: 'svg.layer1', code: '<line x1="20" y1="50" x2="200" y2="50"\n  stroke="currentColor" stroke-width="1.2"/>' },
+    { id: 'demo-ledger',   i18nKey: 'svg.layer2', code: '<line x1="88" y1="34" x2="120" y2="34"\n  stroke="currentColor" stroke-width="1.2"/>' },
+    { id: 'demo-notehead', i18nKey: 'svg.layer3', code: '<ellipse cx="103" cy="34" rx="7" ry="5"\n  fill="currentColor"\n  transform="rotate(-15,103,34)"/>' },
+    { id: 'demo-stem',     i18nKey: 'svg.layer4', code: '<line x1="110" y1="30" x2="110" y2="74"\n  stroke="currentColor" stroke-width="1.5"/>' },
+    { id: 'demo-ornament', i18nKey: 'svg.layer5', code: '<path d="M83,20 Q89,12 95,20 Q101,12 107,20\n  Q113,12 119,20 Q125,12 127,20"\n  stroke="currentColor" fill="none"\n  stroke-width="1.5"/>' },
   ];
 
   const visible = new Set(LAYERS.map(l => l.id));
 
-  LAYERS.forEach(({ id, label, code }) => {
+  LAYERS.forEach(({ id, i18nKey, code }) => {
     const btn = document.createElement('button');
     btn.className = 'layer-btn on';
-    btn.textContent = label;
+    btn.dataset.i18n = i18nKey;
+    btn.textContent = I18N.t(i18nKey);
 
     btn.addEventListener('click', () => {
       const g = document.getElementById(id);
@@ -917,7 +912,7 @@ async function renderPDF(url, canvasId, loadingId) {
     await page.render({ canvasContext: canvas.getContext('2d'), viewport }).promise;
     if (loading) loading.classList.add('done');
   } catch (e) {
-    if (loading) loading.textContent = 'Error al cargar el PDF.';
+    if (loading) loading.textContent = I18N.t('ui.errorPDF');
     console.error('PDF error:', url, e);
   }
 }
@@ -954,7 +949,7 @@ function initScoreSection() {
       }
     })
     .catch(e => {
-      if (loading) loading.textContent = 'Error al renderizar la partitura.';
+      if (loading) loading.textContent = I18N.t('ui.errorScore');
       console.error('OSMD error:', e);
     });
 }
@@ -987,7 +982,7 @@ async function initMidiHexDisplay(cfg) {
     if (!res.ok) throw new Error(res.status);
     bytes = new Uint8Array(await res.arrayBuffer());
   } catch (e) {
-    const msg = '(No disponible; abre con un servidor HTTP o en GitHub Pages)';
+    const msg = I18N.t('ui.noHTTPMIDI');
     if (hexEl)    hexEl.textContent    = msg;
     if (eventsEl) eventsEl.textContent = msg;
     return;
@@ -1119,7 +1114,7 @@ async function initMidiHexDisplay(cfg) {
         pos = tEnd; // safety
       }
     } catch (parseErr) {
-      out.push(`\n[Error al parsear: ${parseErr.message}]`);
+      out.push(`\n[${I18N.t('midi.parseError')}: ${parseErr.message}]`);
     }
     eventsEl.textContent = out.join('\n');
   }
@@ -1219,7 +1214,7 @@ async function initMusicXMLViewer() {
     if (!res.ok) throw new Error(res.status);
     text = await res.text();
   } catch {
-    codeEl.textContent = '(No disponible en file://; abre con un servidor HTTP)';
+    codeEl.textContent = I18N.t('ui.noHTTP');
     codeEl.style.color = 'var(--text-dim)';
     return;
   }
@@ -1300,7 +1295,7 @@ async function initLilypondViewer() {
     if (!res.ok) throw new Error(res.status);
     text = await res.text();
   } catch {
-    codeEl.textContent = '(No disponible en file://; abre con un servidor HTTP)';
+    codeEl.textContent = I18N.t('ui.noHTTP');
     codeEl.style.color = 'var(--text-dim)';
     return;
   }
@@ -1337,7 +1332,7 @@ async function initAbcViewer() {
     if (!res.ok) throw new Error(res.status);
     text = await res.text();
   } catch {
-    codeEl.textContent = '(No disponible en file://; abre con un servidor HTTP)';
+    codeEl.textContent = I18N.t('ui.noHTTP');
     codeEl.style.color = 'var(--text-dim)';
     return;
   }
@@ -1374,7 +1369,7 @@ async function initMeiViewer() {
     if (!res.ok) throw new Error(res.status);
     text = await res.text();
   } catch {
-    codeEl.textContent = '(No disponible en file://; abre con un servidor HTTP)';
+    codeEl.textContent = I18N.t('ui.noHTTP');
     codeEl.style.color = 'var(--text-dim)';
     return;
   }
@@ -1418,7 +1413,7 @@ async function initKernViewer() {
     if (!res.ok) throw new Error(res.status);
     text = await res.text();
   } catch {
-    codeEl.textContent = '(No disponible en file://; abre con un servidor HTTP)';
+    codeEl.textContent = I18N.t('ui.noHTTP');
     codeEl.style.color = 'var(--text-dim)';
     return;
   }
@@ -1464,7 +1459,7 @@ function initCodeSections() {
         if (typeof Prism !== 'undefined') Prism.highlightElement(el);
       })
       .catch(() => {
-        el.textContent = '(No disponible en file://; abre con un servidor HTTP o GitHub Pages)';
+        el.textContent = I18N.t('ui.noHTTPPages');
         el.style.color = 'var(--text-dim)';
       });
   });

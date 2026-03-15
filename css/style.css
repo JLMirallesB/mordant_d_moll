@@ -90,7 +90,8 @@ a { color: var(--accent); text-decoration: none; }
   margin-bottom: 0;
 }
 .piece-meta-top em { font-style: italic; text-transform: none; letter-spacing: 0; }
-#about-btn {
+#about-btn,
+#lang-btn {
   flex-shrink: 0;
   font-size: 0.65rem;
   font-weight: 700;
@@ -105,7 +106,8 @@ a { color: var(--accent); text-decoration: none; }
   transition: color 0.15s, border-color 0.15s;
 }
 #about-btn:hover,
-#about-btn[aria-expanded="true"] {
+#about-btn[aria-expanded="true"],
+#lang-btn:hover {
   color: var(--accent);
   border-color: var(--accent);
 }
