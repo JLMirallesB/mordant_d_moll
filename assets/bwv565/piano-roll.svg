@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="83.71mm" height="285.75mm" viewBox="0 0 83.71 285.75">
+<title>BWV 565 · mordente inicial · rollo de pianola de 88 notas (escala 1:1)</title>
+<rect width="83.71" height="285.75" fill="#efe6cf"/>
+<text x="4" y="8" font-family="serif" font-size="4.2" fill="#6b5a3a">BWV 565 · Tempo 70</text>
+<line x1="0" y1="257.175" x2="83.71" y2="257.175" stroke="#d9ccaa" stroke-width="0.15"/>
+<line x1="0" y1="223.308" x2="83.71" y2="223.308" stroke="#d9ccaa" stroke-width="0.15"/>
+<line x1="0" y1="189.442" x2="83.71" y2="189.442" stroke="#d9ccaa" stroke-width="0.15"/>
+<line x1="0" y1="155.575" x2="83.71" y2="155.575" stroke="#d9ccaa" stroke-width="0.15"/>
+<line x1="0" y1="121.708" x2="83.71" y2="121.708" stroke="#d9ccaa" stroke-width="0.15"/>
+<line x1="0" y1="87.842" x2="83.71" y2="87.842" stroke="#d9ccaa" stroke-width="0.15"/>
+<line x1="0" y1="53.975" x2="83.71" y2="53.975" stroke="#d9ccaa" stroke-width="0.15"/>
+<line x1="0" y1="20.108" x2="83.71" y2="20.108" stroke="#d9ccaa" stroke-width="0.15"/>
+<rect x="25.000" y="129.375" width="4.445" height="1.6" rx="0.8" fill="#2a2418"><title>MIDI 69 · 0–125 ms</title></rect>
+<rect x="25.000" y="95.508" width="4.445" height="1.6" rx="0.8" fill="#2a2418"><title>MIDI 81 · 0–125 ms</title></rect>
+<rect x="29.445" y="135.019" width="4.445" height="1.6" rx="0.8" fill="#2a2418"><title>MIDI 67 · 125–250 ms</title></rect>
+<rect x="29.445" y="101.153" width="4.445" height="1.6" rx="0.8" fill="#2a2418"><title>MIDI 79 · 125–250 ms</title></rect>
+<rect x="33.890" y="129.375" width="14.817" height="1.6" rx="0.8" fill="#2a2418"><title>MIDI 69 · 250–667 ms</title></rect>
+<rect x="33.890" y="95.508" width="14.817" height="1.6" rx="0.8" fill="#2a2418"><title>MIDI 81 · 250–667 ms</title></rect>
+</svg>

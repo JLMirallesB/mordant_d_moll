@@ -1,4 +1,4 @@
-\version "2.22.2"
+\version "2.24.4"
 \header {
   title = "Toccata und Fuge d-Moll"
   subtitle = "BWV 565"
@@ -15,4 +15,5 @@
 \new Staff \relative { \clef bass \key d \minor \time 4/4 r1 }
 >>
 \layout { }
+\midi { \tempo 4 = 30 }
 }

@@ -1,33 +1,53 @@
-WK#:565  MVT:1
-FILEID: BWV565_incipit
-ENCODER: Codificación manual con fines educativos
-WORK TITLE: Toccata und Fuge d-Moll
-WORK NUMBER: BWV 565
-MOVEMENT TITLE: Toccata — Incipit
-COMPOSER: Bach, Johann Sebastian
-DATE: 1703/07
-STAGE: B
-
-PART: 1 of 2 (Manuale I — voz superior, A5)
-$ K:f   Q:2   T:4/4   C:22   X:C5
-!! Q=2: la negra vale 2 unidades de tiempo
-!! K:f = un bemol (Re menor / Fa mayor)
-!! T:4/4 = compasillo
-*>Adagio
-=1                      ; inicio del compás 1
-nA5  fm       1 1       ; La5, corchea (1 unidad), fermata (f), mordente (m)
-r            1          ; silencio de corchea
-r            2          ; silencio de negra
-r            4          ; silencio de blanca
-/                       ; fin de compás
+@ MuseData stage 2 - BWV 565, incipit (compas 1)
+@ En el corpus del CCARH cada parte es un fichero independiente;
+@ aqui se concatenan las dos voces del mordente para verlas juntas.
+@ Encabezado (registros fijos): copyright, identificador, sello de tiempo,
+@ fecha/codificador, n.o de obra y movimiento, fuente, titulo de la obra,
+@ del movimiento, nombre de la parte, designaciones varias y pertenencia
+@ a grupos (sound = audio, score = partitura).
+@ $  K:-1 = un bemol; Q:2 = 2 divisiones por negra; T:4/4; C:4 = clave de sol; D: = indicacion
+@ Registro de nota (columnas fijas): 1-4 altura; 6-8 duracion (divisiones)
+@   17 figura (e=corchea, q=negra, h=blanca); 23 plica (u/d)
+@   32-43 notaciones: M = mordente, F = calderon arriba, E = calderon abajo
+(C) 2026 J. L. Miralles Bono - codificacion con fines educativos
+ID: {bach/bwv565/incipit/01}
+TIMESTAMP: 2026-03-09
+03/09/26 J. L. Miralles
+WK#:565       MV#:1
+Neue Bach-Ausgabe IV/6 (incipit)
+Toccata und Fuge d-Moll
+Toccata
+Manuale (voz superior, A5)
+1 0
+Group memberships: sound, score
+sound: part 1 of 2
+score: part 1 of 2
+$  K:-1   Q:2   T:4/4   C:4   D:Adagio
+measure 1
+A5     1        e     u        MF
+rest   1        e
+rest   2        q
+rest   4        h
+mheavy2
 /END
-
-PART: 2 of 2 (Manuale I — voz inferior, A4)
-$ K:f   Q:2   T:4/4   C:22   X:C4
-=1
-nA4  fm       1 1       ; La4, corchea, fermata, mordente (calderón invertido)
-r            1
-r            2
-r            4
-/
+(C) 2026 J. L. Miralles Bono - codificacion con fines educativos
+ID: {bach/bwv565/incipit/02}
+TIMESTAMP: 2026-03-09
+03/09/26 J. L. Miralles
+WK#:565       MV#:1
+Neue Bach-Ausgabe IV/6 (incipit)
+Toccata und Fuge d-Moll
+Toccata
+Manuale (voz inferior, A4)
+1 0
+Group memberships: sound, score
+sound: part 2 of 2
+score: part 2 of 2
+$  K:-1   Q:2   T:4/4   C:4
+measure 1
+A4     1        e     d        ME
+rest   1        e
+rest   2        q
+rest   4        h
+mheavy2
 /END

@@ -18,6 +18,10 @@ document.addEventListener('DOMContentLoaded', () => {
   initStickyPlayer();
   initWaveformSection();
   initSpectrogramSection();
+  initCodecSizes();
+  initFlacSection();
+  initMp3Section();
+  initRollSection();
   initPDFSections();
   initPNGSection();
   initSVGLayerDemo();
@@ -179,24 +183,75 @@ function initStickyPlayer() {
 }
 
 /* ══════════════════════════════════════════════════════
+   WAV LOADER — reads the PCM integers straight from the file.
+   decodeAudioData would resample to the device rate (often
+   48 kHz), so the stored samples are parsed by hand instead.
+   ══════════════════════════════════════════════════════ */
+const bytesCache = {};
+let wavPromise = null;
+
+function loadBytes(file) {
+  if (!bytesCache[file]) {
+    bytesCache[file] = fetch(ASSET(file))
+      .then(r => { if (!r.ok) throw new Error(r.status); return r.arrayBuffer(); });
+  }
+  return bytesCache[file];
+}
+
+function loadWav() {
+  if (!wavPromise) wavPromise = loadBytes('audio.wav').then(parseWav);
+  return wavPromise;
+}
+
+function parseWav(buf) {
+  const v   = new DataView(buf);
+  const tag = o => String.fromCharCode(v.getUint8(o), v.getUint8(o + 1), v.getUint8(o + 2), v.getUint8(o + 3));
+  if (tag(0) !== 'RIFF' || tag(8) !== 'WAVE') throw new Error('not a WAV file');
+
+  let pos = 12, fmt = null;
+  while (pos + 8 <= buf.byteLength) {
+    const id = tag(pos), size = v.getUint32(pos + 4, true), body = pos + 8;
+    if (id === 'fmt ') {
+      fmt = {
+        format:     v.getUint16(body, true),
+        channels:   v.getUint16(body + 2, true),
+        sampleRate: v.getUint32(body + 4, true),
+        bits:       v.getUint16(body + 14, true),
+      };
+    } else if (id === 'data') {
+      if (!fmt || (fmt.format !== 1 && fmt.format !== 0xFFFE) || fmt.bits !== 16)
+        throw new Error('only 16-bit PCM is supported');
+      const frames   = Math.floor(size / (2 * fmt.channels));
+      const channels = Array.from({ length: fmt.channels }, () => new Int16Array(frames));
+      for (let i = 0; i < frames; i++)
+        for (let c = 0; c < fmt.channels; c++)
+          channels[c][i] = v.getInt16(body + (i * fmt.channels + c) * 2, true);
+      return { sampleRate: fmt.sampleRate, channels, frames };
+    }
+    pos = body + size + (size & 1);
+  }
+  throw new Error('no data chunk');
+}
+
+/* ══════════════════════════════════════════════════════
    WAVEFORM SECTION — Exact sample viewer with zoom
    ══════════════════════════════════════════════════════ */
 function initWaveformSection() {
   const canvas = document.getElementById('waveform-exact');
   if (!canvas) return;
 
-  let samples = null, totalN = 0, sampleRate = 44100;
+  let samples = null, pcm = null, totalN = 0, sampleRate = 44100;
   let visible = 0, offset = 0, yZoom = 1.0;
+  let cssW = 800, cssH = 220, dpr = 1;
 
   const loadingEl = document.getElementById('wf-loading');
 
-  fetch(ASSET('audio.wav'))
-    .then(r => r.arrayBuffer())
-    .then(buf => new (window.AudioContext || window.webkitAudioContext)().decodeAudioData(buf))
-    .then(ab => {
-      samples    = ab.getChannelData(0);
+  loadWav()
+    .then(wav => {
+      pcm        = wav.channels[0];                       // left channel, raw integers
+      samples    = Float32Array.from(pcm, v => v / 32768); // normalized −1…+1
       totalN     = samples.length;
-      sampleRate = ab.sampleRate;
+      sampleRate = wav.sampleRate;
       visible    = totalN;
       offset     = 0;
       if (loadingEl) loadingEl.style.display = 'none';
@@ -204,10 +259,13 @@ function initWaveformSection() {
     })
     .catch(() => { if (loadingEl) loadingEl.textContent = I18N.t('ui.httpOnly'); });
 
+  document.addEventListener('langchange', () => draw());
+
   /* ── Draw ──────────────────────────────────────── */
   function draw() {
-    const W = canvas.width, H = canvas.height;
+    const W = cssW, H = cssH;
     const ctx = canvas.getContext('2d');
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
     const PL = 46, PR = 8, PT = 8, PB = 22;
     const pw = W - PL - PR, ph = H - PT - PB;
 
@@ -295,8 +353,11 @@ function initWaveformSection() {
 
   /* ── Resize ──────────────────────────────────────── */
   function resize() {
-    canvas.width  = canvas.parentElement.clientWidth || 800;
-    canvas.height = 220;
+    dpr  = window.devicePixelRatio || 1;
+    cssW = canvas.parentElement.clientWidth || 800;
+    canvas.width  = Math.round(cssW * dpr);
+    canvas.height = Math.round(cssH * dpr);
+    canvas.style.height = cssH + 'px';
     draw();
   }
   new ResizeObserver(resize).observe(canvas.parentElement);
@@ -333,7 +394,7 @@ function initWaveformSection() {
 
   canvas.addEventListener('wheel', e => {
     e.preventDefault();
-    const pivot = Math.max(0, Math.min(1, (e.offsetX - 46) / (canvas.width - 54)));
+    const pivot = Math.max(0, Math.min(1, (e.offsetX - 46) / (cssW - 54)));
     setZoom(visible * (e.deltaY > 0 ? 3 : 1 / 3), pivot);
   }, { passive: false });
 
@@ -345,7 +406,7 @@ function initWaveformSection() {
   });
   window.addEventListener('mousemove', e => {
     if (!drag || !samples) return;
-    const spp = visible / (canvas.width - 54);
+    const spp = visible / (cssW - 54);
     offset = Math.max(0, Math.min(totalN - visible, Math.round(drag.off - (e.clientX - drag.x) * spp)));
     draw();
   });
@@ -356,11 +417,41 @@ function initWaveformSection() {
     if (drag || !samples) return;
     const px = e.offsetX - 46;
     if (px < 0) return;
-    const si  = Math.min(totalN - 1, Math.round(offset + (px / (canvas.width - 54)) * visible));
-    const v   = samples[si];
+    const si  = Math.min(totalN - 1, Math.round(offset + (px / (cssW - 54)) * visible));
     const tip = document.getElementById('wf-tooltip');
-    if (tip) tip.textContent = `#${si.toLocaleString('es')} · t = ${(si / sampleRate).toFixed(5)} s · amp = ${v.toFixed(5)} · PCM = ${Math.round(v * 32767)}`;
+    if (tip) tip.textContent = `#${si.toLocaleString(I18N.t('locale'))} · t = ${(si / sampleRate).toFixed(5)} s · amp = ${samples[si].toFixed(5)} · PCM = ${pcm[si]}`;
   });
+}
+
+/* ── Radix-2 Cooley-Tukey FFT (in-place) ─────────────── */
+function fftInPlace(re, im) {
+  const N = re.length;
+  let j = 0;
+  for (let i = 1; i < N; i++) {
+    let bit = N >> 1;
+    for (; j & bit; bit >>= 1) j ^= bit;
+    j ^= bit;
+    if (i < j) {
+      let t = re[i]; re[i] = re[j]; re[j] = t;
+      t = im[i]; im[i] = im[j]; im[j] = t;
+    }
+  }
+  for (let len = 2; len <= N; len <<= 1) {
+    const ang = -2 * Math.PI / len;
+    const wRe = Math.cos(ang), wIm = Math.sin(ang);
+    for (let i = 0; i < N; i += len) {
+      let uRe = 1, uIm = 0;
+      for (let k = 0; k < (len >> 1); k++) {
+        const oi = i + k + (len >> 1);
+        const tRe = uRe * re[oi] - uIm * im[oi];
+        const tIm = uRe * im[oi] + uIm * re[oi];
+        re[oi] = re[i + k] - tRe; im[oi] = im[i + k] - tIm;
+        re[i + k] += tRe;         im[i + k] += tIm;
+        const nRe = uRe * wRe - uIm * wIm;
+        uIm = uRe * wIm + uIm * wRe; uRe = nRe;
+      }
+    }
+  }
 }
 
 /* ══════════════════════════════════════════════════════
@@ -370,48 +461,19 @@ function initSpectrogramSection() {
   const canvas = document.getElementById('spectrogram-exact');
   if (!canvas) return;
 
-  const FFT_SIZE = 2048, HOP = 512, SR = 44100;
+  const FFT_SIZE = 2048, HOP = 512;
   const N_BINS = FFT_SIZE >> 1;           // 1024 bins
-  const HZ_PER_BIN = SR / FFT_SIZE;       // ≈ 21.53 Hz/bin
+  let SR = 44100;                         // taken from the WAV header on load
+  let HZ_PER_BIN = SR / FFT_SIZE;         // ≈ 21.53 Hz/bin
 
   let spec = null, nFrames = 0;
   let visFrames = 0, frameOffset = 0;
   let visBins = Math.round(6000 / HZ_PER_BIN); // default: 0–6000 Hz
   let binOffset = 0;
   let dbMin = -80, dbMax = 0;
+  let cssW = 800, cssH = 240, dpr = 1;
 
   const loadingEl = document.getElementById('spec-loading');
-
-  /* ── Radix-2 Cooley-Tukey FFT (in-place) ──────── */
-  function doFFT(re, im) {
-    const N = re.length;
-    let j = 0;
-    for (let i = 1; i < N; i++) {
-      let bit = N >> 1;
-      for (; j & bit; bit >>= 1) j ^= bit;
-      j ^= bit;
-      if (i < j) {
-        let t = re[i]; re[i] = re[j]; re[j] = t;
-        t = im[i]; im[i] = im[j]; im[j] = t;
-      }
-    }
-    for (let len = 2; len <= N; len <<= 1) {
-      const ang = -2 * Math.PI / len;
-      const wRe = Math.cos(ang), wIm = Math.sin(ang);
-      for (let i = 0; i < N; i += len) {
-        let uRe = 1, uIm = 0;
-        for (let k = 0; k < (len >> 1); k++) {
-          const oi = i + k + (len >> 1);
-          const tRe = uRe * re[oi] - uIm * im[oi];
-          const tIm = uRe * im[oi] + uIm * re[oi];
-          re[oi] = re[i + k] - tRe; im[oi] = im[i + k] - tIm;
-          re[i + k] += tRe;         im[i + k] += tIm;
-          const nRe = uRe * wRe - uIm * wIm;
-          uIm = uRe * wIm + uIm * wRe; uRe = nRe;
-        }
-      }
-    }
-  }
 
   /* ── Inferno-like color map ────────────────────── */
   function heatColor(t) {
@@ -451,7 +513,7 @@ function initSpectrogramSection() {
         re[i] = (start + i < samples.length ? samples[start + i] : 0) * hann[i];
         im[i] = 0;
       }
-      doFFT(re, im);
+      fftInPlace(re, im);
       const bins = new Float32Array(N_BINS);
       for (let b = 0; b < N_BINS; b++) {
         const mag = Math.sqrt(re[b] * re[b] + im[b] * im[b]) / (FFT_SIZE / 2);
@@ -468,11 +530,11 @@ function initSpectrogramSection() {
   }
 
   /* ── Load audio ──────────────────────────────────── */
-  fetch(ASSET('audio.wav'))
-    .then(r => r.arrayBuffer())
-    .then(buf => new (window.AudioContext || window.webkitAudioContext)().decodeAudioData(buf))
-    .then(ab => {
-      const samples = ab.getChannelData(0);
+  loadWav()
+    .then(wav => {
+      SR         = wav.sampleRate;
+      HZ_PER_BIN = SR / FFT_SIZE;
+      const samples = Float32Array.from(wav.channels[0], v => v / 32768);
       setTimeout(() => {
         spec        = computeSTFT(samples);
         nFrames     = spec.length;
@@ -488,10 +550,13 @@ function initSpectrogramSection() {
       if (loadingEl) loadingEl.textContent = I18N.t('ui.httpOnly');
     });
 
+  document.addEventListener('langchange', () => draw());
+
   /* ── Draw ──────────────────────────────────────── */
   function draw() {
-    const W = canvas.width, H = canvas.height;
+    const W = cssW, H = cssH;
     const ctx = canvas.getContext('2d');
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
     const PL = 50, PR = 8, PT = 8, PB = 22;
     const pw = W - PL - PR, ph = H - PT - PB;
 
@@ -506,21 +571,23 @@ function initSpectrogramSection() {
     const endB  = Math.min(binOffset + visBins, N_BINS);
     const avisB = endB - binOffset;
 
-    // Render spectrogram pixels via ImageData
-    const imgData = ctx.createImageData(pw, ph);
+    // Render spectrogram pixels via ImageData, at device resolution
+    // (putImageData ignores the context transform)
+    const dw = Math.round(pw * dpr), dh = Math.round(ph * dpr);
+    const imgData = ctx.createImageData(dw, dh);
     const data    = imgData.data;
-    for (let py = 0; py < ph; py++) {
-      const b = binOffset + Math.floor((ph - 1 - py) / ph * avisB);
-      for (let px = 0; px < pw; px++) {
-        const f  = frameOffset + Math.floor(px / pw * avisF);
+    for (let py = 0; py < dh; py++) {
+      const b = binOffset + Math.floor((dh - 1 - py) / dh * avisB);
+      for (let px = 0; px < dw; px++) {
+        const f  = frameOffset + Math.floor(px / dw * avisF);
         const db = (f < nFrames && b < N_BINS) ? spec[f][b] : dbMin;
         const t  = Math.max(0, Math.min(1, (db - dbMin) / (dbMax - dbMin)));
         const [r, g, bv] = heatColor(t);
-        const idx = (py * pw + px) * 4;
+        const idx = (py * dw + px) * 4;
         data[idx] = r; data[idx + 1] = g; data[idx + 2] = bv; data[idx + 3] = 255;
       }
     }
-    ctx.putImageData(imgData, PL, PT);
+    ctx.putImageData(imgData, Math.round(PL * dpr), Math.round(PT * dpr));
 
     // Y axis border
     ctx.strokeStyle = '#1e2040'; ctx.lineWidth = 1;
@@ -558,13 +625,16 @@ function initSpectrogramSection() {
     // Info bar
     const el = document.getElementById('spec-info');
     if (el) el.textContent =
-      `${tMin.toFixed(3)}s–${tMax.toFixed(3)}s · ${Math.round(fMin)}–${Math.round(fMax)} Hz · ${avisF} fotogramas`;
+      `${tMin.toFixed(3)}s–${tMax.toFixed(3)}s · ${Math.round(fMin)}–${Math.round(fMax)} Hz · ${avisF} ${I18N.t('spec.frames')}`;
   }
 
   /* ── Resize ──────────────────────────────────────── */
   function resize() {
-    canvas.width  = canvas.parentElement.clientWidth || 800;
-    canvas.height = 240;
+    dpr  = window.devicePixelRatio || 1;
+    cssW = canvas.parentElement.clientWidth || 800;
+    canvas.width  = Math.round(cssW * dpr);
+    canvas.height = Math.round(cssH * dpr);
+    canvas.style.height = cssH + 'px';
     draw();
   }
   new ResizeObserver(resize).observe(canvas.parentElement);
@@ -599,10 +669,9 @@ function initSpectrogramSection() {
 
   canvas.addEventListener('wheel', e => {
     e.preventDefault();
-    const pivot = Math.max(0, Math.min(1, (e.offsetX - PL_CONST()) / (canvas.width - PL_CONST() - 8)));
+    const pivot = Math.max(0, Math.min(1, (e.offsetX - 50) / (cssW - 58)));
     setTimeZoom(visFrames * (e.deltaY > 0 ? 3 : 1 / 3), pivot);
   }, { passive: false });
-  function PL_CONST() { return 50; }
 
   /* ── Frequency zoom ──────────────────────────────── */
   document.getElementById('spec-fzoom-in')?.addEventListener('click', () => {
@@ -628,7 +697,7 @@ function initSpectrogramSection() {
   });
   window.addEventListener('mousemove', e => {
     if (!drag || !spec) return;
-    const fpp = visFrames / (canvas.width - 58);
+    const fpp = visFrames / (cssW - 58);
     frameOffset = Math.max(0, Math.min(nFrames - visFrames,
       Math.round(drag.off - (e.clientX - drag.x) * fpp)));
     draw();
@@ -640,8 +709,8 @@ function initSpectrogramSection() {
     if (drag || !spec) return;
     const px = e.offsetX - 50;
     const py = e.offsetY - 8;
-    const pw = canvas.width - 58;
-    const ph = canvas.height - 30;
+    const pw = cssW - 58;
+    const ph = cssH - 30;
     if (px < 0 || px > pw || py < 0 || py > ph) return;
     const fi = Math.min(nFrames - 1, frameOffset + Math.floor(px / pw * visFrames));
     const avisB = Math.min(visBins, N_BINS - binOffset);
@@ -651,6 +720,429 @@ function initSpectrogramSection() {
     const db  = spec[fi]?.[bi]?.toFixed(1) ?? '—';
     const tip = document.getElementById('spec-tooltip');
     if (tip) tip.textContent = `t = ${t} s · f = ${hz} Hz · ${db} dB`;
+  });
+}
+
+/* ══════════════════════════════════════════════════════
+   AUDIO CODECS — sizes, FLAC bit-exact check, MP3 spectrum
+   ══════════════════════════════════════════════════════ */
+
+// An OfflineAudioContext at the files' own rate decodes without resampling
+function decodeAt44k(buf) {
+  return new OfflineAudioContext(2, 1, 44100).decodeAudioData(buf.slice(0));
+}
+
+const fmtNum = (v, digits = 0) =>
+  v.toLocaleString(I18N.t('locale'), { minimumFractionDigits: digits, maximumFractionDigits: digits });
+
+async function initCodecSizes() {
+  const boxes = document.querySelectorAll('.codec-sizes');
+  if (!boxes.length) return;
+  const FILES = [['WAV', 'audio.wav'], ['FLAC', 'audio.flac'], ['MP3', 'audio.mp3']];
+  let sizes;
+  try {
+    sizes = await Promise.all(FILES.map(([, f]) => loadBytes(f).then(b => b.byteLength)));
+  } catch { return; }
+
+  const render = () => boxes.forEach(box => {
+    box.innerHTML = FILES.map(([label], i) => {
+      const pct = sizes[i] / sizes[0] * 100;
+      const cur = label.toLowerCase() === box.dataset.highlight ? ' is-current' : '';
+      const rel = i ? ` · ${fmtNum(pct, 1)} % ${I18N.t('codec.size.of')}` : '';
+      return `<div class="codec-size-row${cur}">
+        <span class="codec-size-label">${label}</span>
+        <span class="codec-size-track"><span class="codec-size-bar" style="width:${pct}%"></span></span>
+        <span class="codec-size-val">${fmtNum(sizes[i])} B${rel}</span>
+      </div>`;
+    }).join('');
+  });
+  render();
+  document.addEventListener('langchange', render);
+}
+
+async function initFlacSection() {
+  const el = document.getElementById('flac-check');
+  if (!el) return;
+  let result;
+  try {
+    const [wav, buf] = await Promise.all([loadWav(), loadBytes('audio.flac')]);
+    const ab = await decodeAt44k(buf);
+    let same = 0, max = 0;
+    const total = wav.frames * wav.channels.length;
+    wav.channels.forEach((ref, c) => {
+      const dec = ab.getChannelData(Math.min(c, ab.numberOfChannels - 1));
+      const n = Math.min(ref.length, dec.length);
+      for (let i = 0; i < n; i++) {
+        const d = Math.abs(Math.round(dec[i] * 32768) - ref[i]);
+        if (d === 0) same++;
+        if (d > max) max = d;
+      }
+    });
+    result = { same, total, max };
+  } catch (e) {
+    console.error('FLAC check error:', e);
+    result = null;
+  }
+  const render = () => {
+    if (!result) { el.textContent = I18N.t('codec.check.fail'); return; }
+    const ok = result.same === result.total;
+    el.textContent = I18N.t(ok ? 'codec.flac.ok' : 'codec.flac.diff',
+      { same: fmtNum(result.same), total: fmtNum(result.total), max: fmtNum(result.max) });
+    el.classList.toggle('is-ok', ok);
+  };
+  render();
+  document.addEventListener('langchange', render);
+}
+
+async function initMp3Section() {
+  const canvas = document.getElementById('mp3-spectrum');
+  const info   = document.getElementById('mp3-info');
+  const tip    = document.getElementById('mp3-tooltip');
+  if (!canvas) return;
+
+  const N = 4096, HOP = 2048, SR = 44100;
+  let specWav = null, specMp3 = null, stats = null;
+  let cssW = 800, dpr = 1;
+  const cssH = 220, PL = 46, PR = 10, PT = 10, PB = 24;
+  const DB_MIN = -110, F_MAX = SR / 2;
+
+  function avgSpectrum(x) {
+    const hann = new Float64Array(N).map((_, i) => 0.5 * (1 - Math.cos(2 * Math.PI * i / (N - 1))));
+    const acc = new Float64Array(N / 2 + 1);
+    const re = new Float64Array(N), im = new Float64Array(N);
+    let frames = 0;
+    for (let start = 0; start + N <= x.length; start += HOP, frames++) {
+      for (let i = 0; i < N; i++) { re[i] = x[start + i] * hann[i]; im[i] = 0; }
+      fftInPlace(re, im);
+      for (let b = 0; b <= N / 2; b++) acc[b] += re[b] * re[b] + im[b] * im[b];
+    }
+    return Array.from(acc, v => 10 * Math.log10(v / Math.max(1, frames) + 1e-12));
+  }
+
+  try {
+    const [wav, buf] = await Promise.all([loadWav(), loadBytes('audio.mp3')]);
+    const ab   = await decodeAt44k(buf);
+    const ref  = wav.channels[0];
+    const dec  = ab.getChannelData(0);
+    const refF = Float32Array.from(ref, v => v / 32768);
+
+    // Align: decoders may keep the encoder delay; find the lag that best matches
+    const W = 16384, from = 4096;
+    let lag = 0, best = -Infinity;
+    for (let k = 0; k <= 3000 && from + k + W <= dec.length; k++) {
+      let dot = 0;
+      for (let i = 0; i < W; i++) dot += refF[from + i] * dec[from + k + i];
+      if (dot > best) { best = dot; lag = k; }
+    }
+    const n = Math.min(ref.length, dec.length - lag);
+    let same = 0, max = 0;
+    for (let i = 0; i < n; i++) {
+      const d = Math.abs(Math.round(dec[i + lag] * 32768) - ref[i]);
+      if (d === 0) same++;
+      if (d > max) max = d;
+    }
+
+    specWav = avgSpectrum(refF.subarray(0, n));
+    specMp3 = avgSpectrum(dec.subarray(lag, lag + n));
+    const top = Math.max(...specWav);
+    specWav = specWav.map(v => v - top);
+    specMp3 = specMp3.map(v => v - top);
+
+    // Cutoff: lowest frequency above which the MP3 stays ≥ 10 dB under the WAV
+    const smooth = a => a.map((_, i) => {
+      let sum = 0, c = 0;
+      for (let j = Math.max(0, i - 4); j <= Math.min(a.length - 1, i + 4); j++) { sum += a[j]; c++; }
+      return sum / c;
+    });
+    const sw = smooth(specWav), sm = smooth(specMp3);
+    const hz = b => b * SR / N;
+    let cut = null;
+    for (let b = Math.round(5000 / (SR / N)); b < sw.length; b++) {
+      let ok = true;
+      for (let k = b; k < sw.length && hz(k) <= 20000; k++) if (sm[k] > sw[k] - 10) { ok = false; break; }
+      if (ok) { cut = hz(b); break; }
+    }
+    stats = { same: same / n * 100, max, cut };
+  } catch (e) {
+    console.error('MP3 section error:', e);
+    if (info) info.textContent = I18N.t('codec.check.fail');
+    return;
+  }
+
+  const xOf = f => PL + f / F_MAX * (cssW - PL - PR);
+  const yOf = db => PT + (Math.max(DB_MIN, Math.min(0, db)) / DB_MIN) * (cssH - PT - PB);
+
+  function draw() {
+    const ctx = canvas.getContext('2d');
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    ctx.fillStyle = '#0d0d14';
+    ctx.fillRect(0, 0, cssW, cssH);
+    ctx.font = '10px "JetBrains Mono", monospace';
+
+    for (let db = 0; db >= DB_MIN; db -= 20) {
+      const y = yOf(db);
+      ctx.strokeStyle = '#191b2e'; ctx.lineWidth = 1;
+      ctx.beginPath(); ctx.moveTo(PL, y); ctx.lineTo(cssW - PR, y); ctx.stroke();
+      ctx.fillStyle = '#6870a0'; ctx.textAlign = 'right';
+      ctx.fillText(`${db}`, PL - 6, y + 3.5);
+    }
+    ctx.textAlign = 'center';
+    for (let f = 0; f <= 22000; f += 2000) {
+      ctx.fillStyle = '#6870a0';
+      ctx.fillText(f ? `${f / 1000}k` : '0', xOf(f), cssH - 8);
+    }
+
+    if (stats.cut) {
+      const x = xOf(stats.cut);
+      ctx.fillStyle = 'rgba(249,115,22,0.08)';
+      ctx.fillRect(x, PT, cssW - PR - x, cssH - PT - PB);
+      ctx.strokeStyle = 'rgba(249,115,22,0.6)'; ctx.setLineDash([4, 4]);
+      ctx.beginPath(); ctx.moveTo(x, PT); ctx.lineTo(x, cssH - PB); ctx.stroke();
+      ctx.setLineDash([]);
+    }
+
+    const line = (spec, color) => {
+      ctx.strokeStyle = color; ctx.lineWidth = 1.5; ctx.lineJoin = 'round';
+      ctx.beginPath();
+      spec.forEach((db, b) => { const x = xOf(b * SR / N), y = yOf(db); b ? ctx.lineTo(x, y) : ctx.moveTo(x, y); });
+      ctx.stroke();
+    };
+    line(specWav, '#60a5fa');
+    line(specMp3, '#f97316');
+
+    ctx.textAlign = 'left';
+    [['WAV', '#60a5fa'], ['MP3', '#f97316']].forEach(([label, color], i) => {
+      const x = cssW - PR - 110 + i * 56, y = PT + 12;
+      ctx.fillStyle = color; ctx.fillRect(x, y - 4, 14, 3);
+      ctx.fillStyle = '#c8cbe0'; ctx.fillText(label, x + 19, y);
+    });
+    ctx.fillStyle = '#6870a0';
+    ctx.fillText('dB', 6, PT + 8);
+
+    if (info) info.textContent = I18N.t('codec.mp3.info', {
+      cut: stats.cut ? fmtNum(stats.cut / 1000, 1) : '—',
+      same: fmtNum(stats.same, 1),
+      max: fmtNum(stats.max),
+    });
+  }
+
+  function resize() {
+    dpr  = window.devicePixelRatio || 1;
+    cssW = canvas.parentElement.clientWidth || 800;
+    canvas.width  = Math.round(cssW * dpr);
+    canvas.height = Math.round(cssH * dpr);
+    canvas.style.height = cssH + 'px';
+    draw();
+  }
+  new ResizeObserver(resize).observe(canvas.parentElement);
+  document.addEventListener('langchange', draw);
+
+  canvas.addEventListener('mousemove', e => {
+    const f = (e.offsetX - PL) / (cssW - PL - PR) * F_MAX;
+    if (f < 0 || f > F_MAX || !tip) return;
+    const b = Math.round(f / (SR / N));
+    tip.textContent = I18N.t('codec.mp3.tip', {
+      f: fmtNum(b * SR / N), a: fmtNum(specWav[b], 1), b: fmtNum(specMp3[b], 1),
+    });
+  });
+}
+
+/* ══════════════════════════════════════════════════════
+   PLAYER-PIANO ROLL — the interpreted MIDI punched into a
+   standard 88-note roll, moving over the tracker bar
+   ══════════════════════════════════════════════════════ */
+
+function parseMidiNotes(bytes) {
+  let pos = 0, tempo = 500000;
+  const u16 = p => (bytes[p] << 8) | bytes[p + 1];
+  const u32 = p => ((bytes[p] << 24) | (bytes[p + 1] << 16) | (bytes[p + 2] << 8) | bytes[p + 3]) >>> 0;
+  const vlq = () => { let v = 0, b; do { b = bytes[pos++]; v = (v << 7) | (b & 0x7F); } while (b & 0x80); return v; };
+  const nTracks = u16(10), tpq = u16(12);
+  const raw = [];
+  pos = 14;
+  for (let t = 0; t < nTracks; t++) {
+    const end = pos + 8 + u32(pos + 4);
+    pos += 8;
+    let tick = 0, status = 0;
+    const open = {};
+    while (pos < end) {
+      tick += vlq();
+      if (bytes[pos] === 0xFF) {
+        const type = bytes[pos + 1]; pos += 2;
+        const len = vlq();
+        if (type === 0x51) tempo = (bytes[pos] << 16) | (bytes[pos + 1] << 8) | bytes[pos + 2];
+        pos += len;
+        continue;
+      }
+      if (bytes[pos] === 0xF0 || bytes[pos] === 0xF7) { pos++; pos += vlq(); continue; }
+      if (bytes[pos] & 0x80) status = bytes[pos++];
+      const kind = status >> 4;
+      const a = bytes[pos++], b = (kind === 0xC || kind === 0xD) ? 0 : bytes[pos++];
+      if (kind === 0x9 && b > 0) open[a] = { tick, vel: b };
+      else if ((kind === 0x8 || kind === 0x9) && open[a]) {
+        raw.push({ note: a, vel: open[a].vel, startTick: open[a].tick, endTick: tick });
+        delete open[a];
+      }
+    }
+    pos = end;
+  }
+  const sec = tempo / 1e6 / tpq;   // single tempo: enough for these files
+  return raw.map(n => ({ ...n, start: n.startTick * sec, end: n.endTick * sec }));
+}
+
+async function initRollSection() {
+  const canvas = document.getElementById('roll-canvas');
+  const info   = document.getElementById('roll-info');
+  const tip    = document.getElementById('roll-tooltip');
+  const btn    = document.getElementById('roll-scale');
+  const player = document.getElementById('midi-player-roll');
+  if (!canvas) return;
+
+  let notes;
+  try {
+    notes = parseMidiNotes(new Uint8Array(await loadBytes('midi-interpreted.mid')));
+  } catch (e) {
+    if (info) info.textContent = I18N.t('ui.noHTTPMIDI');
+    return;
+  }
+
+  const INCH = 25.4, PITCH_MM = INCH / 9, SPEED_MM = 7 * 12 * INCH / 60;   // tempo 70
+  const REST_T = -0.35;
+  const NAMES = ['C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B'];
+  const nameOf = n => NAMES[n % 12] + (Math.floor(n / 12) - 1);
+  const used = [...new Set(notes.map(n => n.note))];
+
+  let cssW = 800, dpr = 1, zoom = 8, t = REST_T, raf = 0;
+  const cssH = 400, PL = 40, PR = 8, PT = 8, PB = 8;
+
+  const geom = () => {
+    const ph = cssH - PT - PB, row = ph / 88;
+    const pxPerMm = row / PITCH_MM;
+    const barX = PL + (cssW - PL - PR) * 0.3;
+    return { ph, row, pxPerMm, pps: SPEED_MM * pxPerMm * zoom, barX };
+  };
+  const rowY = (note, g) => PT + (108 - note + 0.5) * g.row;   // C8 at the top, A0 at the bottom
+  const holeRect = (n, g) => ({
+    x: g.barX + (n.start - t) * g.pps,
+    w: Math.max(1, (n.end - n.start) * g.pps),
+    y: rowY(n.note, g) - g.row * 0.35,
+    h: g.row * 0.7,
+  });
+
+  function draw() {
+    const g = geom();
+    const ctx = canvas.getContext('2d');
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    ctx.fillStyle = '#e4e2dc';
+    ctx.fillRect(0, 0, cssW, cssH);
+
+    // Paper
+    const paperX = PL, paperW = cssW - PL - PR;
+    ctx.fillStyle = '#efe6cf';
+    ctx.fillRect(paperX, PT - 4, paperW, g.ph + 8);
+
+    // Guides and labels: every C, plus the notes actually used
+    ctx.font = '9px "JetBrains Mono", monospace';
+    ctx.textAlign = 'right';
+    for (let n = 24; n <= 108; n += 12) {
+      const y = rowY(n, g);
+      ctx.strokeStyle = '#ddd2b4'; ctx.lineWidth = 0.6;
+      ctx.beginPath(); ctx.moveTo(paperX, y); ctx.lineTo(paperX + paperW, y); ctx.stroke();
+      if (used.every(u => Math.abs(rowY(u, g) - y) > 10)) {
+        ctx.fillStyle = '#999'; ctx.fillText(nameOf(n), PL - 5, y + 3);
+      }
+    }
+    const active = new Set(notes.filter(n => t >= n.start && t < n.end).map(n => n.note));
+    used.forEach(u => {
+      ctx.fillStyle = active.has(u) ? '#CC2200' : '#1a8a3e';
+      ctx.fillText(nameOf(u), PL - 5, rowY(u, g) + 3);
+    });
+
+    // Perforations
+    ctx.save();
+    ctx.beginPath(); ctx.rect(paperX, PT - 4, paperW, g.ph + 8); ctx.clip();
+    ctx.fillStyle = '#2a2418';
+    notes.forEach(n => {
+      const r = holeRect(n, g);
+      ctx.beginPath();
+      ctx.roundRect ? ctx.roundRect(r.x, r.y, r.w, r.h, r.h / 2) : ctx.rect(r.x, r.y, r.w, r.h);
+      ctx.fill();
+    });
+    ctx.restore();
+
+    // Tracker bar with its 88 holes; lit where a perforation lets the air in
+    ctx.fillStyle = 'rgba(176,141,62,0.92)';
+    ctx.fillRect(g.barX - 5, PT - 6, 10, g.ph + 12);
+    for (let n = 21; n <= 108; n++) {
+      const y = rowY(n, g), on = active.has(n);
+      ctx.fillStyle = on ? '#CC2200' : '#3a2e14';
+      const h = Math.max(1, g.row * (on ? 0.8 : 0.45));
+      ctx.fillRect(g.barX - (on ? 3 : 1.5), y - h / 2, on ? 6 : 3, h);
+    }
+
+    // 1 cm of paper, as a scale reference
+    const cm = 10 * g.pxPerMm * zoom, sx = paperX + paperW - cm - 12, sy = PT + g.ph - 6;
+    ctx.strokeStyle = '#6b5a3a'; ctx.lineWidth = 1;
+    ctx.beginPath(); ctx.moveTo(sx, sy); ctx.lineTo(sx + cm, sy);
+    ctx.moveTo(sx, sy - 3); ctx.lineTo(sx, sy + 3); ctx.moveTo(sx + cm, sy - 3); ctx.lineTo(sx + cm, sy + 3);
+    ctx.stroke();
+    ctx.fillStyle = '#6b5a3a'; ctx.textAlign = 'center';
+    ctx.fillText('1 cm', sx + cm / 2, sy - 5);
+
+    if (info) info.textContent = I18N.t('roll.info', { scale: I18N.t(zoom === 1 ? 'roll.info.real' : 'roll.info.zoom') });
+  }
+
+  function resize() {
+    dpr  = window.devicePixelRatio || 1;
+    cssW = canvas.parentElement.clientWidth || 800;
+    canvas.width  = Math.round(cssW * dpr);
+    canvas.height = Math.round(cssH * dpr);
+    canvas.style.height = cssH + 'px';
+    draw();
+  }
+  new ResizeObserver(resize).observe(canvas.parentElement);
+  document.addEventListener('langchange', () => { updateBtn(); draw(); });
+
+  // Follow the MIDI player. Its currentTime is only refreshed now and then,
+  // so the paper runs on its own clock, re-synced at every note it plays.
+  let clockStart = 0, clockOffset = 0;
+  const syncClock = time => { clockOffset = time; clockStart = performance.now(); };
+  function follow() {
+    if (!player || !player.playing) { t = REST_T; draw(); raf = 0; return; }
+    t = clockOffset + (performance.now() - clockStart) / 1000;
+    draw();
+    raf = requestAnimationFrame(follow);
+  }
+  player?.addEventListener('start', () => {
+    syncClock(player.currentTime || 0);
+    if (!raf) raf = requestAnimationFrame(follow);
+  });
+  player?.addEventListener('note', e => {
+    const start = e.detail?.note?.startTime;
+    if (typeof start === 'number') syncClock(start);
+  });
+  player?.addEventListener('stop', () => { if (!raf) { t = REST_T; draw(); } });
+
+  function updateBtn() {
+    if (!btn) return;
+    btn.textContent = I18N.t(zoom === 8 ? 'roll.scale.real' : 'roll.scale.zoom');
+    btn.setAttribute('aria-pressed', String(zoom === 1));
+  }
+  btn?.addEventListener('click', () => { zoom = zoom === 8 ? 1 : 8; updateBtn(); draw(); });
+  updateBtn();
+
+  canvas.addEventListener('mousemove', e => {
+    if (!tip) return;
+    const g = geom();
+    const hit = notes.find(n => {
+      const r = holeRect(n, g);
+      return e.offsetX >= r.x - 2 && e.offsetX <= r.x + r.w + 2 && e.offsetY >= r.y - 2 && e.offsetY <= r.y + r.h + 2;
+    });
+    tip.textContent = hit ? I18N.t('roll.tip', {
+      note: nameOf(hit.note), midi: hit.note, hole: hit.note - 20,
+      start: fmtNum(hit.start * 1000), end: fmtNum(hit.end * 1000),
+      mm: fmtNum((hit.end - hit.start) * SPEED_MM, 1), vel: hit.vel,
+    }) : '';
   });
 }
 
@@ -693,20 +1185,18 @@ async function initScanSection() {
     ]);
 
     const page = await pdf.getPage(1);
+    const dpr  = window.devicePixelRatio || 1;
     const containerWidth = canvas.parentElement.clientWidth || 800;
     const nativeVP = page.getViewport({ scale: 1 });
     const scale = Math.min((containerWidth - 32) / nativeVP.width, 2);
-    const viewport = page.getViewport({ scale });
+    const cssW  = Math.round(nativeVP.width * scale);
+    const viewport = page.getViewport({ scale: scale * dpr });
 
     // Render PDF to offscreen canvas
     const off = document.createElement('canvas');
     off.width  = viewport.width;
     off.height = viewport.height;
     await page.render({ canvasContext: off.getContext('2d'), viewport }).promise;
-
-    // Setup display canvas
-    canvas.width  = off.width;
-    canvas.height = off.height;
 
     if (loading) loading.classList.add('done');
 
@@ -717,10 +1207,7 @@ async function initScanSection() {
     let state = 0;
 
     function draw() {
-      const ctx = canvas.getContext('2d');
-      ctx.imageSmoothingEnabled = true;
-      ctx.imageSmoothingQuality = 'high';
-      ctx.drawImage(SOURCES[state], 0, 0, canvas.width, canvas.height);
+      drawKeepingAspect(canvas, SOURCES[state], cssW, dpr, true);
       canvas.style.cursor = state === 2 ? 'zoom-out' : 'zoom-in';
       if (hint) hint.textContent = I18N.t(HINT_KEYS[state]);
       if (info) info.textContent = I18N.t(INFO_KEYS[state]);
@@ -730,6 +1217,7 @@ async function initScanSection() {
       state = (state + 1) % 3;
       draw();
     });
+    document.addEventListener('langchange', draw);
 
     draw();
 
@@ -739,6 +1227,20 @@ async function initScanSection() {
   }
 }
 
+/* Draws an image or canvas at a fixed CSS width, sizing the canvas to the
+   source's own aspect ratio so that zoom images are never stretched. */
+function drawKeepingAspect(canvas, src, cssW, dpr, smooth) {
+  const sw = src.naturalWidth  || src.width;
+  const sh = src.naturalHeight || src.height;
+  canvas.width  = Math.round(cssW * dpr);
+  canvas.height = Math.round(cssW * dpr * sh / sw);
+  canvas.style.width = cssW + 'px';
+  const ctx = canvas.getContext('2d');
+  ctx.imageSmoothingEnabled = smooth;
+  ctx.imageSmoothingQuality = 'high';
+  ctx.drawImage(src, 0, 0, canvas.width, canvas.height);
+}
+
 async function initVectorSection() {
   const canvas  = document.getElementById('canvas-vector');
   const loading = document.getElementById('load-vector');
@@ -746,51 +1248,58 @@ async function initVectorSection() {
   const info    = document.getElementById('vector-info');
   if (!canvas) return;
 
+  // Regions of the page in PDF points (origin top-left):
+  // full page · opening bar · mordent glyph. Every level is rendered
+  // from the PDF itself, so the zoom is genuinely vector.
+  const VIEWS = [
+    null,
+    { x: 70,  y: 58,   w: 120, h: 95   },
+    { x: 114, y: 88.5, w: 21,  h: 14.7 },
+  ];
+  const HINT_KEYS = ['vec.hint0', 'vec.hint1', 'vec.hint2'];
+  const INFO_KEYS = ['vec.info0', 'vec.info1', 'vec.info2'];
+
   try {
-    const [pdf, img1, img2] = await Promise.all([
-      pdfjsLib.getDocument(ASSET('score-vector.pdf')).promise,
-      loadImg(ASSET('vector-zoom1.png')),
-      loadImg(ASSET('vector-zoom2.png')),
-    ]);
-
+    const pdf  = await pdfjsLib.getDocument(ASSET('score-vector.pdf')).promise;
     const page = await pdf.getPage(1);
-    const containerWidth = canvas.parentElement.clientWidth || 800;
-    const nativeVP = page.getViewport({ scale: 1 });
-    const scale = Math.min((containerWidth - 32) / nativeVP.width, 2);
-    const viewport = page.getViewport({ scale });
+    const base = page.getViewport({ scale: 1 });
+    const dpr  = window.devicePixelRatio || 1;
+    const cssW = Math.min((canvas.parentElement.clientWidth || 800) - 32, base.width * 2);
 
-    const off = document.createElement('canvas');
-    off.width  = viewport.width;
-    off.height = viewport.height;
-    await page.render({ canvasContext: off.getContext('2d'), viewport }).promise;
+    let state = 0, task = null;
 
-    canvas.width  = off.width;
-    canvas.height = off.height;
+    async function draw() {
+      const v     = VIEWS[state] || { x: 0, y: 0, w: base.width, h: base.height };
+      const scale = cssW / v.w * dpr;
+      const viewport = page.getViewport({ scale, offsetX: -v.x * scale, offsetY: -v.y * scale });
 
-    if (loading) loading.classList.add('done');
-
-    const SOURCES    = [off, img1, img2];
-    const HINT_KEYS  = ['vec.hint0', 'vec.hint1', 'vec.hint2'];
-    const INFO_KEYS  = ['vec.info0', 'vec.info1', 'vec.info2'];
-
-    let state = 0;
-
-    function draw() {
-      const ctx = canvas.getContext('2d');
-      ctx.imageSmoothingEnabled = true;
-      ctx.imageSmoothingQuality = 'high';
-      ctx.drawImage(SOURCES[state], 0, 0, canvas.width, canvas.height);
+      if (task) task.cancel();
+      canvas.width  = Math.round(v.w * scale);
+      canvas.height = Math.round(v.h * scale);
+      canvas.style.width = cssW + 'px';
       canvas.style.cursor = state === 2 ? 'zoom-out' : 'zoom-in';
       if (hint) hint.textContent = I18N.t(HINT_KEYS[state]);
       if (info) info.textContent = I18N.t(INFO_KEYS[state]);
+
+      task = page.render({ canvasContext: canvas.getContext('2d'), viewport });
+      try {
+        await task.promise;
+      } catch (e) {
+        if (e?.name !== 'RenderingCancelledException') throw e;
+      }
     }
 
     canvas.addEventListener('click', () => {
       state = (state + 1) % 3;
       draw();
     });
+    document.addEventListener('langchange', () => {
+      if (hint) hint.textContent = I18N.t(HINT_KEYS[state]);
+      if (info) info.textContent = I18N.t(INFO_KEYS[state]);
+    });
 
-    draw();
+    await draw();
+    if (loading) loading.classList.add('done');
 
   } catch (e) {
     if (loading) loading.textContent = I18N.t('ui.errorPDF');
@@ -806,14 +1315,19 @@ async function initPNGSection() {
   if (!canvas) return;
 
   try {
-    const [img0, img1] = await Promise.all([
-      loadImg(ASSET('score.png')),
-      loadImg(ASSET('png-zoom1.png')),
-    ]);
+    const img0 = await loadImg(ASSET('score.png'));
 
+    // Zoom: the real pixels of score.png around the opening mordent
+    // (fermata, mordent, notehead), enlarged without smoothing.
+    const CROP = { x: 148, y: 113, w: 63, h: 44 };
+    const img1 = document.createElement('canvas');
+    img1.width  = CROP.w;
+    img1.height = CROP.h;
+    img1.getContext('2d').drawImage(img0, CROP.x, CROP.y, CROP.w, CROP.h, 0, 0, CROP.w, CROP.h);
+
+    const dpr  = window.devicePixelRatio || 1;
     const containerWidth = canvas.parentElement.clientWidth || 800;
-    canvas.width  = Math.min(img0.naturalWidth, containerWidth - 32);
-    canvas.height = Math.round(img0.naturalHeight * (canvas.width / img0.naturalWidth));
+    const cssW = Math.min(img0.naturalWidth, containerWidth - 32);
 
     if (loading) loading.classList.add('done');
 
@@ -824,16 +1338,14 @@ async function initPNGSection() {
     let state = 0;
 
     function draw() {
-      const ctx = canvas.getContext('2d');
-      ctx.imageSmoothingEnabled = state === 0;
-      ctx.imageSmoothingQuality = 'high';
-      ctx.drawImage(SOURCES[state], 0, 0, canvas.width, canvas.height);
+      drawKeepingAspect(canvas, SOURCES[state], cssW, dpr, state === 0);
       canvas.style.cursor = state === 1 ? 'zoom-out' : 'zoom-in';
       if (hint) hint.textContent = I18N.t(HINT_KEYS[state]);
       if (info) info.textContent = I18N.t(INFO_KEYS[state]);
     }
 
     canvas.addEventListener('click', () => { state = (state + 1) % 2; draw(); });
+    document.addEventListener('langchange', draw);
     draw();
 
   } catch (e) {
@@ -849,10 +1361,10 @@ function initSVGLayerDemo() {
 
   const LAYERS = [
     { id: 'demo-staff',    i18nKey: 'svg.layer1', code: '<line x1="20" y1="50" x2="200" y2="50"\n  stroke="currentColor" stroke-width="1.2"/>' },
-    { id: 'demo-ledger',   i18nKey: 'svg.layer2', code: '<line x1="88" y1="34" x2="120" y2="34"\n  stroke="currentColor" stroke-width="1.2"/>' },
-    { id: 'demo-notehead', i18nKey: 'svg.layer3', code: '<ellipse cx="103" cy="34" rx="7" ry="5"\n  fill="currentColor"\n  transform="rotate(-15,103,34)"/>' },
-    { id: 'demo-stem',     i18nKey: 'svg.layer4', code: '<line x1="110" y1="30" x2="110" y2="74"\n  stroke="currentColor" stroke-width="1.5"/>' },
-    { id: 'demo-ornament', i18nKey: 'svg.layer5', code: '<path d="M83,20 Q89,12 95,20 Q101,12 107,20\n  Q113,12 119,20 Q125,12 127,20"\n  stroke="currentColor" fill="none"\n  stroke-width="1.5"/>' },
+    { id: 'demo-ledger',   i18nKey: 'svg.layer2', code: '<line x1="91" y1="42" x2="115" y2="42"\n  stroke="currentColor" stroke-width="1.2"/>' },
+    { id: 'demo-notehead', i18nKey: 'svg.layer3', code: '<ellipse cx="103" cy="42" rx="6" ry="4.4"\n  fill="currentColor"\n  transform="rotate(-20,103,42)"/>' },
+    { id: 'demo-stem',     i18nKey: 'svg.layer4', code: '<line x1="97.4" y1="43" x2="97.4" y2="70"\n  stroke="currentColor" stroke-width="1.3"/>\n<!-- corchete de corchea -->\n<path d="M97.4,70 C98.5,63 107,60 107,51"\n  stroke="currentColor" fill="none"/>' },
+    { id: 'demo-ornament', i18nKey: 'svg.layer5', code: '<path d="M93,27 L97,21 L101,27 L105,21\n  L109,27 L113,21" stroke="currentColor"\n  fill="none" stroke-width="1.6"/>\n<line x1="103" y1="16" x2="103" y2="32"\n  stroke="currentColor" stroke-width="1.3"/>' },
   ];
 
   const visible = new Set(LAYERS.map(l => l.id));
@@ -915,43 +1427,6 @@ async function renderPDF(url, canvasId, loadingId) {
     if (loading) loading.textContent = I18N.t('ui.errorPDF');
     console.error('PDF error:', url, e);
   }
-}
-
-/* ══════════════════════════════════════════════════════
-   SCORE — OpenSheetMusicDisplay
-   ══════════════════════════════════════════════════════ */
-function initScoreSection() {
-  if (typeof opensheetmusicdisplay === 'undefined') return;
-
-  const container = document.getElementById('osmd-container');
-  const loading   = document.getElementById('osmd-loading');
-
-  const osmd = new opensheetmusicdisplay.OpenSheetMusicDisplay(container, {
-    autoResize: true,
-    drawTitle: false,
-    drawSubtitle: false,
-    drawComposer: false,
-    drawCredits: false,
-    backend: 'svg',
-  });
-
-  fetch(ASSET('score.musicxml'))
-    .then(r => r.text())
-    .then(xml => osmd.load(xml))
-    .then(() => {
-      osmd.render();
-      if (loading) loading.style.display = 'none';
-      // Invert SVG to suit dark background
-      const svg = container.querySelector('svg');
-      if (svg) {
-        svg.style.filter = 'invert(1) hue-rotate(180deg)';
-        svg.style.background = 'transparent';
-      }
-    })
-    .catch(e => {
-      if (loading) loading.textContent = I18N.t('ui.errorScore');
-      console.error('OSMD error:', e);
-    });
 }
 
 /* ══════════════════════════════════════════════════════
@@ -1079,7 +1554,7 @@ async function initMidiHexDisplay(cfg) {
             else if (mt === 0x2F) desc = `end_of_track`;
             else if (mt === 0x51) {
               const µs = (md[0]<<16)|(md[1]<<8)|md[2];
-              desc = `set_tempo: ${µs.toLocaleString('es-ES')} µs/beat  →  ${Math.round(60e6/µs)} BPM`;
+              desc = `set_tempo: ${µs.toLocaleString(I18N.t('locale'))} µs/beat  →  ${Math.round(60e6/µs)} BPM`;
             }
             else if (mt === 0x58) desc = `time_signature: ${md[0]}/${1<<md[1]}  click=${md[2]}  32nd/beat=${md[3]}`;
             else if (mt === 0x59) {
@@ -1149,7 +1624,7 @@ async function initMsczExplorer() {
     item.classList.add('active');
 
     const fname = item.dataset.file;
-    const lang  = item.dataset.lang;
+    const lang  = item.dataset.kind;
     fnameEl.textContent = fname;
     noteEl.textContent  = '';
 
@@ -1168,7 +1643,7 @@ async function initMsczExplorer() {
       let display = text;
       if (!noTrunc && lines.length > MAX_LINES) {
         display = lines.slice(0, MAX_LINES).join('\n');
-        noteEl.textContent = `primeras ${MAX_LINES} de ${lines.length} líneas`;
+        noteEl.textContent = `${I18N.t('mscz.lines')} ${MAX_LINES} ${I18N.t('mscz.of')} ${lines.length} ${I18N.t('mscz.linesUnit')}`;
       }
       const grammar = lang === 'json' ? Prism.languages.json : Prism.languages.markup;
       codeEl.className = `language-${lang === 'json' ? 'json' : 'xml'}`;
@@ -1189,7 +1664,10 @@ async function initMsczExplorer() {
           hlLines[e] = `${hlLines[e]}</mark>`;
         });
         highlighted = hlLines.join('\n');
-        if (noteRanges.length) noteEl.textContent += `  ·  ${noteRanges.length} nota${noteRanges.length > 1 ? 's' : ''} resaltada${noteRanges.length > 1 ? 's' : ''}`;
+        if (noteRanges.length) {
+          const pl = noteRanges.length > 1;
+          noteEl.textContent += `  ·  ${noteRanges.length} ${I18N.t(pl ? 'mscz.notesHlPl' : 'mscz.notesHl')} ${I18N.t(pl ? 'mscz.notesHlSuffixPl' : 'mscz.notesHlSuffix')}`;
+        }
       }
 
       codeEl.innerHTML = highlighted;
@@ -1253,13 +1731,12 @@ async function initMusicXMLViewer() {
   const buttons = bar.querySelectorAll('.xml-hl-btn');
   const statsEl = document.getElementById('xml-hl-stats');
   const PCTS = { notas: 33, apariencia: 23, instrumentacion: 16, atributos: 14, meta: 6, indicaciones: 4 };
-  const BASE_STATS = 'De las 312 líneas: 33% notas · 63% metadato/apariencia/config';
 
   const updateStats = () => {
     const active = [...bar.querySelectorAll('.xml-hl-btn.active')];
     if (!statsEl) return;
     if (!active.length) {
-      statsEl.textContent = BASE_STATS;
+      statsEl.textContent = I18N.t('xml.stats.base');
     } else {
       statsEl.textContent = active.map(b => `${b.textContent} ~${PCTS[b.dataset.cat] || 0}%`).join(' · ');
     }
@@ -1277,7 +1754,8 @@ async function initMusicXMLViewer() {
     });
   });
 
-  if (statsEl) statsEl.textContent = BASE_STATS;
+  updateStats();
+  document.addEventListener('langchange', updateStats);
 }
 
 /* ══════════════════════════════════════════════════════

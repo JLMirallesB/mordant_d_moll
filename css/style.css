@@ -635,6 +635,80 @@ a { color: var(--accent); text-decoration: none; }
 .btn-play-section:hover { background: rgba(200,168,75,0.25); }
 .audio-duration { font-size: 0.8rem; color: var(--text-dim); font-family: monospace; }
 
+/* ── AUDIO CODECS (FLAC / MP3) ────────────────────────── */
+.codec-wrap {
+  border: 1px solid var(--border);
+  background: var(--bg-card);
+}
+.codec-wrap .audio-simple-player { padding: 20px 16px 12px; }
+.codec-sizes {
+  display: grid;
+  grid-template-columns: 44px 1fr auto;
+  align-items: center;
+  gap: 6px 10px;
+  padding: 12px 16px 16px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.72rem;
+  color: var(--text-muted);
+}
+.codec-size-row { display: contents; }
+.codec-size-label { font-weight: 500; }
+.codec-size-track { height: 10px; background: var(--bg-elevated); border: 1px solid var(--border); }
+.codec-size-bar { display: block; height: 100%; background: var(--border-bright); }
+.codec-size-row.is-current .codec-size-label,
+.codec-size-row.is-current .codec-size-val { color: var(--text); font-weight: 500; }
+.codec-size-row.is-current .codec-size-bar { background: var(--cat-sonido); }
+.codec-size-val { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.codec-check {
+  border-top: 1px solid var(--border);
+  padding: 12px 16px 14px;
+}
+.codec-check-title {
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  margin-bottom: 6px;
+}
+.codec-check-result {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.78rem;
+  color: var(--text-muted);
+}
+.codec-check-result.is-ok { color: var(--cat-evento); }
+.codec-check-result.is-ok::before { content: '✓ '; font-weight: 700; }
+.mp3-spectrum-wrap { border-top: 1px solid var(--border); }
+.mp3-spectrum-wrap .wf-info-bar,
+.roll-wrap .wf-info-bar { flex-wrap: wrap; }
+.mp3-spectrum-wrap .wf-info-text,
+.roll-wrap .wf-info-text,
+.roll-wrap .wf-tooltip-text { white-space: normal; }
+
+/* ── PLAYER-PIANO ROLL ────────────────────────────────── */
+.roll-wrap {
+  border: 1px solid var(--border);
+  overflow: hidden;
+}
+.roll-controls {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 12px;
+  border-top: 1px solid var(--border);
+  background: var(--bg-card);
+  flex-wrap: wrap;
+}
+.roll-controls midi-player { flex: 1; min-width: 240px; padding: 0; border-bottom: 0; }
+.wf-btn.roll-scale-btn {
+  width: auto;
+  padding: 0 10px;
+  font-size: 0.7rem;
+  font-family: 'JetBrains Mono', monospace;
+  white-space: nowrap;
+}
+.wf-btn.roll-scale-btn[aria-pressed="true"] { background: var(--accent-glow); border-color: var(--accent); }
+
 /* ── WAVEFORM EXACT ───────────────────────────────────── */
 .waveform-exact-wrap {
   position: relative;
@@ -838,22 +912,6 @@ a { color: var(--accent); text-decoration: none; }
   height: auto;
   display: block;
   margin: 0 auto;
-}
-
-/* ── OSMD (SHEET MUSIC) ───────────────────────────────── */
-#osmd-container {
-  background: #fff;
-  border-radius: var(--r);
-  overflow: hidden;
-  padding: 20px;
-  min-height: 200px;
-  position: relative;
-}
-.content-loading {
-  color: var(--text-dim);
-  font-size: 0.85rem;
-  text-align: center;
-  padding: 40px;
 }
 
 /* ── MIDI ─────────────────────────────────────────────── */

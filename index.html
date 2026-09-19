@@ -4,7 +4,8 @@
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Mordant d-Moll · BWV 565</title>
-  <meta name="description" content="La nota inicial de la Toccata und Fuge d-Moll (BWV 565) de Bach en 19 representaciones distintas."/>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 16 16%22%3E%3Ctext y=%2213%22 font-size=%2214%22%3E%F0%9D%85%A0%3C/text%3E%3C/svg%3E"/>
+  <meta name="description" content="La nota inicial de la Toccata und Fuge d-Moll (BWV 565) de Bach en 22 representaciones distintas."/>
 
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
@@ -15,7 +16,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css"/>
 
   <!-- App CSS -->
-  <link rel="stylesheet" href="css/style.css?v=19"/>
+  <link rel="stylesheet" href="css/style.css?v=22"/>
 </head>
 <body>
 
@@ -30,7 +31,7 @@
         </div>
       </div>
       <h1>Mordant d-Moll</h1>
-      <p class="site-tagline" data-i18n-html="header.tagline">La nota inicial en <strong>19 representaciones</strong> distintas</p>
+      <p class="site-tagline" data-i18n-html="header.tagline">La nota inicial en <strong>22 representaciones</strong> distintas</p>
     </div>
     <div id="about-card" hidden>
       <div class="about-inner">
@@ -63,9 +64,11 @@
 
       <!-- Tronco común -->
       <div class="axis-trunk">
-        <button class="axis-dot" data-target="s-audio"       data-cat="sonido" title="01 · Audio"><span>Audio</span></button>
-        <button class="axis-dot" data-target="s-waveform"    data-cat="senal"  title="02 · Forma de onda"><span>Waveform</span></button>
-        <button class="axis-dot" data-target="s-spectrogram" data-cat="senal"  title="03 · Espectrograma"><span>Spectro</span></button>
+        <button class="axis-dot" data-target="s-audio"       data-cat="sonido" title="01 · Audio"><span>WAV</span></button>
+        <button class="axis-dot" data-target="s-flac"        data-cat="sonido" title="02 · FLAC"><span>FLAC</span></button>
+        <button class="axis-dot" data-target="s-mp3"         data-cat="sonido" title="03 · MP3"><span>MP3</span></button>
+        <button class="axis-dot" data-target="s-waveform"    data-cat="senal"  title="04 · Forma de onda"><span>Waveform</span></button>
+        <button class="axis-dot" data-target="s-spectrogram" data-cat="senal"  title="05 · Espectrograma"><span>Spectro</span></button>
       </div>
 
       <!-- Bifurcación -->
@@ -74,27 +77,28 @@
         <!-- Rama: inscripción para lectura -->
         <div class="axis-branch axis-branch--lectura">
           <span class="branch-label" data-i18n="axis.branch.reading">lectura</span>
-          <button class="axis-dot" data-target="s-manuscript" data-cat="partitura" title="04 · Manuscrito"><span>Manus.</span></button>
-          <button class="axis-dot" data-target="s-scan"       data-cat="partitura" title="05 · PDF escaneado"><span>Scan</span></button>
-          <button class="axis-dot" data-target="s-vector"     data-cat="partitura" title="06 · PDF vectorial"><span>Vector</span></button>
-          <button class="axis-dot" data-target="s-png"        data-cat="partitura" title="07 · PNG"><span>PNG</span></button>
-          <button class="axis-dot" data-target="s-svg"        data-cat="partitura" title="08 · SVG"><span>SVG</span></button>
-          <button class="axis-dot" data-target="s-braille"    data-cat="braille"   title="19 · Braille Musical"><span>Braille</span></button>
+          <button class="axis-dot" data-target="s-manuscript" data-cat="partitura" title="06 · Manuscrito"><span>Manus.</span></button>
+          <button class="axis-dot" data-target="s-scan"       data-cat="partitura" title="07 · PDF escaneado"><span>Scan</span></button>
+          <button class="axis-dot" data-target="s-vector"     data-cat="partitura" title="08 · PDF vectorial"><span>Vector</span></button>
+          <button class="axis-dot" data-target="s-png"        data-cat="partitura" title="09 · PNG"><span>PNG</span></button>
+          <button class="axis-dot" data-target="s-svg"        data-cat="partitura" title="10 · SVG"><span>SVG</span></button>
+          <button class="axis-dot" data-target="s-braille"    data-cat="braille"   title="22 · Braille Musical"><span>Braille</span></button>
         </div>
 
         <!-- Rama: ejecución y procesamiento -->
         <div class="axis-branch axis-branch--proceso">
           <span class="branch-label" data-i18n="axis.branch.performance">ejecución · procesamiento</span>
-          <button class="axis-dot" data-target="s-midi-lit"  data-cat="evento"  title="09 · MIDI literal"><span>MIDI lit.</span></button>
-          <button class="axis-dot" data-target="s-midi-int"  data-cat="evento"  title="10 · MIDI interpretado"><span>MIDI int.</span></button>
-          <button class="axis-dot" data-target="s-mscz"      data-cat="fuente"  title="11 · MSCZ"><span>MSCZ</span></button>
-          <button class="axis-dot" data-target="s-mxl"       data-cat="codigo"  title="12 · MXL"><span>MXL</span></button>
-          <button class="axis-dot" data-target="s-musicxml"  data-cat="codigo"  title="13 · MusicXML"><span>MusicXML</span></button>
-          <button class="axis-dot" data-target="s-lilypond"  data-cat="codigo"  title="14 · LilyPond"><span>LilyPond</span></button>
-          <button class="axis-dot" data-target="s-abc"       data-cat="codigo"  title="15 · ABC Music"><span>ABC</span></button>
-          <button class="axis-dot" data-target="s-mei"       data-cat="codigo"  title="16 · MEI"><span>MEI</span></button>
-          <button class="axis-dot" data-target="s-kern"      data-cat="codigo"  title="17 · **kern"><span>**kern</span></button>
-          <button class="axis-dot" data-target="s-musedata"  data-cat="codigo"  title="18 · Musedata"><span>Musedata</span></button>
+          <button class="axis-dot" data-target="s-midi-lit"  data-cat="evento"  title="11 · MIDI literal"><span>MIDI lit.</span></button>
+          <button class="axis-dot" data-target="s-midi-int"  data-cat="evento"  title="12 · MIDI interpretado"><span>MIDI int.</span></button>
+          <button class="axis-dot" data-target="s-roll"      data-cat="evento"  title="13 · Rollo de pianola"><span>Rollo</span></button>
+          <button class="axis-dot" data-target="s-mscz"      data-cat="fuente"  title="14 · MSCZ"><span>MSCZ</span></button>
+          <button class="axis-dot" data-target="s-mxl"       data-cat="codigo"  title="15 · MXL"><span>MXL</span></button>
+          <button class="axis-dot" data-target="s-musicxml"  data-cat="codigo"  title="16 · MusicXML"><span>MusicXML</span></button>
+          <button class="axis-dot" data-target="s-lilypond"  data-cat="codigo"  title="17 · LilyPond"><span>LilyPond</span></button>
+          <button class="axis-dot" data-target="s-abc"       data-cat="codigo"  title="18 · ABC Music"><span>ABC</span></button>
+          <button class="axis-dot" data-target="s-mei"       data-cat="codigo"  title="19 · MEI"><span>MEI</span></button>
+          <button class="axis-dot" data-target="s-kern"      data-cat="codigo"  title="20 · **kern"><span>**kern</span></button>
+          <button class="axis-dot" data-target="s-musedata"  data-cat="codigo"  title="21 · Musedata"><span>Musedata</span></button>
         </div>
 
       </div>
@@ -126,7 +130,7 @@
         <header class="section-head">
           <div class="section-num">01</div>
           <div class="section-title-group">
-            <h2 data-i18n="s01.title">Audio</h2>
+            <h2 data-i18n="s01.title">Audio WAV</h2>
             <span class="cat-badge" data-cat="sonido" data-i18n="badge.sonido">SONIDO</span>
           </div>
           <div class="section-ext">.WAV</div>
@@ -177,11 +181,143 @@
       </div>
     </section>
 
-    <!-- 02 · WAVEFORM -->
-    <section id="s-waveform" class="rep-section" data-cat="senal" data-index="2">
+    <!-- 02 · FLAC -->
+    <section id="s-flac" class="rep-section" data-cat="sonido" data-index="2">
       <div class="section-inner">
         <header class="section-head">
           <div class="section-num">02</div>
+          <div class="section-title-group">
+            <h2 data-i18n="sflac.title">FLAC</h2>
+            <span class="cat-badge" data-cat="sonido" data-i18n="badge.sonido">SONIDO</span>
+          </div>
+          <div class="section-ext">.FLAC</div>
+        </header>
+        <div class="section-content">
+          <div class="codec-wrap">
+            <div class="audio-simple-player">
+              <audio controls preload="none" class="audio-native">
+                <source src="assets/bwv565/audio.flac" type="audio/flac"/>
+              </audio>
+            </div>
+            <div class="codec-sizes" data-highlight="flac"></div>
+            <div class="codec-check">
+              <div class="codec-check-title" data-i18n="codec.check.title">Verificación bit a bit (en tu navegador)</div>
+              <div class="codec-check-result" id="flac-check" data-i18n="codec.check.running">Decodificando y comparando…</div>
+            </div>
+          </div>
+        </div>
+        <details class="section-explain">
+          <summary data-i18n="explain.summary">Explicación</summary>
+          <div class="section-explain-body">
+            <div data-lang="es">
+            <p class="section-desc">
+              <strong>FLAC</strong> (<em>Free Lossless Audio Codec</em>) comprime el audio <strong>sin pérdida</strong>: al descomprimirlo se recuperan exactamente los mismos números que había en el WAV, ni uno distinto. La caja de arriba lo demuestra en directo: tu navegador decodifica el FLAC y compara, uno por uno, sus 184.320 valores con los del WAV de la sección 01.
+            </p>
+            <p class="section-desc">
+              ¿Cómo se comprime algo sin perder nada? Aprovechando que el sonido es predecible. FLAC divide la señal en bloques y, en cada uno, estima cada muestra a partir de las anteriores (<strong>predicción lineal</strong>). Solo guarda el error de esa predicción, el <em>residuo</em>: números pequeños que se codifican con pocos bits mediante <strong>códigos de Rice</strong>. En estéreo, además, codifica la suma y la diferencia de los canales cuando eso sale más barato. Una nota de órgano sostenida es muy regular, así que aquí el archivo queda en algo más de la mitad del WAV.
+            </p>
+            <p class="section-desc">
+              La cabecera <code>STREAMINFO</code> guarda la frecuencia de muestreo, la resolución, el número de muestras y una <strong>huella MD5</strong> del audio original, de modo que el propio archivo permite comprobar su integridad. Las etiquetas (título, intérprete, álbum) van en bloques <em>Vorbis comment</em>. Creado por Josh Coalson en 2001 y mantenido por la fundación Xiph.Org, es un formato abierto y libre de patentes; la IETF lo publicó como estándar en 2024 (RFC 9639).
+            </p>
+            </div>
+            <div data-lang="en" hidden>
+            <p class="section-desc">
+              <strong>FLAC</strong> (<em>Free Lossless Audio Codec</em>) compresses audio <strong>losslessly</strong>: decompressing it gives back exactly the same numbers the WAV contained, not one different. The box above proves it live: your browser decodes the FLAC and compares its 184,320 values one by one with those of the WAV in section 01.
+            </p>
+            <p class="section-desc">
+              How do you compress without losing anything? By exploiting the predictability of sound. FLAC splits the signal into blocks and, in each, estimates every sample from the previous ones (<strong>linear prediction</strong>). It stores only the prediction error, the <em>residual</em>: small numbers encoded in few bits with <strong>Rice codes</strong>. In stereo it also encodes the sum and difference of the channels when that is cheaper. A sustained organ note is very regular, so here the file ends up at just over half the size of the WAV.
+            </p>
+            <p class="section-desc">
+              The <code>STREAMINFO</code> header stores the sample rate, bit depth, sample count and an <strong>MD5 fingerprint</strong> of the original audio, so the file itself can verify its integrity. Tags (title, performer, album) go in <em>Vorbis comment</em> blocks. Created by Josh Coalson in 2001 and maintained by the Xiph.Org Foundation, it is an open, patent-free format; the IETF published it as a standard in 2024 (RFC 9639).
+            </p>
+            </div>
+          </div>
+        </details>
+        <div class="section-meta">
+          <dl class="meta-list">
+            <dt data-i18n="meta.formato">Formato</dt><dd>FLAC, 16 bit, 44.1 kHz, estéreo · nivel de compresión 8</dd>
+            <dt data-i18n="meta.tamano">Tamaño</dt><dd>186 KB (51,6 % del WAV)</dd>
+            <dt data-i18n="meta.perdida">Pérdida</dt><dd data-i18n="meta.val.sinPerdida">Ninguna: idéntico bit a bit al WAV</dd>
+            <dt data-i18n="meta.estandar">Estándar abierto</dt><dd>Sí (Xiph.Org · IETF RFC 9639)</dd>
+          </dl>
+          <a class="download-btn" href="assets/bwv565/audio.flac" download data-i18n="sflac.download">↓ Descargar .FLAC</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- 03 · MP3 -->
+    <section id="s-mp3" class="rep-section" data-cat="sonido" data-index="3">
+      <div class="section-inner">
+        <header class="section-head">
+          <div class="section-num">03</div>
+          <div class="section-title-group">
+            <h2 data-i18n="smp3.title">MP3</h2>
+            <span class="cat-badge" data-cat="sonido" data-i18n="badge.sonido">SONIDO</span>
+          </div>
+          <div class="section-ext">.MP3</div>
+        </header>
+        <div class="section-content">
+          <div class="codec-wrap">
+            <div class="audio-simple-player">
+              <audio controls preload="none" class="audio-native">
+                <source src="assets/bwv565/audio.mp3" type="audio/mpeg"/>
+              </audio>
+            </div>
+            <div class="codec-sizes" data-highlight="mp3"></div>
+            <div class="mp3-spectrum-wrap">
+              <canvas id="mp3-spectrum" style="display:block; width:100%;"></canvas>
+              <div class="wf-info-bar">
+                <span class="wf-info-text" id="mp3-info" data-i18n="codec.check.running">Decodificando y comparando…</span>
+                <span class="wf-tooltip-text" id="mp3-tooltip"></span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <details class="section-explain">
+          <summary data-i18n="explain.summary">Explicación</summary>
+          <div class="section-explain-body">
+            <div data-lang="es">
+            <p class="section-desc">
+              <strong>MP3</strong> (<em>MPEG-1 Audio Layer III</em>) comprime <strong>con pérdida</strong>: no intenta conservar los números del WAV, sino lo que un <strong>modelo psicoacústico</strong> predice que vas a oír. Desarrollado sobre todo en el Fraunhofer IIS (Karlheinz Brandenburg y su equipo) y normalizado en ISO/IEC 11172-3 (1993), este archivo, codificado con LAME a 128 kbit/s, ocupa unas once veces menos que el WAV.
+            </p>
+            <p class="section-desc">
+              El codificador trocea la señal en tramas de 1.152 muestras, las pasa al dominio de la frecuencia (un banco de filtros seguido de una MDCT) y cuantifica cada banda con la precisión justa para que el ruido que introduce quede por debajo del umbral de <strong>enmascaramiento</strong>: los sonidos fuertes tapan a los débiles cercanos en frecuencia y en tiempo, y lo tapado no necesita bits. A esta tasa, además, el codificador aplica un filtro paso bajo.
+            </p>
+            <p class="section-desc">
+              La gráfica compara el <strong>espectro medio</strong> de los dos archivos, decodificados en tu navegador: hasta unos 15 kHz las curvas casi coinciden; por encima, la del MP3 se desploma. Y aunque suene casi igual, la forma de onda no se conserva: tras alinear las dos señales, casi ninguna muestra coincide exactamente. El MP3 guarda una aproximación perceptiva, no los datos. Sus patentes vencieron en 2017.
+            </p>
+            </div>
+            <div data-lang="en" hidden>
+            <p class="section-desc">
+              <strong>MP3</strong> (<em>MPEG-1 Audio Layer III</em>) compresses <strong>lossily</strong>: it does not try to keep the WAV's numbers, only what a <strong>psychoacoustic model</strong> predicts you will hear. Developed mainly at Fraunhofer IIS (Karlheinz Brandenburg and his team) and standardized as ISO/IEC 11172-3 (1993), this file, encoded with LAME at 128 kbit/s, is about eleven times smaller than the WAV.
+            </p>
+            <p class="section-desc">
+              The encoder cuts the signal into frames of 1,152 samples, moves them to the frequency domain (a filter bank followed by an MDCT) and quantizes each band just finely enough for the added noise to stay below the <strong>masking</strong> threshold: loud sounds hide quieter ones nearby in frequency and time, and what is hidden needs no bits. At this bitrate the encoder also applies a low-pass filter.
+            </p>
+            <p class="section-desc">
+              The chart compares the <strong>average spectrum</strong> of both files, decoded in your browser: up to about 15 kHz the curves nearly coincide; above that, the MP3 curve collapses. And although it sounds almost the same, the waveform is not preserved: after aligning both signals, hardly any sample matches exactly. MP3 stores a perceptual approximation, not the data. Its patents expired in 2017.
+            </p>
+            </div>
+          </div>
+        </details>
+        <div class="section-meta">
+          <dl class="meta-list">
+            <dt data-i18n="meta.formato">Formato</dt><dd>MPEG-1 Layer III · 128 kbit/s CBR · 44.1 kHz · estéreo</dd>
+            <dt data-i18n="meta.codificador">Codificador</dt><dd>LAME (vía FFmpeg)</dd>
+            <dt data-i18n="meta.tamano">Tamaño</dt><dd>34 KB (9,3 % del WAV)</dd>
+            <dt data-i18n="meta.perdida">Pérdida</dt><dd data-i18n="meta.val.conPerdida">Sí: paso bajo ≈ 16 kHz y cuantificación perceptiva</dd>
+            <dt data-i18n="meta.estandarSolo">Estándar</dt><dd>ISO/IEC 11172-3 (1993) · patentes vencidas (2017)</dd>
+          </dl>
+          <a class="download-btn" href="assets/bwv565/audio.mp3" download data-i18n="smp3.download">↓ Descargar .MP3</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- 04 · WAVEFORM -->
+    <section id="s-waveform" class="rep-section" data-cat="senal" data-index="4">
+      <div class="section-inner">
+        <header class="section-head">
+          <div class="section-num">04</div>
           <div class="section-title-group">
             <h2 data-i18n="s02.title">Forma de onda</h2>
             <span class="cat-badge" data-cat="senal" data-i18n="badge.senal">SEÑAL</span>
@@ -212,30 +348,30 @@
           <div class="section-explain-body">
             <div data-lang="es">
             <p class="section-desc">
-              La forma de onda es la representación visual directa de los 184.320 valores numéricos del archivo de audio. Cada punto en el eje horizontal corresponde a un instante de muestreo (1⁄44.100 de segundo) y su posición vertical indica la amplitud de esa muestra: qué tan comprimido o rarificado estaba el aire en ese instante, normalizado entre −1 y +1 (equivalente a valores PCM entre −32.767 y +32.767).
+              La forma de onda es la representación visual directa de los 184.320 valores numéricos del archivo de audio. Cada punto en el eje horizontal corresponde a un instante de muestreo (1⁄44.100 de segundo) y su posición vertical indica la amplitud de esa muestra: qué tan comprimido o rarificado estaba el aire en ese instante, normalizado entre −1 y +1 (el entero PCM dividido entre 32.768; los valores almacenados van de −32.768 a +32.767).
             </p>
             <p class="section-desc">
               A vista general reconoces la estructura: el ataque de la nota, su sustain y el silencio que sigue. Al hacer zoom, las curvas aparentemente lisas se revelan como una secuencia discreta de puntos unidos por líneas rectas —no existe información entre ellos. Con el máximo nivel de zoom puedes ver cada muestra individual como un punto aislado: un único número capturado en 1⁄44.100 de segundo.
             </p>
             <p class="section-desc">
-              Al pasar el cursor sobre el gráfico, la barra inferior muestra tres valores: <strong>t</strong> es el tiempo en segundos desde el inicio del archivo; <strong>amp</strong> es la amplitud normalizada (−1 a +1, siendo 0 silencio absoluto); y <strong>PCM</strong> es el entero almacenado en el archivo WAV de 16 bits (de −32.767 a +32.767). Los botones <strong>Y+</strong> / <strong>Y−</strong> amplían o reducen la escala vertical para revelar variaciones de amplitud muy pequeñas que serían invisibles a escala completa.
+              Al pasar el cursor sobre el gráfico, la barra inferior muestra tres valores: <strong>t</strong> es el tiempo en segundos desde el inicio del archivo; <strong>amp</strong> es la amplitud normalizada (−1 a +1, siendo 0 silencio absoluto); y <strong>PCM</strong> es el entero almacenado en el archivo WAV de 16 bits (de −32.768 a +32.767), leído directamente del fichero. Los botones <strong>Y+</strong> / <strong>Y−</strong> amplían o reducen la escala vertical para revelar variaciones de amplitud muy pequeñas que serían invisibles a escala completa.
             </p>
             <p class="section-desc">
-              La forma de onda informa sobre dinámica, envolvente y silencios. No contiene información directa sobre altura ni timbre: una flauta y un órgano tocando el mismo La a igual volumen producirían amplitudes similares pero morfologías completamente distintas —sin análisis frecuencial no podrías distinguirlos. Para eso está el espectrograma (sección 03).
+              La forma de onda informa sobre dinámica, envolvente y silencios. No contiene información directa sobre altura ni timbre: una flauta y un órgano tocando el mismo La a igual volumen producirían amplitudes similares pero morfologías completamente distintas —sin análisis frecuencial no podrías distinguirlos. Para eso está el espectrograma (sección 07).
             </p>
             </div>
             <div data-lang="en" hidden>
             <p class="section-desc">
-              The waveform is the direct visual representation of the 184,320 numeric values in the audio file. Each point on the horizontal axis corresponds to a sampling instant (1⁄44,100 of a second) and its vertical position indicates the amplitude of that sample: how compressed or rarefied the air was at that moment, normalized between −1 and +1 (equivalent to PCM values between −32,767 and +32,767).
+              The waveform is the direct visual representation of the 184,320 numeric values in the audio file. Each point on the horizontal axis corresponds to a sampling instant (1⁄44,100 of a second) and its vertical position indicates the amplitude of that sample: how compressed or rarefied the air was at that moment, normalized between −1 and +1 (the PCM integer divided by 32,768; stored values range from −32,768 to +32,767).
             </p>
             <p class="section-desc">
               At a broad view you can see the structure: the note's attack, its sustain, and the silence that follows. Zooming in, the apparently smooth curves reveal themselves as a discrete sequence of points connected by straight lines—no information exists between them. At maximum zoom you can see each individual sample as an isolated point: a single number captured in 1⁄44,100 of a second.
             </p>
             <p class="section-desc">
-              Hovering over the graph, the info bar shows three values: <strong>t</strong> is the time in seconds from the start of the file; <strong>amp</strong> is the normalized amplitude (−1 to +1, with 0 being absolute silence); and <strong>PCM</strong> is the integer stored in the 16-bit WAV file (from −32,767 to +32,767). The <strong>Y+</strong> / <strong>Y−</strong> buttons expand or compress the vertical scale to reveal very small amplitude variations that would be invisible at full scale.
+              Hovering over the graph, the info bar shows three values: <strong>t</strong> is the time in seconds from the start of the file; <strong>amp</strong> is the normalized amplitude (−1 to +1, with 0 being absolute silence); and <strong>PCM</strong> is the integer stored in the 16-bit WAV file (from −32,768 to +32,767), read directly from the file. The <strong>Y+</strong> / <strong>Y−</strong> buttons expand or compress the vertical scale to reveal very small amplitude variations that would be invisible at full scale.
             </p>
             <p class="section-desc">
-              The waveform provides information about dynamics, envelope, and silences. It contains no direct information about pitch or timbre: a flute and an organ playing the same A at equal volume would produce similar amplitudes but completely different morphologies—without frequency analysis you could not distinguish them. That is what the spectrogram (section 03) is for.
+              The waveform provides information about dynamics, envelope, and silences. It contains no direct information about pitch or timbre: a flute and an organ playing the same A at equal volume would produce similar amplitudes but completely different morphologies—without frequency analysis you could not distinguish them. That is what the spectrogram (section 07) is for.
             </p>
             </div>
           </div>
@@ -251,11 +387,11 @@
       </div>
     </section>
 
-    <!-- 03 · SPECTROGRAM -->
-    <section id="s-spectrogram" class="rep-section" data-cat="senal" data-index="3">
+    <!-- 05 · SPECTROGRAM -->
+    <section id="s-spectrogram" class="rep-section" data-cat="senal" data-index="5">
       <div class="section-inner">
         <header class="section-head">
-          <div class="section-num">03</div>
+          <div class="section-num">05</div>
           <div class="section-title-group">
             <h2 data-i18n="s03.title">Espectrograma</h2>
             <span class="cat-badge" data-cat="senal" data-i18n="badge.senal">SEÑAL</span>
@@ -286,7 +422,7 @@
           <div class="section-explain-body">
             <div data-lang="es">
             <p class="section-desc">
-              La forma de onda te dice <em>cuánto</em> sonido hay en cada instante, pero no <em>qué nota</em> suena. El espectrograma resuelve eso añadiendo una tercera dimensión: la frecuencia. El eje horizontal es el tiempo; el eje vertical son las frecuencias en Hz (de 0 arriba de los 20.000 Hz); y el color indica la energía de cada frecuencia en cada instante, expresada en decibelios (dB). La escala de color va del negro (silencio) al blanco intenso (máxima energía), pasando por morado y naranja —un «termómetro espectral».
+              La forma de onda te dice <em>cuánto</em> sonido hay en cada instante, pero no <em>qué nota</em> suena. El espectrograma resuelve eso añadiendo una tercera dimensión: la frecuencia. El eje horizontal es el tiempo; el eje vertical son las frecuencias en Hz (de 0 a 22.050 Hz, el límite de Nyquist; por defecto se muestran 0–6.000 Hz); y el color indica la energía de cada frecuencia en cada instante, expresada en decibelios (dB). La escala de color va del negro (silencio) al blanco intenso (máxima energía), pasando por morado y naranja —un «termómetro espectral».
             </p>
             <p class="section-desc">
               Para construirlo se utiliza la <strong>Transformada de Fourier de Tiempo Corto (STFT)</strong>. El algoritmo recorre la señal completa dividiéndola en ventanas solapadas de <strong>2.048 muestras</strong> (≈ 46,4 ms a 44.100 Hz). A cada ventana se le aplica una <strong>función de Hann</strong> —una curva suave que pondera las muestras centrales más que los extremos— para evitar la fuga espectral: el artefacto que aparecería si cortáramos la señal bruscamente. Después se calcula la <strong>FFT</strong> (Fast Fourier Transform) de esa ventana, obteniendo 1.024 «cubetas» de frecuencia de 21,5 Hz de anchura cada una (44.100 / 2.048). Con un salto de <strong>512 muestras</strong> entre ventanas —solapamiento del 75 %— se obtiene un fotograma espectral cada 11,6 ms, lo que produce 177 fotogramas en total para los 2,09 segundos de audio.
@@ -295,7 +431,10 @@
               Existe un límite físico insuperable: el <strong>principio de incertidumbre tiempo-frecuencia</strong>, análogo al de Heisenberg en mecánica cuántica. Ventanas más grandes ofrecen mejor resolución en frecuencia (cubetas más estrechas) pero peor localización temporal; ventanas más pequeñas permiten detectar eventos rápidos pero no distinguir frecuencias cercanas. Con los 2.048 puntos elegidos aquí se puede distinguir frecuencias separadas ≥ 21,5 Hz, pero los eventos temporales solo se localizan con una precisión de ≈ 46 ms. No hay forma de mejorar ambas simultáneamente.
             </p>
             <p class="section-desc">
-              En el espectrograma puedes identificar la <strong>estructura armónica del órgano</strong>. La nota es La5 (A5), con frecuencia fundamental de <strong>880 Hz</strong> —la banda horizontal más brillante en la parte baja del gráfico. Por encima aparecen sus armónicos naturales: <strong>1.760 Hz</strong> (2.º), <strong>2.640 Hz</strong> (3.º), <strong>3.520 Hz</strong> (4.º), <strong>4.400 Hz</strong> (5.º)... El órgano de tubos tiene un perfil armónico especialmente rico: los parciales superiores aportan el brillo y la penetración características del instrumento. Las bandas son perfectamente horizontales porque la nota se mantiene sostenida a frecuencia constante —ninguna modulación ni vibrato.
+              En el espectrograma puedes identificar la <strong>estructura armónica del órgano</strong>. La nota escrita es La5, doblada a la octava inferior (La4), como en todas las partituras de esta página. Pero el órgano de esta grabación no está afinado al diapasón moderno (La4 = 440 Hz): suena casi un semitono más alto, con el La4 en <strong>≈ 466 Hz</strong>, un diapasón habitual en órganos históricos alemanes. Esa es la banda más intensa. La más grave aparece en <strong>≈ 233 Hz</strong>, porque la registración suma tubos una octava por debajo y varias por encima de la tecla pulsada. Todas las bandas visibles son múltiplos de esos 233 Hz: <strong>466</strong>, 699, <strong>932</strong>, 1.165, <strong>1.398</strong>, <strong>1.865</strong>, 2.331 Hz… Los parciales superiores aportan el brillo característico del instrumento.
+            </p>
+            <p class="section-desc">
+              Las bandas son horizontales porque el tubo de órgano mantiene una frecuencia constante, sin vibrato, con una excepción visible: el <strong>mordente</strong>. Entre 0,26 y 0,31 s todas las bandas bajan un tono (466 → ≈ 416 Hz, del La al Sol) y vuelven enseguida. Son los 50 milisegundos del adorno que la partitura escribe con un solo signo.
             </p>
             <p class="section-desc">
               Los controles permiten explorar el espectrograma en detalle. Los botones −/+, la barra deslizante y la rueda del ratón amplían o reducen el <strong>eje temporal</strong>; arrastrar desplaza la ventana de tiempo. Los botones <strong>F+</strong> / <strong>F−</strong> amplían o reducen el <strong>rango de frecuencias</strong> visible (eje vertical), útil para examinar de cerca la zona de los armónicos. Al pasar el cursor sobre el gráfico, la barra inferior muestra el tiempo exacto en segundos, la frecuencia en Hz del punto señalado y su energía en dB.
@@ -303,7 +442,7 @@
             </div>
             <div data-lang="en" hidden>
             <p class="section-desc">
-              The waveform tells you <em>how much</em> sound exists at each instant, but not <em>which note</em> is playing. The spectrogram solves this by adding a third dimension: frequency. The horizontal axis is time; the vertical axis is frequency in Hz (from 0 up to over 20,000 Hz); and color indicates the energy of each frequency at each instant, expressed in decibels (dB). The color scale runs from black (silence) to bright white (maximum energy), through purple and orange—a "spectral thermometer."
+              The waveform tells you <em>how much</em> sound exists at each instant, but not <em>which note</em> is playing. The spectrogram solves this by adding a third dimension: frequency. The horizontal axis is time; the vertical axis is frequency in Hz (from 0 to 22,050 Hz, the Nyquist limit; 0–6,000 Hz shown by default); and color indicates the energy of each frequency at each instant, expressed in decibels (dB). The color scale runs from black (silence) to bright white (maximum energy), through purple and orange—a "spectral thermometer."
             </p>
             <p class="section-desc">
               It is built using the <strong>Short-Time Fourier Transform (STFT)</strong>. The algorithm sweeps through the complete signal, dividing it into overlapping windows of <strong>2,048 samples</strong> (≈ 46.4 ms at 44,100 Hz). Each window is multiplied by a <strong>Hann function</strong>—a smooth curve that weights central samples more than edges—to avoid spectral leakage: the artifact that would appear if we cut the signal abruptly. Then the <strong>FFT</strong> (Fast Fourier Transform) is computed for each window, yielding 1,024 frequency "bins" of 21.5 Hz width each (44,100 / 2,048). With a <strong>512-sample</strong> hop between windows—75% overlap—one spectral frame is produced every 11.6 ms, yielding 177 frames total for the 2.09 seconds of audio.
@@ -312,7 +451,10 @@
               There is an inescapable physical limit: the <strong>time-frequency uncertainty principle</strong>, analogous to Heisenberg's in quantum mechanics. Larger windows give better frequency resolution (narrower bins) but worse time localization; smaller windows detect fast events but cannot distinguish nearby frequencies. With the 2,048 points chosen here, frequencies separated by ≥ 21.5 Hz can be distinguished, but temporal events can only be localized to ≈ 46 ms precision. There is no way to improve both simultaneously.
             </p>
             <p class="section-desc">
-              In the spectrogram you can identify the <strong>harmonic structure of the organ</strong>. The note is A5 (La5), with a fundamental frequency of <strong>880 Hz</strong>—the brightest horizontal band near the bottom of the graph. Above it appear the natural harmonics: <strong>1,760 Hz</strong> (2nd), <strong>2,640 Hz</strong> (3rd), <strong>3,520 Hz</strong> (4th), <strong>4,400 Hz</strong> (5th)... The pipe organ has a particularly rich harmonic profile: the upper partials contribute the brightness and penetrating quality characteristic of the instrument. The bands are perfectly horizontal because the note is sustained at constant frequency—no modulation or vibrato.
+              In the spectrogram you can identify the <strong>harmonic structure of the organ</strong>. The written note is A5, doubled at the lower octave (A4), as in every score on this page. But the organ in this recording is not tuned to modern pitch (A4 = 440 Hz): it sounds almost a semitone higher, with A4 at <strong>≈ 466 Hz</strong>, a pitch standard common on historical German organs. That is the most intense band. The lowest appears at <strong>≈ 233 Hz</strong>, because the registration adds pipes an octave below and several octaves above the key played. Every visible band is a multiple of those 233 Hz: <strong>466</strong>, 699, <strong>932</strong>, 1,165, <strong>1,398</strong>, <strong>1,865</strong>, 2,331 Hz… The upper partials give the instrument its characteristic brilliance.
+            </p>
+            <p class="section-desc">
+              The bands are horizontal because an organ pipe holds a constant frequency, with no vibrato, with one visible exception: the <strong>mordent</strong>. Between 0.26 and 0.31 s every band drops a whole tone (466 → ≈ 416 Hz, from A to G) and immediately returns. Those are the 50 milliseconds of the ornament that the score writes with a single sign.
             </p>
             <p class="section-desc">
               The controls allow detailed exploration. The −/+ buttons, the slider and the mouse wheel zoom the <strong>time axis</strong>; dragging pans the time window. The <strong>F+</strong> / <strong>F−</strong> buttons zoom the visible <strong>frequency range</strong> (vertical axis), useful for examining the harmonic region up close. Hovering over the graph shows the exact time in seconds, the frequency in Hz at the pointed location, and its energy in dB.
@@ -327,17 +469,17 @@
             <dt data-i18n="meta.hop">Salto (hop)</dt><dd>512 muestras · solapamiento 75 % · 11,6 ms/fotograma</dd>
             <dt data-i18n="meta.resolFreq">Resolución frecuencial</dt><dd>21,5 Hz por cubeta · 1.024 cubetas (0–22.050 Hz)</dd>
             <dt data-i18n="meta.fotogramas">Fotogramas totales</dt><dd>177</dd>
-            <dt data-i18n="meta.fundamental">Nota fundamental</dt><dd>A5 · 880 Hz · armónicos cada 880 Hz</dd>
+            <dt data-i18n="meta.fundamental">Nota fundamental</dt><dd>La · ≈ 466 Hz (diapasón ≈ ½ tono alto) · parciales cada ≈ 233 Hz</dd>
           </dl>
         </div>
       </div>
     </section>
 
-    <!-- 04 · MANUSCRIPT -->
-    <section id="s-manuscript" class="rep-section" data-cat="partitura" data-index="4">
+    <!-- 06 · MANUSCRIPT -->
+    <section id="s-manuscript" class="rep-section" data-cat="partitura" data-index="6">
       <div class="section-inner">
         <header class="section-head">
-          <div class="section-num">04</div>
+          <div class="section-num">06</div>
           <div class="section-title-group">
             <h2 data-i18n="s04.title">Manuscrito</h2>
             <span class="cat-badge" data-cat="partitura" data-i18n="badge.partitura">PARTITURA</span>
@@ -355,7 +497,7 @@
           <div class="section-explain-body">
             <div data-lang="es">
             <p class="section-desc">
-              Lo que ves no es el autógrafo de Bach —que no se conserva— sino la fuente más antigua conocida de la obra: una copia manuscrita realizada por <strong>Johannes Ringk</strong> (1717–1778), organista y alumno de Johann Peter Kellner (copista habitual de Bach). Ringk transcribió la pieza entre 1740 y 1760, dos a cinco décadas después de su composición. El título que escribió fue: <em>«Toccata Con Fuga: pedaliter. ex. d. #. di J. S: Bach: Scrips: Johannes Ringk»</em> —confirmando autoría, tonalidad (re menor) y que la obra es «pedaliter», para órgano con pedal obligado.
+              Lo que ves no es el autógrafo de Bach —que no se conserva— sino la fuente más antigua conocida de la obra: una copia manuscrita realizada por <strong>Johannes Ringk</strong> (1717–1778), organista y alumno de Johann Peter Kellner (copista habitual de Bach). Ringk transcribió la pieza entre 1740 y 1760, dos a cinco décadas después de su composición. El título que escribió fue: <em>«Toccata Con Fuga: pedaliter. ex. d. #. di J. S: Bach: Scrips: Johannes Ringk»</em> —que atribuye la obra a Bach, indica la tonalidad («ex d»: en re) y precisa que es «pedaliter», para órgano con pedal obligado.
             </p>
             <p class="section-desc">
               El manuscrito forma parte del colectáneo <a href="https://opac.rism.info/id/rismid/rism467300997" target="_blank" rel="noopener" class="inline-link">D-B Mus.ms. Bach P 595</a> (fascículo 8, páginas 57–64), conservado en la <strong>Staatsbibliothek zu Berlin – Preußischer Kulturbesitz</strong>. Su proveniencia está documentada con precisión: Ringk → <strong>Eduard Grell</strong> (director de la Sing-Akademie zu Berlin, 1800–1886) → el librero <strong>Leo Liepmannssohn</strong> (1840–1915) → la Staatsbibliothek de Berlín, donde ingresó en 1887. El papel presenta sangrado de tinta y foxing propios del tiempo.
@@ -366,7 +508,7 @@
             </div>
             <div data-lang="en" hidden>
             <p class="section-desc">
-              What you see is not Bach's autograph—which has not survived—but the earliest known source of the work: a manuscript copy made by <strong>Johannes Ringk</strong> (1717–1778), organist and pupil of Johann Peter Kellner (a regular Bach copyist). Ringk transcribed the piece between 1740 and 1760, two to five decades after its composition. The title he wrote was: <em>"Toccata Con Fuga: pedaliter. ex. d. #. di J. S: Bach: Scrips: Johannes Ringk"</em>—confirming authorship, key (D minor) and that the work is "pedaliter," for organ with obligatory pedal.
+              What you see is not Bach's autograph—which has not survived—but the earliest known source of the work: a manuscript copy made by <strong>Johannes Ringk</strong> (1717–1778), organist and pupil of Johann Peter Kellner (a regular Bach copyist). Ringk transcribed the piece between 1740 and 1760, two to five decades after its composition. The title he wrote was: <em>"Toccata Con Fuga: pedaliter. ex. d. #. di J. S: Bach: Scrips: Johannes Ringk"</em>—which attributes the work to Bach, gives the key ("ex d": in D) and specifies that it is "pedaliter," for organ with obligatory pedal.
             </p>
             <p class="section-desc">
               The manuscript is part of the collection <a href="https://opac.rism.info/id/rismid/rism467300997" target="_blank" rel="noopener" class="inline-link">D-B Mus.ms. Bach P 595</a> (fascicle 8, pages 57–64), held at the <strong>Staatsbibliothek zu Berlin – Preußischer Kulturbesitz</strong>. Its provenance is precisely documented: Ringk → <strong>Eduard Grell</strong> (director of the Sing-Akademie zu Berlin, 1800–1886) → the bookseller <strong>Leo Liepmannssohn</strong> (1840–1915) → the Staatsbibliothek Berlin, where it entered in 1887.
@@ -391,11 +533,11 @@
       </div>
     </section>
 
-    <!-- 05 · PDF SCAN -->
-    <section id="s-scan" class="rep-section" data-cat="partitura" data-index="5">
+    <!-- 07 · PDF SCAN -->
+    <section id="s-scan" class="rep-section" data-cat="partitura" data-index="7">
       <div class="section-inner">
         <header class="section-head">
-          <div class="section-num">05</div>
+          <div class="section-num">07</div>
           <div class="section-title-group">
             <h2 data-i18n="s05.title">PDF escaneado</h2>
             <span class="cat-badge" data-cat="partitura" data-i18n="badge.partitura">PARTITURA</span>
@@ -420,7 +562,7 @@
               Un PDF escaneado es esencialmente una <strong>imagen ráster encapsulada en un contenedor PDF</strong>. A diferencia de un PDF nativo generado por software de notación, no contiene primitivas gráficas vectoriales ni texto real: almacena uno o varios objetos de imagen comprimidos (JBIG2, CCITT Group 4 o JPEG) junto con los metadatos mínimos de página. La «inteligencia» musical —alturas, ritmos, dinámica, articulaciones— no existe como dato estructurado; está implícita en los píxeles y solo puede extraerse mediante OCR musical (<em>Optical Music Recognition</em>, OMR).
             </p>
             <p class="section-desc">
-              El proceso de digitalización convierte la reflectancia lumínica del papel en una rejilla de valores discretos mediante una matriz de fotodiodos. La resolución se mide en <strong>ppp (puntos por pulgada, DPI)</strong>: las guías archivísticas recomiendan 300–600 ppp en escala de grises o <em>bitonal</em> (1 bit por píxel) para partituras. La compresión <strong>JBIG2</strong> (o CCITT Group 4, el algoritmo fax de alta resolución) alcanza ratios de 10:1 a 50:1 sin pérdida perceptible en imágenes binarias. Pese a ello, el archivo resultante es entre 5 y 50 veces mayor que un PDF vectorial equivalente.
+              El proceso de digitalización convierte la reflectancia lumínica del papel en una rejilla de valores discretos mediante una matriz de fotodiodos. La resolución se mide en <strong>ppp (puntos por pulgada, DPI)</strong>: las guías archivísticas recomiendan 300–600 ppp en escala de grises o <em>bitonal</em> (1 bit por píxel) para partituras. La compresión <strong>JBIG2</strong> (o CCITT Group 4, el algoritmo fax de alta resolución) alcanza ratios de 10:1 a 50:1 sin pérdida perceptible en imágenes binarias. Este archivo, exportado desde Keynote, guarda la imagen de 1 bit con compresión Flate (la de ZIP), también sin pérdida. Pese a ello, el archivo resultante es entre 5 y 50 veces mayor que un PDF vectorial equivalente.
             </p>
             <p class="section-desc">
               El escaneo introduce distorsiones sistemáticas: <strong>sesgo</strong> (<em>skew</em>) si la página no quedó alineada con el cristal; <strong>gradientes de iluminación</strong> que producen fondos no uniformes; <strong>ruido de grano</strong> del papel amplificado en zonas claras; halo de umbralización en trazos finos. Estos artefactos deben corregirse antes del OMR mediante enderezado (<em>deskewing</em>), binarización adaptativa y filtrado morfológico. Las ediciones antiguas en tipografía móvil presentan además rastros de entintado irregular que complican el reconocimiento automático.
@@ -437,7 +579,7 @@
               A scanned PDF is essentially a <strong>raster image encapsulated in a PDF container</strong>. Unlike a native PDF generated by notation software, it contains no vector graphic primitives or real text: it stores one or more compressed image objects (JBIG2, CCITT Group 4, or JPEG) along with minimal page metadata. The musical "intelligence"—pitches, rhythms, dynamics, articulations—does not exist as structured data; it is implicit in the pixels and can only be extracted via Optical Music Recognition (OMR).
             </p>
             <p class="section-desc">
-              The digitization process converts the paper's light reflectance into a grid of discrete values using a photodiode array. Resolution is measured in <strong>DPI (dots per inch)</strong>: archival guidelines recommend 300–600 DPI in grayscale or <em>bitonal</em> (1 bit per pixel) for scores. <strong>JBIG2</strong> compression (or CCITT Group 4, the high-resolution fax algorithm) achieves ratios of 10:1 to 50:1 without perceptible loss on binary images. Despite this, the resulting file is 5 to 50 times larger than an equivalent vector PDF.
+              The digitization process converts the paper's light reflectance into a grid of discrete values using a photodiode array. Resolution is measured in <strong>DPI (dots per inch)</strong>: archival guidelines recommend 300–600 DPI in grayscale or <em>bitonal</em> (1 bit per pixel) for scores. <strong>JBIG2</strong> compression (or CCITT Group 4, the high-resolution fax algorithm) achieves ratios of 10:1 to 50:1 without perceptible loss on binary images. This file, exported from Keynote, stores its 1-bit image with Flate compression (the one used by ZIP), also lossless. Despite this, the resulting file is 5 to 50 times larger than an equivalent vector PDF.
             </p>
             <p class="section-desc">
               Scanning introduces systematic distortions: <strong>skew</strong> if the page was misaligned on the glass; <strong>illumination gradients</strong> producing uneven backgrounds; paper grain amplified in light areas; thresholding halos on thin strokes. These artifacts must be corrected before OMR through deskewing, adaptive binarization, and morphological filtering.
@@ -455,7 +597,7 @@
             <dt data-i18n="meta.editorial">Editorial</dt><dd>Bärenreiter Verlag, Kassel, 1964 · Plate BA 5025</dd>
             <dt data-i18n="meta.copyright">Copyright</dt><dd data-i18n="meta.val.dominioPublico">Dominio público (edición Urtext)</dd>
             <dt data-i18n="meta.resolucion">Resolución</dt><dd>600 ppp · 12,688 × 10,00 pulgadas</dd>
-            <dt data-i18n="meta.compresion">Compresión interna</dt><dd>CCITT Group 4 / JBIG2</dd>
+            <dt data-i18n="meta.compresion">Compresión interna</dt><dd>Flate (sin pérdida) · imagen de 1 bit</dd>
             <dt data-i18n="meta.tamano">Tamaño</dt><dd>295 KB</dd>
             <dt data-i18n="meta.limitaciones">Limitaciones</dt><dd data-i18n="meta.val.limitaciones">No editable, no accesible, artefactos de escaneo</dd>
           </dl>
@@ -464,11 +606,11 @@
       </div>
     </section>
 
-    <!-- 06 · PDF VECTOR -->
-    <section id="s-vector" class="rep-section" data-cat="partitura" data-index="6">
+    <!-- 08 · PDF VECTOR -->
+    <section id="s-vector" class="rep-section" data-cat="partitura" data-index="8">
       <div class="section-inner">
         <header class="section-head">
-          <div class="section-num">06</div>
+          <div class="section-num">08</div>
           <div class="section-title-group">
             <h2 data-i18n="s06.title">PDF vectorial</h2>
             <span class="cat-badge" data-cat="partitura" data-i18n="badge.partitura">PARTITURA</span>
@@ -479,7 +621,7 @@
           <div class="pdf-container">
             <div class="pdf-scroll">
               <canvas id="canvas-vector" style="cursor:zoom-in;display:block;max-width:100%;height:auto;margin:0 auto;"></canvas>
-              <div class="pdf-loading" id="load-vector">Cargando…</div>
+              <div class="pdf-loading" id="load-vector" data-i18n="ui.loading">Cargando…</div>
             </div>
             <div class="scan-zoom-hint" id="vector-hint" data-i18n="vec.hint0">clic → mordente</div>
           </div>
@@ -492,33 +634,33 @@
           <div class="section-explain-body">
             <div data-lang="es">
             <p class="section-desc">
-              Un PDF vectorial generado por software de notación no almacena píxeles sino <strong>instrucciones geométricas</strong>: cada elemento de la partitura —líneas de pentagrama, cabezas de nota, plicas, ligaduras, dinámica— se describe mediante <strong>curvas de Bézier</strong>, segmentos y formas rellenas en el lenguaje PostScript subyacente al PDF. El visor reconstruye la imagen en el momento de la visualización o impresión a la resolución exacta del dispositivo, sin pérdida de calidad independientemente del factor de escala.
+              Un PDF vectorial generado por software de notación no almacena píxeles sino <strong>instrucciones geométricas</strong>: cada elemento de la partitura —líneas de pentagrama, cabezas de nota, plicas, ligaduras, dinámica— se describe mediante <strong>curvas de Bézier</strong>, segmentos y formas rellenas en el lenguaje de descripción de página del PDF, heredero de PostScript. El visor reconstruye la imagen en el momento de la visualización o impresión a la resolución exacta del dispositivo, sin pérdida de calidad independientemente del factor de escala.
             </p>
             <p class="section-desc">
-              La diferencia con el escaneado es estructural. En el PDF ráster (sección 05), la línea de un pentagrama es una cadena de píxeles negros. En el PDF vectorial, esa misma línea es el comando <code>l x1 y1 x2 y2 w</code> —posición inicial, posición final y anchura de trazo— que el intérprete convierte en la línea perfecta que el dispositivo de salida sea capaz de reproducir. A 600 ppp ocupa exactamente 600 puntos por pulgada; a 2.400 ppp ocupa 2.400. El fichero es idéntico en ambos casos; solo cambia el renderizador.
+              La diferencia con el escaneado es estructural. En el PDF ráster (sección 07), la línea de un pentagrama es una cadena de píxeles negros. En el PDF vectorial, esa misma línea es una secuencia de operadores como <code>0.5 w 72 700 m 540 700 l S</code> —grosor de trazo, punto inicial (<code>m</code>, <em>moveto</em>), punto final (<code>l</code>, <em>lineto</em>) y «traza» (<code>S</code>)— que el intérprete convierte en la línea más nítida que el dispositivo de salida sea capaz de reproducir. Se imprima a 600 ppp o a 2.400 ppp, el fichero es idéntico; solo cambia el renderizador.
             </p>
             <p class="section-desc">
-              Los glifos musicales especiales —claves, corchetes, cabezas de nota, adornos— se almacenan como <strong>fuentes tipográficas embebidas</strong> o como trazados vectoriales directos. LilyPond embebe su fuente nativa <strong>Feta</strong> —diseñada exclusivamente para notación musical— junto con <em>LilyPond Serif</em> para el texto; el visor PDF las usa igual que haría con Arial o Times New Roman. Esto explica por qué el fichero vectorial (42 KB) es siete veces más pequeño que el escaneado (295 KB) a pesar de contener exactamente la misma información visual: la geometría comprimida ocupa infinitamente menos espacio que la rejilla de píxeles correspondiente.
+              Los glifos musicales especiales —claves, corchetes, cabezas de nota, adornos— se almacenan como <strong>fuentes tipográficas embebidas</strong> o como trazados vectoriales directos. LilyPond embebe su fuente musical <strong>Emmentaler</strong> (cuyo juego de glifos se llama <em>Feta</em>), diseñada exclusivamente para notación musical, junto con <em>C059</em>, una Century Schoolbook, para el texto; el visor PDF las usa igual que haría con Arial o Times New Roman. El fichero vectorial ocupa 42 KB y el escaneado 295 KB, aunque la comparación es solo orientativa: no contienen lo mismo (el escaneado reproduce un sistema completo de la Neue Bach-Ausgabe; este PDF, solo el compás inicial). Aun así ilustra la idea: describir la geometría ocupa mucho menos que almacenar la rejilla de píxeles.
             </p>
             <p class="section-desc">
               Una diferencia notable respecto al escaneado: aquí no hay artefactos ni ruido de digitalización. La partitura es exactamente lo que LilyPond generó, sin degradación alguna. El fragmento de análisis —el <em>Mordant</em> sobre el La, marcado <em>Adagio</em>— se corresponde con las primeras notas visibles en la esquina superior izquierda.
             </p>
             <p class="section-desc">
-              La imagen funciona en <strong>tres niveles de zoom</strong>. La vista completa muestra el primer sistema con la transparencia de referencia. El <strong>primer clic</strong> amplía la zona del mordente vectorial: se aprecian el <em>Mordant</em>, la calderón y la ligadura con contornos perfectamente nítidos. El <strong>segundo clic</strong> llega al nivel de máximo detalle —contrasta directamente con los píxeles escalonados del escaneado (sección 05): los bordes del glifo son curvas matemáticas, sin escalera ni ruido. Un tercer clic devuelve a la vista completa.
+              La imagen funciona en <strong>tres niveles de zoom</strong>. La vista completa muestra la página. El <strong>primer clic</strong> amplía la zona del mordente: se aprecian el <em>Mordant</em>, el calderón y la cabeza de la nota. El <strong>segundo clic</strong> llega al máximo detalle. Ambas ampliaciones se dibujan en el momento a partir del propio PDF, a la resolución de tu pantalla, y por eso contrastan con los píxeles escalonados del escaneado (sección 07): los bordes del glifo son curvas matemáticas, sin escalera ni ruido. Un tercer clic devuelve a la vista completa.
             </p>
             </div>
             <div data-lang="en" hidden>
             <p class="section-desc">
-              A vector PDF generated by notation software stores not pixels but <strong>geometric instructions</strong>: each element of the score—staff lines, noteheads, stems, slurs, dynamics—is described through <strong>Bézier curves</strong>, segments, and filled shapes in the PostScript language underlying the PDF. The viewer reconstructs the image at render time to the exact resolution of the device, with no quality loss regardless of scale.
+              A vector PDF generated by notation software stores not pixels but <strong>geometric instructions</strong>: each element of the score—staff lines, noteheads, stems, slurs, dynamics—is described through <strong>Bézier curves</strong>, segments, and filled shapes in PDF's page-description language, a descendant of PostScript. The viewer reconstructs the image at render time to the exact resolution of the device, with no quality loss regardless of scale.
             </p>
             <p class="section-desc">
-              The difference from a scanned file is structural. In a raster PDF (section 05), a staff line is a chain of black pixels. In the vector PDF, that same line is the command <code>l x1 y1 x2 y2 w</code>—start position, end position, and stroke width—that the renderer converts into the perfect line the output device can produce.
+              The difference from a scanned file is structural. In a raster PDF (section 07), a staff line is a chain of black pixels. In the vector PDF, that same line is a sequence of operators such as <code>0.5 w 72 700 m 540 700 l S</code>—stroke width, start point (<code>m</code>, <em>moveto</em>), end point (<code>l</code>, <em>lineto</em>) and "stroke" (<code>S</code>)—that the renderer converts into the sharpest line the output device can produce. Whether printed at 600 or 2,400 DPI, the file is identical; only the renderer changes.
             </p>
             <p class="section-desc">
-              Special musical glyphs—clefs, brackets, noteheads, ornaments—are stored as <strong>embedded typefaces</strong> or direct vector paths. LilyPond embeds its native <strong>Feta</strong> font—designed exclusively for music notation—along with <em>LilyPond Serif</em> for text. This explains why the vector file (42 KB) is seven times smaller than the scanned one (295 KB) while containing exactly the same visual information.
+              Special musical glyphs—clefs, brackets, noteheads, ornaments—are stored as <strong>embedded typefaces</strong> or direct vector paths. LilyPond embeds its music font <strong>Emmentaler</strong> (whose glyph set is called <em>Feta</em>), designed exclusively for music notation, along with <em>C059</em>, a Century Schoolbook, for text. The vector file takes 42 KB and the scan 295 KB, although the comparison is only indicative: they do not hold the same content (the scan reproduces a full system of the Neue Bach-Ausgabe; this PDF, only the opening bar). Still, it illustrates the point: describing geometry takes far less space than storing a pixel grid.
             </p>
             <p class="section-desc">
-              The image works at <strong>three zoom levels</strong>. The first click zooms in on the mordent area, showing the <em>Mordant</em>, the fermata, and the slur with perfectly crisp outlines. The second click reaches maximum detail—contrasting directly with the stepped pixels of the scan (section 05): glyph edges are mathematical curves, no stairstepping or noise. A third click returns to the full view.
+              The image works at <strong>three zoom levels</strong>. The full view shows the page. The first click zooms in on the mordent area, showing the <em>Mordant</em>, the fermata and the notehead. The second click reaches maximum detail. Both zooms are drawn on the fly from the PDF itself, at your screen's resolution, which is why they contrast with the stepped pixels of the scan (section 07): glyph edges are mathematical curves, no stairstepping or noise. A third click returns to the full view.
             </p>
             </div>
           </div>
@@ -526,7 +668,7 @@
         <div class="section-meta">
           <dl class="meta-list">
             <dt data-i18n="meta.generado">Generado con</dt><dd>LilyPond 2.24.4</dd>
-            <dt data-i18n="meta.fuenteMusical">Fuente musical</dt><dd>Feta (LilyPond)</dd>
+            <dt data-i18n="meta.fuenteMusical">Fuente musical</dt><dd>Emmentaler / Feta (LilyPond) · texto en C059</dd>
             <dt data-i18n="meta.tamano">Tamaño</dt><dd>42 KB</dd>
             <dt data-i18n="meta.escalabilidad">Escalabilidad</dt><dd data-i18n="meta.val.infinita">Infinita · sin pérdida de calidad</dd>
             <dt data-i18n="meta.ventaja">Ventaja frente al ráster</dt><dd data-i18n="meta.val.ventaja7x">7× más pequeño · sin artefactos · editable en origen</dd>
@@ -536,11 +678,11 @@
       </div>
     </section>
 
-    <!-- 07 · PNG -->
-    <section id="s-png" class="rep-section" data-cat="partitura" data-index="7">
+    <!-- 09 · PNG -->
+    <section id="s-png" class="rep-section" data-cat="partitura" data-index="9">
       <div class="section-inner">
         <header class="section-head">
-          <div class="section-num">07</div>
+          <div class="section-num">09</div>
           <div class="section-title-group">
             <h2 data-i18n="s07.title">PNG Raster</h2>
             <span class="cat-badge" data-cat="partitura" data-i18n="badge.partitura">PARTITURA</span>
@@ -557,21 +699,21 @@
             <div class="scan-zoom-hint" id="png-hint" data-i18n="png.hint0">clic → ver píxeles</div>
           </div>
           <div class="scan-zoom-info-bar">
-            <span class="scan-zoom-info-text" id="png-info" data-i18n="png.infoInit">Vista completa · PNG exportado por MuseScore 4 · haz clic para ampliar</span>
+            <span class="scan-zoom-info-text" id="png-info" data-i18n="png.infoInit">Vista completa · PNG exportado por LilyPond 2.24.4 · haz clic para ampliar</span>
           </div>
         </div>
         <details class="section-explain">
           <summary data-i18n="explain.summary">Explicación</summary>
           <div class="section-explain-body">
             <div data-lang="es">
-            <p class="section-desc">Este PNG fue exportado por <strong>LilyPond 2.24.4</strong>, que rasteriza su representación vectorial interna a una cuadrícula de píxeles. A diferencia del PDF escaneado —donde la partitura impresa fue fotografiada—, aquí no existe proceso fotográfico: el software convierte cada curva de Bézier, cada glifo Feta y cada línea de pentagrama en una matriz de puntos de color con total precisión matemática.</p>
-            <p>El formato PNG almacena cada píxel como una tupla de valores (aquí: blanco o negro). La compresión usa DEFLATE —sin pérdida, el mismo algoritmo que ZIP—, lo que permite que las grandes zonas blancas uniformes se codifiquen eficientemente. Así, una partitura de varias páginas en PNG puede ocupar menos espacio que una fotografía de tamaño comparable, sin sacrificar calidad.</p>
-            <p>La resolución queda grabada en el momento de la exportación. Al ampliar más allá del 100%, los píxeles se hacen visibles y los bordes de plicas, cabezas de nota y líneas de pentagrama aparecen escalonados —efecto denominado <em>aliasing</em>—. El zoom muestra este comportamiento en la zona del Mordant inicial.</p>
+            <p class="section-desc">Este PNG fue exportado por <strong>LilyPond 2.24.4</strong>, que, a través de Ghostscript, rasteriza su representación vectorial interna a una cuadrícula de píxeles. A diferencia del PDF escaneado —donde la partitura impresa fue fotografiada—, aquí no existe proceso fotográfico: el software convierte cada curva de Bézier, cada glifo Feta y cada línea de pentagrama en una matriz de puntos de color con total precisión matemática.</p>
+            <p>El formato PNG almacena cada píxel como una tupla de valores (aquí, tres canales RGB de 8 bits: además del blanco y el negro hay más de un centenar de grises intermedios en los bordes, fruto del suavizado o <em>antialiasing</em>). La compresión usa DEFLATE —sin pérdida, el mismo algoritmo que ZIP—, lo que permite que las grandes zonas blancas uniformes se codifiquen eficientemente. Así, una partitura de varias páginas en PNG puede ocupar menos espacio que una fotografía de tamaño comparable, sin sacrificar calidad.</p>
+            <p>La resolución queda grabada en el momento de la exportación. Al ampliar más allá del 100%, los píxeles se hacen visibles y los bordes de plicas, cabezas de nota y líneas de pentagrama aparecen escalonados, apenas disimulados por esos grises intermedios. El zoom muestra este comportamiento en la zona del Mordant inicial.</p>
             <p>PNG es el estándar para partituras raster por una razón técnica concreta: JPEG utiliza compresión con pérdida diseñada para fotografías, que genera <em>blocking artifacts</em> y bordes borrosos en las transiciones abruptas negro-blanco propias de la notación musical. PNG preserva cada borde sin distorsión. La única limitación es la resolución fija: si se necesita escalar sin pérdida, los formatos vectoriales como SVG o PDF son la elección correcta.</p>
             </div>
             <div data-lang="en" hidden>
             <p class="section-desc">This PNG was exported by <strong>LilyPond 2.24.4</strong>, which rasterizes its internal vector representation to a pixel grid. Unlike a scanned PDF—where a printed score was photographed—no photographic process exists here: the software converts every Bézier curve, every Feta glyph, and every staff line into a color dot matrix with full mathematical precision.</p>
-            <p>PNG stores each pixel as a value tuple (here: black or white). Compression uses DEFLATE—lossless, the same algorithm as ZIP—which efficiently encodes large uniform white areas. The resolution is fixed at export time. Zooming beyond 100% makes pixels visible and staff lines, noteheads, and stems appear stepped—the <em>aliasing</em> effect. The zoom shows this behavior at the opening Mordant.</p>
+            <p>PNG stores each pixel as a value tuple (here, three 8-bit RGB channels: besides black and white there are over a hundred intermediate greys along the edges, the result of antialiasing). Compression uses DEFLATE—lossless, the same algorithm as ZIP—which efficiently encodes large uniform white areas. The resolution is fixed at export time. Zooming beyond 100% makes pixels visible and staff lines, noteheads, and stems appear stepped, barely softened by those intermediate greys. The zoom shows this behavior at the opening Mordant.</p>
             <p>PNG is the standard for raster scores for a specific technical reason: JPEG uses lossy compression designed for photographs, which generates <em>blocking artifacts</em> and blurry edges at the sharp black-white transitions of music notation. PNG preserves every edge without distortion. The only limitation is fixed resolution: for lossless scaling, vector formats like SVG or PDF are the correct choice.</p>
             </div>
           </div>
@@ -589,11 +731,11 @@
       </div>
     </section>
 
-    <!-- 08 · SVG -->
-    <section id="s-svg" class="rep-section" data-cat="partitura" data-index="8">
+    <!-- 10 · SVG -->
+    <section id="s-svg" class="rep-section" data-cat="partitura" data-index="10">
       <div class="section-inner">
         <header class="section-head">
-          <div class="section-num">08</div>
+          <div class="section-num">10</div>
           <div class="section-title-group">
             <h2 data-i18n="s08.title">SVG</h2>
             <span class="cat-badge" data-cat="partitura" data-i18n="badge.partitura">PARTITURA</span>
@@ -618,16 +760,18 @@
                 <line x1="20" y1="82" x2="200" y2="82" stroke="currentColor" stroke-width="1.2"/>
               </g>
               <g id="demo-ledger">
-                <line x1="88" y1="34" x2="120" y2="34" stroke="currentColor" stroke-width="1.2"/>
+                <line x1="91" y1="42" x2="115" y2="42" stroke="currentColor" stroke-width="1.2"/>
               </g>
               <g id="demo-notehead">
-                <ellipse cx="103" cy="34" rx="7" ry="5" fill="currentColor" transform="rotate(-15,103,34)"/>
+                <ellipse cx="103" cy="42" rx="6" ry="4.4" fill="currentColor" transform="rotate(-20,103,42)"/>
               </g>
               <g id="demo-stem">
-                <line x1="110" y1="30" x2="110" y2="74" stroke="currentColor" stroke-width="1.5"/>
+                <line x1="97.4" y1="43" x2="97.4" y2="70" stroke="currentColor" stroke-width="1.3"/>
+                <path d="M97.4,70 C98.5,63 107,60 107,51" stroke="currentColor" stroke-width="1.6" fill="none"/>
               </g>
               <g id="demo-ornament">
-                <path d="M83,20 Q89,12 95,20 Q101,12 107,20 Q113,12 119,20 Q125,12 127,20" stroke="currentColor" stroke-width="1.5" fill="none"/>
+                <path d="M93,27 L97,21 L101,27 L105,21 L109,27 L113,21" stroke="currentColor" stroke-width="1.6" fill="none" stroke-linejoin="round"/>
+                <line x1="103" y1="16" x2="103" y2="32" stroke="currentColor" stroke-width="1.3"/>
               </g>
             </svg>
           </div>
@@ -639,13 +783,13 @@
           <div class="section-explain-body">
             <div data-lang="es">
             <p class="section-desc">Este SVG fue generado por <strong>LilyPond 2.24.4</strong>, el mismo software que produjo el PDF vectorial y el PNG. A diferencia de esos formatos binarios, el SVG es <strong>XML puro</strong>: un documento de texto en el que cada línea de pentagrama, cabeza de nota y adorno existe como un elemento etiquetado, inspeccionable y modificable directamente con un editor de texto o con JavaScript.</p>
-            <p>Cada elemento gráfico —una nota, una plica, el símbolo de dinámica— es conceptualmente una <strong>capa independiente</strong>. El diagrama interactivo muestra cómo se descompone la nota inicial (La con Mordant). Activa y desactiva cada capa para ver los elementos que la componen, y pasa el cursor sobre los botones para ver el código SVG correspondiente:</p>
-            <p>En la práctica, LilyPond genera una secuencia plana de <code>&lt;g transform="translate(x,y)"&gt;</code> individuales sin agrupación semántica: una línea de pentagrama y una plica son estructuralmente idénticas en el XML —ambas son <code>&lt;line&gt;</code>— y se distinguen solo por coordenadas. Pero cualquier <code>&lt;g&gt;</code> puede recibir un <code>id</code> o clase y manipularse con CSS o JavaScript: <code>fill</code>, <code>opacity</code>, animaciones, resaltado sincronizado con la reproducción de audio. Esa direccionabilidad es lo que distingue el SVG de cualquier otro formato visual.</p>
+            <p>Cada elemento gráfico —una nota, una plica, el símbolo de dinámica— es conceptualmente una <strong>capa independiente</strong>. El diagrama interactivo muestra, de forma simplificada, cómo se descompone la nota inicial (La5 con Mordant: línea adicional, cabeza, plica con corchete y adorno). Activa y desactiva cada capa para ver los elementos que la componen, y pasa el cursor sobre los botones para ver el código SVG correspondiente:</p>
+            <p>En la práctica, LilyPond genera una secuencia plana de <code>&lt;g transform="translate(x,y)"&gt;</code> individuales sin agrupación semántica: las líneas del pentagrama son <code>&lt;line&gt;</code>; las plicas, líneas adicionales y barras de compás, <code>&lt;rect&gt;</code>; cabezas y adornos, <code>&lt;path&gt;</code>. Ningún elemento dice «soy una plica»: solo las coordenadas lo revelan. Pero cualquier <code>&lt;g&gt;</code> puede recibir un <code>id</code> o clase y manipularse con CSS o JavaScript: <code>fill</code>, <code>opacity</code>, animaciones, resaltado sincronizado con la reproducción de audio. Esa direccionabilidad es lo que distingue el SVG de cualquier otro formato visual.</p>
             </div>
             <div data-lang="en" hidden>
             <p class="section-desc">This SVG was generated by <strong>LilyPond 2.24.4</strong>, the same software that produced the vector PDF and PNG. Unlike those binary formats, SVG is <strong>pure XML</strong>: a text document where every staff line, notehead, and ornament exists as a labeled element, inspectable and modifiable directly with a text editor or JavaScript.</p>
-            <p>Each graphic element—a note, a stem, a dynamic symbol—is conceptually an <strong>independent layer</strong>. The interactive diagram shows how the opening note (A with Mordant) decomposes. Toggle each layer to see its constituent elements, and hover over the buttons to see the corresponding SVG code.</p>
-            <p>In practice, LilyPond generates a flat sequence of individual <code>&lt;g transform="translate(x,y)"&gt;</code> elements without semantic grouping: a staff line and a stem are structurally identical in the XML—both are <code>&lt;line&gt;</code>—distinguished only by coordinates. But any <code>&lt;g&gt;</code> can receive an <code>id</code> or class and be manipulated with CSS or JavaScript: <code>fill</code>, <code>opacity</code>, animations, highlighting synchronized with audio playback. That addressability is what distinguishes SVG from any other visual format.</p>
+            <p>Each graphic element—a note, a stem, a dynamic symbol—is conceptually an <strong>independent layer</strong>. The interactive diagram shows, in simplified form, how the opening note (A5 with Mordant: ledger line, notehead, flagged stem and ornament) decomposes. Toggle each layer to see its constituent elements, and hover over the buttons to see the corresponding SVG code.</p>
+            <p>In practice, LilyPond generates a flat sequence of individual <code>&lt;g transform="translate(x,y)"&gt;</code> elements without semantic grouping: staff lines are <code>&lt;line&gt;</code>; stems, ledger lines and barlines, <code>&lt;rect&gt;</code>; noteheads and ornaments, <code>&lt;path&gt;</code>. No element says "I am a stem": only coordinates reveal it. But any <code>&lt;g&gt;</code> can receive an <code>id</code> or class and be manipulated with CSS or JavaScript: <code>fill</code>, <code>opacity</code>, animations, highlighting synchronized with audio playback. That addressability is what distinguishes SVG from any other visual format.</p>
             </div>
           </div>
         </details>
@@ -661,11 +805,11 @@
       </div>
     </section>
 
-    <!-- 09 · MIDI LITERAL -->
-    <section id="s-midi-lit" class="rep-section" data-cat="evento" data-index="9">
+    <!-- 11 · MIDI LITERAL -->
+    <section id="s-midi-lit" class="rep-section" data-cat="evento" data-index="11">
       <div class="section-inner">
         <header class="section-head">
-          <div class="section-num">09</div>
+          <div class="section-num">11</div>
           <div class="section-title-group">
             <h2 data-i18n="s09.title">MIDI literal</h2>
             <span class="cat-badge" data-cat="evento" data-i18n="badge.evento">EVENTO</span>
@@ -713,14 +857,14 @@
           <summary data-i18n="explain.summary">Explicación</summary>
           <div class="section-explain-body">
             <div data-lang="es">
-            <p class="section-desc">Transcripción exacta de lo escrito en la partitura: la nota A5, duración de corchea a 60 BPM. MIDI codifica eventos discretos —<code>note_on</code>, <code>note_off</code>— con su número de nota (0–127), velocidad y posición en ticks. No contiene audio: es una secuencia de instrucciones para un sintetizador.</p>
+            <p class="section-desc">Transcripción exacta de lo escrito en la partitura: las notas A5 y A4 (cada una en su pista), con duración de corchea a 30 BPM (negra = 30, como en MusicXML y **kern). El mordente no aparece: MIDI no tiene forma de representar un adorno, solo notas; por eso la sección siguiente lo escribe nota a nota. MIDI codifica eventos discretos —<code>note_on</code>, <code>note_off</code>— con su número de nota (0–127), velocidad y posición en ticks. No contiene audio: es una secuencia de instrucciones para un sintetizador.</p>
             <p>Un archivo SMF (<em>Standard MIDI File</em>) se compone de bloques llamados <em>chunks</em>. El primero, <code>MThd</code>, es la cabecera de 14 bytes: indica el formato (0 = una pista, 1 = multi-pista sincronizado), el número de pistas y la resolución temporal en <em>ticks por negra</em>. Este archivo usa formato 1 con 384 ticks/negra y cuatro pistas, tal como lo genera LilyPond.</p>
             <p>Cada pista comienza con <code>MTrk</code> seguido de su tamaño en bytes. Los eventos van precedidos de un <em>delta time</em>: el tiempo relativo al evento anterior, codificado en <em>Variable Length Quantity</em> (VLQ). En VLQ, el bit 7 de cada byte indica si sigue otro byte; los 7 bits restantes son datos. Un delta de 192 ticks se escribe <code>0x81 0x40</code>: 192 = 1×128 + 64, cuyo bit de continuación activa el primer byte.</p>
             <p>La nota A5 corresponde al número MIDI 81 (<code>0x51</code>). La fórmula es: nº = 12×(octava + 1) + semitono, con La = semitono 9. El silencio llega con <code>note_off</code> —o un segundo <code>note_on</code> con velocidad 0—. La pista de control (track 0) contiene solo metaeventos: título, creador (LilyPond 2.24.4), tempo y compás, sin emitir sonido.</p>
             <p>Los cuatro bytes del evento <code>note_on</code> se leen así:</p>
             </div>
             <div data-lang="en" hidden>
-            <p class="section-desc">An exact transcription of what is written in the score: note A5, eighth-note duration at 60 BPM. MIDI encodes discrete events—<code>note_on</code>, <code>note_off</code>—with their note number (0–127), velocity, and position in ticks. It contains no audio: it is a sequence of instructions for a synthesizer.</p>
+            <p class="section-desc">An exact transcription of what is written in the score: notes A5 and A4 (each on its own track), eighth-note duration at 30 BPM (quarter = 30, as in MusicXML and **kern). The mordent is absent: MIDI cannot represent an ornament, only notes; that is why the next section writes it out note by note. MIDI encodes discrete events—<code>note_on</code>, <code>note_off</code>—with their note number (0–127), velocity, and position in ticks. It contains no audio: it is a sequence of instructions for a synthesizer.</p>
             <p>A Standard MIDI File (SMF) consists of blocks called <em>chunks</em>. The first, <code>MThd</code>, is a 14-byte header indicating the format (0 = one track, 1 = multi-track synchronized), number of tracks, and temporal resolution in <em>ticks per quarter note</em>. This file uses format 1 with 384 ticks/beat and four tracks, as generated by LilyPond.</p>
             <p>Each track begins with <code>MTrk</code> followed by its byte length. Events are preceded by a <em>delta time</em>: the time relative to the previous event, encoded in <em>Variable Length Quantity</em> (VLQ). In VLQ, bit 7 of each byte indicates whether another byte follows; the remaining 7 bits are data.</p>
             <p>Note A5 corresponds to MIDI number 81 (<code>0x51</code>). The formula is: n = 12×(octave + 1) + semitone, with A = semitone 9. The four bytes of the <code>note_on</code> event are read as follows:</p>
@@ -764,7 +908,7 @@
             <dt data-i18n="meta.formato">Formato</dt><dd>Standard MIDI File (SMF) Type 1</dd>
             <dt data-i18n="meta.pistas">Pistas</dt><dd>4 (1 control + 3 voz)</dd>
             <dt data-i18n="meta.ticksBeat">Ticks/beat</dt><dd>384</dd>
-            <dt data-i18n="meta.tempo">Tempo</dt><dd>60 BPM (1.000.000 µs/beat)</dd>
+            <dt data-i18n="meta.tempo">Tempo</dt><dd>30 BPM (2.000.000 µs/negra)</dd>
             <dt data-i18n="meta.nota">Nota</dt><dd>A5 = MIDI #81, vel. 90</dd>
             <dt data-i18n="meta.tamano">Tamaño</dt><dd>192 bytes</dd>
             <dt data-i18n="meta.estandarSolo">Estándar</dt><dd>MIDI 1.0 (1983, MMA/JMSC)</dd>
@@ -774,11 +918,11 @@
       </div>
     </section>
 
-    <!-- 10 · MIDI INTERPRETADO -->
-    <section id="s-midi-int" class="rep-section" data-cat="evento" data-index="10">
+    <!-- 12 · MIDI INTERPRETADO -->
+    <section id="s-midi-int" class="rep-section" data-cat="evento" data-index="12">
       <div class="section-inner">
         <header class="section-head">
-          <div class="section-num">10</div>
+          <div class="section-num">12</div>
           <div class="section-title-group">
             <h2 data-i18n="s10.title">MIDI interpretado</h2>
             <span class="cat-badge" data-cat="evento" data-i18n="badge.evento">EVENTO</span>
@@ -797,8 +941,8 @@
           <span data-i18n="midi.hl.label">resaltar:</span>
           <button class="hex-hl-btn" data-range="non_a1">note_on A</button>
           <button class="hex-hl-btn" data-range="noff_a1">note_off A</button>
-          <button class="hex-hl-btn" data-range="non_gs">note_on G#</button>
-          <button class="hex-hl-btn" data-range="noff_gs">note_off G#</button>
+          <button class="hex-hl-btn" data-range="non_gs">note_on G</button>
+          <button class="hex-hl-btn" data-range="noff_gs">note_off G</button>
           <button class="hex-hl-btn" data-range="non_a2">note_on A ↩</button>
           <button class="hex-hl-btn" data-range="noff_a2">note_off A ↩</button>
         </div>
@@ -816,16 +960,16 @@
           <summary data-i18n="explain.summary">Explicación</summary>
           <div class="section-explain-body">
             <div data-lang="es">
-            <p class="section-desc">El mismo mordente en tres eventos MIDI escritos a mano: <strong>A → G# → A</strong>, en ambas manos (A5+A4 simultáneos), forte. A diferencia del MIDI literal —generado mecánicamente desde partitura— este archivo recoge una decisión interpretativa: las duraciones no son iguales y la última nota se alarga para dar peso al regreso. Compárese con el MIDI literal: mismos bytes, distintas proporciones.</p>
+            <p class="section-desc">El mismo mordente en tres eventos MIDI escritos a mano: <strong>A → G → A</strong>, en ambas manos (A5+A4 simultáneos), forte. A diferencia del MIDI literal —generado mecánicamente desde partitura— este archivo recoge una decisión interpretativa: las duraciones no son iguales y la última nota se alarga para dar peso al regreso. El tempo de este archivo es de 60 BPM: 48 ticks son 125 ms, en la línea de los ≈ 50–100 ms que dura el adorno en la grabación.</p>
             <p>MIDI no contiene audio. El archivo es una secuencia de instrucciones —<em>nota tal a tal tiempo con tal intensidad</em>— que un sintetizador ejecuta en tiempo real. Lo que escuchas aquí lo genera el navegador usando una <strong>soundfont</strong>: una colección de muestras de audio pregrabadas, una por instrumento y dinámica. El archivo MIDI en sí no cambia; cambia quién lo lee.</p>
             <p>El mismo archivo puede sonar radicalmente distinto según el reproductor. Una soundfont de órgano de tubos rinde algo cercano a Bach; la soundfont GM estándar que llevan los sistemas operativos suena a teclado de juguete de los años noventa; un sintetizador de hardware Yamaha de los ochenta lo interpreta con sus propias muestras de fábrica. Tres sonidos opuestos, un único archivo de 160 bytes. Esta ambigüedad es a la vez la fortaleza de MIDI (universalidad, ligereza) y su limitación (no define el timbre).</p>
-            <p>Compáralo con el MIDI literal de la sección anterior: ambos archivos son <abbr title="Standard MIDI File">SMF</abbr> Type 1, ambos codifican A5 como <code>51</code> y usan el status byte <code>90</code>. La diferencia está en las proporciones —48 / 48 / 160 ticks frente al valor uniforme del literal—, en que aquí la nota de adorno es G# (<code>50</code>, semitono inferior) en lugar del valor literal, y en que cada nota suena en dos octavas a la vez. El formato no distingue entre «literalmente transcrito» e «interpretado»; esa semántica la aporta quien escribe los datos.</p>
+            <p>Compáralo con el MIDI literal de la sección anterior: ambos archivos son <abbr title="Standard MIDI File">SMF</abbr> Type 1, ambos codifican A5 como <code>51</code> y usan el status byte <code>90</code>. La diferencia está en las proporciones —48 / 48 / 160 ticks frente a la única corchea de 192 ticks del literal—, en que aquí aparece la nota auxiliar del adorno, G (<code>4F</code>, un tono por debajo: la nota inferior de la escala de re menor y la misma que se oye en la grabación), y en que cada nota suena en dos octavas a la vez. El formato no distingue entre «literalmente transcrito» e «interpretado»; esa semántica la aporta quien escribe los datos.</p>
             </div>
             <div data-lang="en" hidden>
-            <p class="section-desc">The same mordent in three MIDI events written by hand: <strong>A → G# → A</strong>, in both hands (A5+A4 simultaneous), forte. Unlike the literal MIDI—mechanically generated from the score—this file captures an interpretive decision: the durations are not equal and the final note is extended to give weight to the return.</p>
+            <p class="section-desc">The same mordent in three MIDI events written by hand: <strong>A → G → A</strong>, in both hands (A5+A4 simultaneous), forte. Unlike the literal MIDI—mechanically generated from the score—this file captures an interpretive decision: the durations are not equal and the final note is extended to give weight to the return. This file runs at 60 BPM: 48 ticks last 125 ms, in the range of the ≈ 50–100 ms the ornament takes in the recording.</p>
             <p>MIDI contains no audio. The file is a sequence of instructions—<em>such note at such time with such intensity</em>—that a synthesizer executes in real time. What you hear is generated by the browser using a <strong>soundfont</strong>: a collection of pre-recorded audio samples, one per instrument and dynamic. The MIDI file itself does not change; only who reads it changes.</p>
             <p>The same file can sound radically different depending on the player. A pipe organ soundfont renders something close to Bach; the standard GM soundfont that operating systems carry sounds like a toy keyboard from the nineties. Three opposing sounds, one 160-byte file. This ambiguity is both the strength of MIDI (universality, lightness) and its limitation (it does not define timbre).</p>
-            <p>Compare it to the literal MIDI from the previous section: both files are <abbr title="Standard MIDI File">SMF</abbr> Type 1, both encode A5 as <code>51</code> and use status byte <code>90</code>. The difference lies in proportions—48 / 48 / 160 ticks versus the uniform value of the literal—and in that the ornament note here is G# (<code>50</code>, lower semitone). The format does not distinguish between "literally transcribed" and "interpreted"; that semantics is supplied by whoever writes the data.</p>
+            <p>Compare it to the literal MIDI from the previous section: both files are <abbr title="Standard MIDI File">SMF</abbr> Type 1, both encode A5 as <code>51</code> and use status byte <code>90</code>. The difference lies in proportions—48 / 48 / 160 ticks versus the single 192-tick eighth note of the literal file—, in the ornament's auxiliary note, G (<code>4F</code>, a whole tone below: the lower neighbour in the D minor scale and the same note heard in the recording), and in each note sounding in two octaves at once. The format does not distinguish between "literally transcribed" and "interpreted"; that semantics is supplied by whoever writes the data.</p>
             </div>
           </div>
         </details>
@@ -834,18 +978,85 @@
             <dt data-i18n="meta.formato">Formato</dt><dd>Standard MIDI File (SMF) Type 1</dd>
             <dt data-i18n="meta.tracks">Tracks</dt><dd>2 (control + notas)</dd>
             <dt data-i18n="meta.tamano">Tamaño</dt><dd>160 bytes</dd>
-            <dt data-i18n="meta.notas">Notas</dt><dd>A5+A4 (48 t) → G#5+G#4 (48 t) → A5+A4 (160 t)</dd>
+            <dt data-i18n="meta.notas">Notas</dt><dd>A5+A4 (48 t) → G5+G4 (48 t) → A5+A4 (160 t) · 60 BPM</dd>
           </dl>
           <a class="download-btn" href="assets/bwv565/midi-interpreted.mid" download data-i18n="s10.download">↓ Descargar MIDI interpretado</a>
         </div>
       </div>
     </section>
 
-    <!-- 11 · MSCZ -->
-    <section id="s-mscz" class="rep-section" data-cat="fuente" data-index="11">
+    <!-- 13 · ROLLO DE PIANOLA -->
+    <section id="s-roll" class="rep-section" data-cat="evento" data-index="13">
       <div class="section-inner">
         <header class="section-head">
-          <div class="section-num">11</div>
+          <div class="section-num">13</div>
+          <div class="section-title-group">
+            <h2 data-i18n="sroll.title">Rollo de pianola</h2>
+            <span class="cat-badge" data-cat="evento" data-i18n="badge.evento">EVENTO</span>
+          </div>
+          <div class="section-ext">88 notas</div>
+        </header>
+        <div class="section-content">
+          <div class="roll-wrap">
+            <canvas id="roll-canvas" style="display:block; width:100%;"></canvas>
+            <div class="roll-controls">
+              <midi-player id="midi-player-roll"
+                src="assets/bwv565/midi-interpreted.mid"
+                sound-font="https://storage.googleapis.com/magentadata/js/soundfonts/sgm_plus">
+              </midi-player>
+              <button class="wf-btn roll-scale-btn" id="roll-scale" aria-pressed="false" data-i18n="roll.scale.real">escala real</button>
+            </div>
+            <div class="wf-info-bar">
+              <span class="wf-info-text" id="roll-info"></span>
+              <span class="wf-tooltip-text" id="roll-tooltip"></span>
+            </div>
+          </div>
+        </div>
+        <details class="section-explain">
+          <summary data-i18n="explain.summary">Explicación</summary>
+          <div class="section-explain-body">
+            <div data-lang="es">
+            <p class="section-desc">
+              Antes del MIDI ya existía una manera de guardar qué teclas se pulsan y durante cuánto tiempo: el <strong>rollo de pianola</strong>. Una tira de papel perforado avanza sobre una <strong>barra lectora</strong> con una hilera de orificios, uno por tecla. Cuando una perforación pasa por encima de su orificio, entra aire en el mecanismo neumático y la tecla se acciona; la longitud del agujero es la duración de la nota. Es, literalmente, un <em>piano roll</em>: la vista de notas sobre el tiempo de los secuenciadores actuales hereda de aquí su nombre.
+            </p>
+            <p class="section-desc">
+              Lo que ves es un esquema generado a partir del MIDI interpretado (sección 12): las mismas notas La → Sol → La, en las dos octavas, perforadas en un rollo estándar de <strong>88 notas</strong>, el formato que acordaron los fabricantes en la convención de Buffalo de 1908 (11¼ pulgadas de ancho, 9 orificios por pulgada). A la velocidad «tempo 70», que significa 7 pies de papel por minuto (≈ 35,6 mm/s), las dos primeras notas del mordente son agujeros de apenas 4,4 mm y la nota final, de unos 15 mm. Pulsa reproducir y el papel avanzará sobre la barra al ritmo del MIDI; el botón «escala real» muestra el rollo sin la ampliación temporal ×8 que se aplica por defecto para que se lea mejor.
+            </p>
+            <p class="section-desc">
+              Lo que se pierde: un rollo básico solo sabe si una tecla está pulsada o no. Las velocidades del MIDI (105, 100, 112, 108) no tienen dónde perforarse; la dinámica la ponía el pianolista con pedales y palancas. Los rollos de reproducción (Welte-Mignon, 1904; Ampico; Duo-Art) añadieron perforaciones en los márgenes para codificar la intensidad, y Welte llegó a producir rollos para órgano. Pero, igual que el MIDI, el rollo no conoce voces, compases ni alteraciones: registra una ejecución, no una partitura.
+            </p>
+            </div>
+            <div data-lang="en" hidden>
+            <p class="section-desc">
+              Long before MIDI there was already a way to store which keys are pressed and for how long: the <strong>player-piano roll</strong>. A strip of perforated paper travels over a <strong>tracker bar</strong> with a row of holes, one per key. When a perforation passes over its hole, air enters the pneumatic mechanism and the key is played; the length of the slot is the duration of the note. It is literally a <em>piano roll</em>: today's sequencers borrow the name for their notes-over-time view.
+            </p>
+            <p class="section-desc">
+              What you see is a diagram generated from the interpreted MIDI (section 12): the same notes A → G → A, in both octaves, punched into a standard <strong>88-note</strong> roll, the format manufacturers agreed on at the 1908 Buffalo convention (11¼ inches wide, 9 holes per inch). At "tempo 70", meaning 7 feet of paper per minute (≈ 35.6 mm/s), the first two notes of the mordent are slots of just 4.4 mm and the final note about 15 mm. Press play and the paper will move over the tracker bar in time with the MIDI; the "real scale" button shows the roll without the ×8 time magnification applied by default for legibility.
+            </p>
+            <p class="section-desc">
+              What is lost: a basic roll only knows whether a key is down or not. The MIDI velocities (105, 100, 112, 108) have nowhere to be punched; dynamics were supplied by the pianola player with pedals and levers. Reproducing rolls (Welte-Mignon, 1904; Ampico; Duo-Art) added perforations in the margins to encode intensity, and Welte even produced rolls for organ. But, like MIDI, the roll knows nothing of voices, bars or accidentals: it records a performance, not a score.
+            </p>
+            </div>
+          </div>
+        </details>
+        <div class="section-meta">
+          <dl class="meta-list">
+            <dt data-i18n="meta.soporte">Soporte</dt><dd data-i18n="meta.val.soporteRollo">Papel perforado (esquema generado desde el MIDI)</dd>
+            <dt data-i18n="meta.estandarSolo">Estándar</dt><dd>88 notas (Buffalo, 1908) · 11¼″ · 9 orificios/pulgada</dd>
+            <dt data-i18n="meta.velocidad">Velocidad</dt><dd>Tempo 70 = 7 pies/min ≈ 35,6 mm/s</dd>
+            <dt data-i18n="meta.perforaciones">Perforaciones</dt><dd>6 (La5+La4 · Sol5+Sol4 · La5+La4)</dd>
+            <dt data-i18n="meta.perdida">Pérdida</dt><dd data-i18n="meta.val.perdidaRollo">Velocidad (dinámica), voces, grafía</dd>
+          </dl>
+          <a class="download-btn" href="assets/bwv565/piano-roll.svg" download data-i18n="sroll.download">↓ Descargar rollo (.SVG 1:1)</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- 14 · MSCZ -->
+    <section id="s-mscz" class="rep-section" data-cat="fuente" data-index="14">
+      <div class="section-inner">
+        <header class="section-head">
+          <div class="section-num">14</div>
           <div class="section-title-group">
             <h2 data-i18n="s11.title">MSCZ</h2>
             <span class="cat-badge" data-cat="fuente" data-i18n="badge.fuente">FUENTE</span>
@@ -857,29 +1068,29 @@
             <div class="mscz-tree-panel">
               <div class="bin-title" data-i18n="mscz.title">Estructura interna (ZIP)</div>
               <div class="bin-tree">
-                <div class="bin-item mscz-file" data-file="BWV_0565 2Seg.mscx" data-lang="xml" data-notrunc data-highlightnotes>
+                <div class="bin-item mscz-file" data-file="BWV_0565 2Seg.mscx" data-kind="xml" data-notrunc data-highlightnotes>
                   <span class="bin-icon">📄</span><span class="bin-name">BWV_0565 2Seg.mscx</span><span class="bin-size">13 KB · <span data-i18n="mscz.xmlScore">XML de partitura</span></span>
                 </div>
-                <div class="bin-item mscz-file" data-file="score_style.mss" data-lang="xml">
+                <div class="bin-item mscz-file" data-file="score_style.mss" data-kind="xml">
                   <span class="bin-icon">📄</span><span class="bin-name">score_style.mss</span><span class="bin-size">93 KB · <span data-i18n="mscz.visualStyle">Estilo visual</span></span>
                 </div>
-                <div class="bin-item mscz-file" data-file="Thumbnails/thumbnail.png" data-lang="img">
+                <div class="bin-item mscz-file" data-file="Thumbnails/thumbnail.png" data-kind="img">
                   <span class="bin-icon">🖼</span><span class="bin-name">Thumbnails/thumbnail.png</span><span class="bin-size">3 KB · <span data-i18n="mscz.thumbnail">Miniatura</span></span>
                 </div>
-                <div class="bin-item mscz-file" data-file="audiosettings.json" data-lang="json">
+                <div class="bin-item mscz-file" data-file="audiosettings.json" data-kind="json">
                   <span class="bin-icon">📄</span><span class="bin-name">audiosettings.json</span><span class="bin-size">5 KB · <span data-i18n="mscz.audioConfig">Config audio</span></span>
                 </div>
-                <div class="bin-item mscz-file" data-file="viewsettings.json" data-lang="json">
+                <div class="bin-item mscz-file" data-file="viewsettings.json" data-kind="json">
                   <span class="bin-icon">📄</span><span class="bin-name">viewsettings.json</span><span class="bin-size">55 B · <span data-i18n="mscz.viewConfig">Config vista</span></span>
                 </div>
-                <div class="bin-item mscz-file" data-file="META-INF/container.xml" data-lang="xml">
+                <div class="bin-item mscz-file" data-file="META-INF/container.xml" data-kind="xml">
                   <span class="bin-icon">📄</span><span class="bin-name">META-INF/container.xml</span><span class="bin-size">334 B · <span data-i18n="mscz.manifest">Manifiesto ZIP</span></span>
                 </div>
               </div>
             </div>
             <div class="mscz-viewer-panel">
               <div class="mscz-viewer-bar">
-                <span class="mscz-viewer-fname" id="mscz-fname">← selecciona un archivo</span>
+                <span class="mscz-viewer-fname" id="mscz-fname" data-i18n="mscz.select">← selecciona un archivo</span>
                 <span class="mscz-viewer-note" id="mscz-note"></span>
               </div>
               <pre class="mscz-code" id="mscz-code"><code id="mscz-code-inner"></code></pre>
@@ -916,11 +1127,11 @@
       </div>
     </section>
 
-    <!-- 12 · MXL -->
-    <section id="s-mxl" class="rep-section" data-cat="codigo" data-index="12">
+    <!-- 15 · MXL -->
+    <section id="s-mxl" class="rep-section" data-cat="codigo" data-index="15">
       <div class="section-inner">
         <header class="section-head">
-          <div class="section-num">12</div>
+          <div class="section-num">15</div>
           <div class="section-title-group">
             <h2 data-i18n="s12.title">MXL</h2>
             <span class="cat-badge" data-cat="codigo" data-i18n="badge.codigo">CÓDIGO</span>
@@ -946,7 +1157,7 @@
             <p class="section-desc">MusicXML comprimido en ZIP, formato de intercambio entre software de notación. El archivo <code>MXL</code> contiene el MusicXML interno más un archivo de manifiesto <code>META-INF/container.xml</code>. Al descomprimirlo se obtiene el mismo contenido que en el <code>.musicxml</code>. Es el formato de distribución recomendado por el consorcio W3C Music Notation.</p>
             </div>
             <div data-lang="en" hidden>
-            <p class="section-desc">MusicXML compressed as ZIP, the interchange format between notation software. The <code>MXL</code> file contains the internal MusicXML plus a manifest file <code>META-INF/container.xml</code>. Uncompressing it yields the same content as the <code>.musicxml</code>. It is the distribution format recommended by the W3C Music Notation Community Group. The ZIP explorer above shows both internal files.</p>
+            <p class="section-desc">MusicXML compressed as ZIP, the interchange format between notation software. The <code>MXL</code> file contains the internal MusicXML plus a manifest file <code>META-INF/container.xml</code>. Uncompressing it yields the same content as the <code>.musicxml</code>. It is the distribution format recommended by the W3C Music Notation Community Group. The list above shows both internal files.</p>
             </div>
           </div>
         </details>
@@ -966,11 +1177,11 @@
       </div>
     </section>
 
-    <!-- 13 · MUSICXML -->
-    <section id="s-musicxml" class="rep-section" data-cat="codigo" data-index="13">
+    <!-- 16 · MUSICXML -->
+    <section id="s-musicxml" class="rep-section" data-cat="codigo" data-index="16">
       <div class="section-inner">
         <header class="section-head">
-          <div class="section-num">13</div>
+          <div class="section-num">16</div>
           <div class="section-title-group">
             <h2 data-i18n="s13.title">MusicXML</h2>
             <span class="cat-badge" data-cat="codigo" data-i18n="badge.codigo">CÓDIGO</span>
@@ -1022,11 +1233,11 @@
       </div>
     </section>
 
-    <!-- 14 · LILYPOND -->
-    <section id="s-lilypond" class="rep-section" data-cat="codigo" data-index="14">
+    <!-- 17 · LILYPOND -->
+    <section id="s-lilypond" class="rep-section" data-cat="codigo" data-index="17">
       <div class="section-inner">
         <header class="section-head">
-          <div class="section-num">14</div>
+          <div class="section-num">17</div>
           <div class="section-title-group">
             <h2 data-i18n="s14.title">LilyPond</h2>
             <span class="cat-badge" data-cat="codigo" data-i18n="badge.codigo">CÓDIGO</span>
@@ -1037,7 +1248,7 @@
           <div class="code-container">
             <div class="xml-hl-bar" id="ly-hl-bar">
               <button class="xml-hl-btn" data-motif="mordent" style="--btn-c:hsl(50 80% 50%)">a''8\mordent\fermata</button>
-              <span class="xml-hl-stats" data-i18n="ly.stats">Las dos voces del mordente inicial (mano derecha + tenor)</span>
+              <span class="xml-hl-stats" data-i18n="ly.stats">Las dos voces del mordente inicial (mano derecha + mano izquierda)</span>
             </div>
             <pre class="code-block" id="code-pre-lilypond"><code class="language-text" id="code-lilypond">Cargando LilyPond...</code></pre>
           </div>
@@ -1047,21 +1258,21 @@
           <div class="section-explain-body">
             <div data-lang="es">
             <p class="section-desc">Compilador de tipografía musical: el archivo <code>.ly</code> es procesado por un intérprete Scheme/Guile que convierte la sintaxis declarativa en objetos gráficos (<em>Grobs</em>). En modo <code>\relative</code>, las alturas se expresan como intervalos respecto a la nota anterior: <code>a''</code> sitúa la nota en la octava 5, donde cada apóstrofe eleva una octava desde la referencia. La figura <code>8</code> denota corchea; <code>\mordent</code> y <code>\fermata</code> son articulaciones que el motor posiciona automáticamente. El algoritmo de salto de línea usa programación dinámica para minimizar una función de penalización sobre la tensión horizontal —el mismo principio que TeX para texto—. La salida es PostScript o PDF directo, sin representación gráfica intermedia. Software libre bajo GPL, desarrollado por Han-Wen Nienhuys y Jan Nieuwenhuizen desde 1996.</p>
-            <p>En este fragmento, <code>\relative</code> establece la altura de referencia para cada voz. La primera voz comienza en <code>a''</code> (A5, octava 5); la segunda en <code>a'</code> (A4, octava 4). Ambas articulan el mismo gesto: una corchea con Mordant (<code>\mordent</code>, impulso de semitono superior) y calderón (<code>\fermata</code>), seguida de silencio hasta completar el compás. Es el arranque exacto de la Toccata en re menor: una única nota con adorno que resuena suspendida antes del silencio.</p>
+            <p>En este fragmento, <code>\relative</code> establece la altura de referencia para cada voz. La primera voz comienza en <code>a''</code> (A5, octava 5); la segunda en <code>a'</code> (A4, octava 4). Ambas articulan el mismo gesto: una corchea con Mordant (<code>\mordent</code>, el mordente inferior: nota principal, la de abajo y regreso; aquí La–Sol–La, un tono) y calderón (<code>\fermata</code>), seguida de silencio hasta completar el compás. Es el arranque exacto de la Toccata en re menor: una única nota con adorno que resuena suspendida antes del silencio.</p>
             <p>LilyPond compila en dos pasadas. En la primera, el intérprete Scheme recorre la música calculando duraciones, proporciones y jerarquías de voces. En la segunda, el motor de espaciado —basado en el algoritmo de Knuth-Plass, el mismo que usa TeX para justificar texto— optimiza el espaciado horizontal globalmente, resolviendo saltos de línea con mínima penalización. El resultado es PostScript puro: sin framework gráfico, sin renderizado en tiempo real. Por eso LilyPond produce sistemáticamente la tipografía de mayor calidad: optimiza el conjunto, no nota a nota.</p>
             </div>
             <div data-lang="en" hidden>
             <p class="section-desc">A music typography compiler: the <code>.ly</code> file is processed by a Scheme/Guile interpreter that converts the declarative syntax into graphic objects (<em>Grobs</em>). In <code>\relative</code> mode, pitches are expressed as intervals from the previous note: <code>a''</code> places the note in octave 5, where each apostrophe raises one octave from the reference. The figure <code>8</code> denotes an eighth note; <code>\mordent</code> and <code>\fermata</code> are articulations that the engine positions automatically. Free software under GPL, developed by Han-Wen Nienhuys and Jan Nieuwenhuizen since 1996.</p>
-            <p>In this fragment, <code>\relative</code> sets the reference pitch for each voice. The first voice starts on <code>a''</code> (A5); the second on <code>a'</code> (A4). Both articulate the same gesture: an eighth note with Mordant (<code>\mordent</code>) and fermata (<code>\fermata</code>), followed by silence to complete the measure. This is the exact opening of the Toccata in D minor.</p>
+            <p>In this fragment, <code>\relative</code> sets the reference pitch for each voice. The first voice starts on <code>a''</code> (A5); the second on <code>a'</code> (A4). Both articulate the same gesture: an eighth note with Mordant (<code>\mordent</code>, the lower mordent: main note, the one below and back; here A–G–A, a whole tone) and fermata (<code>\fermata</code>), followed by silence to complete the measure. This is the exact opening of the Toccata in D minor.</p>
             <p>LilyPond compiles in two passes. In the first, the Scheme interpreter traverses the music calculating durations, proportions, and voice hierarchies. In the second, the spacing engine—based on the Knuth-Plass algorithm, the same one TeX uses to justify text—optimizes horizontal spacing globally. The result is pure PostScript: no graphics framework, no real-time rendering. This is why LilyPond systematically produces the highest-quality typography: it optimizes the whole, not note by note.</p>
             </div>
           </div>
         </details>
         <div class="section-meta">
           <dl class="meta-list">
-            <dt data-i18n="meta.version">Versión</dt><dd>LilyPond 2.22.2</dd>
-            <dt data-i18n="meta.tamano">Tamaño</dt><dd>460 bytes</dd>
-            <dt data-i18n="meta.compilacion">Compilación</dt><dd>lilypond score.ly → score.pdf</dd>
+            <dt data-i18n="meta.version">Versión</dt><dd>LilyPond 2.24.4</dd>
+            <dt data-i18n="meta.tamano">Tamaño</dt><dd>484 bytes</dd>
+            <dt data-i18n="meta.compilacion">Compilación</dt><dd>lilypond score.ly → score.pdf + score.midi</dd>
             <dt data-i18n="meta.licencia">Licencia</dt><dd>GNU GPL (software libre)</dd>
           </dl>
           <a class="download-btn" href="assets/bwv565/score.ly" download data-i18n="s14.download">↓ Descargar .ly</a>
@@ -1075,11 +1286,11 @@
       </div>
     </section>
 
-    <!-- 15 · ABC MUSIC -->
-    <section id="s-abc" class="rep-section" data-cat="codigo" data-index="15">
+    <!-- 18 · ABC MUSIC -->
+    <section id="s-abc" class="rep-section" data-cat="codigo" data-index="18">
       <div class="section-inner">
         <header class="section-head">
-          <div class="section-num">15</div>
+          <div class="section-num">18</div>
           <div class="section-title-group">
             <h2 data-i18n="s15.title">ABC Music</h2>
             <span class="cat-badge" data-cat="codigo" data-i18n="badge.codigo">CÓDIGO</span>
@@ -1090,7 +1301,7 @@
           <div class="code-container">
             <div class="xml-hl-bar" id="abc-hl-bar">
               <button class="xml-hl-btn" data-motif="note" style="--btn-c:hsl(135 55% 40%)">!mordent!!fermata!a</button>
-              <span class="xml-hl-stats" data-i18n="abc.stats">La nota con adorno en ambas voces (A4 y A3)</span>
+              <span class="xml-hl-stats" data-i18n="abc.stats">La nota con adorno en ambas voces (a = A5, A = A4)</span>
             </div>
             <pre class="code-block" id="code-pre-abc"><code class="language-text" id="code-abc">Cargando ABC...</code></pre>
           </div>
@@ -1099,14 +1310,14 @@
           <summary data-i18n="explain.summary">Explicación</summary>
           <div class="section-explain-body">
             <div data-lang="es">
-            <p class="section-desc">Notación ASCII lineal donde cada campo del encabezado lleva un identificador de letra seguido de dos puntos: <code>X:</code> (índice), <code>T:</code> (título), <code>M:</code> (compás como fracción), <code>L:</code> (unidad de nota base), <code>Q:</code> (tempo en BPM), <code>K:</code> (tonalidad en notación anglosajona). Las notas se escriben como letras: minúsculas para la octava media (A4–G5), mayúsculas para la inferior (A3–G4); apóstrofes y comas modifican la octava. Las duraciones son multiplicadores de <code>L</code>: una nota sin número vale <code>L</code>, <code>a2</code> vale 2×L. Las decoraciones como <code>!mordent!</code> y <code>!fermata!</code> preceden inmediatamente a la nota. Voces múltiples se declaran con <code>V:</code> y se activan con <code>[V:Nombre]</code>. Surgió en 1991 (Chris Walshaw) para compartir melodías folk por correo electrónico.</p>
-            <p><code>K:Dm</code> establece la armadura implícita de re menor (Fa sostenido). Las directivas <code>%%MIDI program 19</code> y <code>%%staves</code> son extensiones no-estándar reconocidas por herramientas como abcjs y abcm2ps pero ignoradas por parsers básicos. El silencio <code>z7</code> es un silencio de 7 unidades: con <code>L:1/8</code>, equivale a 7 corcheas, completando el compás de 4/4 junto a la corchea inicial.</p>
-            <p>La expresión <code>!mordent!!fermata!a</code> codifica en 18 caracteres lo que MusicXML necesita más de 15 líneas de XML: la altura (La, octava media), dos decoraciones (Mordant + calderón) y la duración implícita (una corchea = <code>L</code>). Esta compacidad es la fortaleza de ABC. La contrapartida: la octava exacta depende del contexto acumulado, las extensiones <code>%%</code> no son universales y el formato carece de representación para posiciones tipográficas precisas.</p>
+            <p class="section-desc">Notación ASCII lineal donde cada campo del encabezado lleva un identificador de letra seguido de dos puntos: <code>X:</code> (índice), <code>T:</code> (título), <code>M:</code> (compás como fracción), <code>L:</code> (unidad de nota base), <code>Q:</code> (tempo en BPM), <code>K:</code> (tonalidad en notación anglosajona). Las notas se escriben como letras: mayúsculas para la octava del Do central (<code>C</code> = Do4 … <code>B</code> = Si4) y minúsculas para la siguiente (<code>c</code> = Do5 … <code>b</code> = Si5); cada apóstrofo sube una octava y cada coma la baja. Así, <code>A</code> es La4 y <code>a</code> es La5. Las duraciones son multiplicadores de <code>L</code>: una nota sin número vale <code>L</code>, <code>a2</code> vale 2×L. Las decoraciones como <code>!mordent!</code> y <code>!fermata!</code> preceden inmediatamente a la nota. Voces múltiples se declaran con <code>V:</code> y se activan con <code>[V:Nombre]</code>. Surgió en 1991 (Chris Walshaw) para compartir melodías folk por correo electrónico.</p>
+            <p><code>K:Dm</code> establece la armadura implícita de re menor (un bemol: Si♭). Las directivas <code>%%MIDI program 19</code> y <code>%%staves</code> son extensiones no-estándar reconocidas por herramientas como abcjs y abcm2ps pero ignoradas por parsers básicos. El silencio <code>z7</code> es un silencio de 7 unidades: con <code>L:1/8</code>, equivale a 7 corcheas, completando el compás de 4/4 junto a la corchea inicial.</p>
+            <p>La expresión <code>!mordent!!fermata!a</code> codifica en 19 caracteres lo que MusicXML necesita más de 15 líneas de XML: la altura (La5), dos decoraciones (Mordant + calderón) y la duración implícita (una corchea = <code>L</code>). Esta compacidad es la fortaleza de ABC. La contrapartida: las extensiones <code>%%</code> no son universales y el formato carece de representación para posiciones tipográficas precisas.</p>
             </div>
             <div data-lang="en" hidden>
-            <p class="section-desc">Linear ASCII notation where each header field carries a letter identifier followed by a colon: <code>X:</code> (index), <code>T:</code> (title), <code>M:</code> (meter as fraction), <code>L:</code> (base note unit), <code>Q:</code> (tempo in BPM), <code>K:</code> (key in Anglo-Saxon notation). Notes are written as letters: lowercase for the middle octave (A4–G5), uppercase for the lower (A3–G4); apostrophes and commas modify the octave. Durations are multipliers of <code>L</code>. Decorations like <code>!mordent!</code> and <code>!fermata!</code> immediately precede the note. Originated in 1991 (Chris Walshaw) to share folk melodies by email.</p>
-            <p><code>K:Dm</code> sets the implicit D minor key signature (F sharp). The directives <code>%%MIDI program 19</code> and <code>%%staves</code> are non-standard extensions recognized by tools like abcjs and abcm2ps but ignored by basic parsers. The rest <code>z7</code> is a rest of 7 units: with <code>L:1/8</code>, equivalent to 7 eighth notes, completing the 4/4 measure.</p>
-            <p>The expression <code>!mordent!!fermata!a</code> encodes in 18 characters what MusicXML needs more than 15 lines of XML to express: the pitch (A, middle octave), two ornaments (Mordant + fermata), and the implicit duration (one eighth note = <code>L</code>). This compactness is ABC's strength. The trade-off: the exact octave depends on accumulated context, and the format lacks representation for precise typographic positions.</p>
+            <p class="section-desc">Linear ASCII notation where each header field carries a letter identifier followed by a colon: <code>X:</code> (index), <code>T:</code> (title), <code>M:</code> (meter as fraction), <code>L:</code> (base note unit), <code>Q:</code> (tempo in BPM), <code>K:</code> (key in Anglo-Saxon notation). Notes are written as letters: uppercase for the middle-C octave (<code>C</code> = C4 … <code>B</code> = B4) and lowercase for the next one (<code>c</code> = C5 … <code>b</code> = B5); each apostrophe raises an octave and each comma lowers one. So <code>A</code> is A4 and <code>a</code> is A5. Durations are multipliers of <code>L</code>. Decorations like <code>!mordent!</code> and <code>!fermata!</code> immediately precede the note. Originated in 1991 (Chris Walshaw) to share folk melodies by email.</p>
+            <p><code>K:Dm</code> sets the implicit D minor key signature (one flat: B♭). The directives <code>%%MIDI program 19</code> and <code>%%staves</code> are non-standard extensions recognized by tools like abcjs and abcm2ps but ignored by basic parsers. The rest <code>z7</code> is a rest of 7 units: with <code>L:1/8</code>, equivalent to 7 eighth notes, completing the 4/4 measure.</p>
+            <p>The expression <code>!mordent!!fermata!a</code> encodes in 19 characters what MusicXML needs more than 15 lines of XML to express: the pitch (A5), two ornaments (Mordant + fermata), and the implicit duration (one eighth note = <code>L</code>). This compactness is ABC's strength. The trade-off: <code>%%</code> extensions are not universal, and the format lacks representation for precise typographic positions.</p>
             </div>
           </div>
         </details>
@@ -1126,11 +1337,11 @@
       </div>
     </section>
 
-    <!-- 16 · MEI -->
-    <section id="s-mei" class="rep-section" data-cat="codigo" data-index="16">
+    <!-- 19 · MEI -->
+    <section id="s-mei" class="rep-section" data-cat="codigo" data-index="19">
       <div class="section-inner">
         <header class="section-head">
-          <div class="section-num">16</div>
+          <div class="section-num">19</div>
           <div class="section-title-group">
             <h2 data-i18n="s16.title">MEI</h2>
             <span class="cat-badge" data-cat="codigo" data-i18n="badge.codigo">CÓDIGO</span>
@@ -1141,7 +1352,7 @@
           <div class="code-container">
             <div class="xml-hl-bar" id="mei-hl-bar">
               <button class="xml-hl-btn" data-motif="n1" style="--btn-c:hsl(200 65% 50%)">&lt;note xml:id="n1"/&gt;</button>
-              <span class="xml-hl-stats" data-i18n="mei.stats">A5, corchea, plico arriba (Manuale I, voz 1)</span>
+              <span class="xml-hl-stats" data-i18n="mei.stats">A5, corchea, plica arriba (Manuale I, voz 1)</span>
             </div>
             <pre class="code-block" id="code-pre-mei"><code class="language-xml" id="code-mei">Cargando MEI...</code></pre>
           </div>
@@ -1150,14 +1361,14 @@
           <summary data-i18n="explain.summary">Explicación</summary>
           <div class="section-explain-body">
             <div data-lang="es">
-            <p class="section-desc">Music Encoding Initiative: estándar XML académico que extiende la expresividad de MusicXML con capacidades para edición crítica. Cada nota se define con atributos semánticos: <code>pname</code> (nombre de nota), <code>oct</code> (octava en Scientific Pitch Notation), <code>dur</code> (figura: 8=corchea, 4=negra), <code>stem.dir</code> (dirección del plico). Las decoraciones —<code>&lt;mordent&gt;</code>, <code>&lt;fermata&gt;</code>— son elementos independientes que referencian la nota mediante <code>startid="#n1"</code>, desacoplando ornamentación y datos musicales. El encabezado <code>&lt;meiHead&gt;</code> admite metadatos académicos: identificadores GND, referencias bibliográficas, declaraciones editoriales y vínculos a fuentes primarias. Mantenido por la MEI Community (music-encoding.org) desde 2010.</p>
+            <p class="section-desc">Music Encoding Initiative: estándar XML académico, inspirado en TEI, pensado para la edición crítica y con más capacidad expresiva que MusicXML en ese terreno. Cada nota se define con atributos semánticos: <code>pname</code> (nombre de nota), <code>oct</code> (octava en Scientific Pitch Notation), <code>dur</code> (figura: 8=corchea, 4=negra), <code>stem.dir</code> (dirección de la plica). Las decoraciones —<code>&lt;mordent&gt;</code>, <code>&lt;fermata&gt;</code>— son elementos independientes que referencian la nota mediante <code>startid="#n1"</code>, desacoplando ornamentación y datos musicales. El encabezado <code>&lt;meiHead&gt;</code> admite metadatos académicos: identificadores GND, referencias bibliográficas, declaraciones editoriales y vínculos a fuentes primarias. Mantenido por la MEI Community (music-encoding.org) desde 2010.</p>
             <p>La separación entre nota y ornamento es una diferencia filosófica fundamental respecto a MusicXML. En MusicXML, el mordente es hijo de <code>&lt;notations&gt;</code> dentro de <code>&lt;note&gt;</code>, estructuralmente ligado. En MEI, <code>&lt;mordent startid="#n1"/&gt;</code> es un elemento hermano de <code>&lt;note xml:id="n1"/&gt;</code> dentro del compás: ambos son iguales en la jerarquía y se vinculan por referencia. Esto permite añadir, eliminar o editar ornamentos sin modificar los datos de la nota, facilitando el trabajo con variantes de fuentes y aparatos críticos.</p>
-            <p>El archivo incluye metadatos que ningún otro formato de esta demo puede expresar de forma estándar: el identificador GND del compositor (<code>codedval="11850553X"</code>), la clasificación BWV (<code>identifier type="BWV"</code>), el medio de interpretación (<code>&lt;perfRes&gt;</code>) y la declaración editorial del alcance de la codificación. Estas capacidades hacen de MEI el estándar preferido en proyectos de musicología digital como Bach Digital o el Beethoven Werkzeug.</p>
+            <p>El archivo incluye metadatos académicos que los demás formatos de esta demo recogen solo en parte (**kern, por ejemplo, admite el número de catálogo en <code>!!!ONM</code>): el identificador GND del compositor (<code>codedval="11850553X"</code>), la clasificación BWV (<code>identifier type="BWV"</code>), el medio de interpretación (<code>&lt;perfRes&gt;</code>) y la declaración editorial del alcance de la codificación. Estas capacidades hacen de MEI el estándar preferido en proyectos de musicología digital como Bach Digital o Beethovens Werkstatt.</p>
             </div>
             <div data-lang="en" hidden>
-            <p class="section-desc">Music Encoding Initiative: an academic XML standard extending MusicXML's expressiveness with critical edition capabilities. Each note is defined with semantic attributes: <code>pname</code> (note name), <code>oct</code> (octave in Scientific Pitch Notation), <code>dur</code> (figure: 8=eighth, 4=quarter), <code>stem.dir</code> (stem direction). Ornaments—<code>&lt;mordent&gt;</code>, <code>&lt;fermata&gt;</code>—are independent elements that reference the note via <code>startid="#n1"</code>, decoupling ornamentation from musical data. Maintained by the MEI Community since 2010.</p>
+            <p class="section-desc">Music Encoding Initiative: an academic XML standard, inspired by TEI, designed for critical editions and more expressive than MusicXML in that area. Each note is defined with semantic attributes: <code>pname</code> (note name), <code>oct</code> (octave in Scientific Pitch Notation), <code>dur</code> (figure: 8=eighth, 4=quarter), <code>stem.dir</code> (stem direction). Ornaments—<code>&lt;mordent&gt;</code>, <code>&lt;fermata&gt;</code>—are independent elements that reference the note via <code>startid="#n1"</code>, decoupling ornamentation from musical data. Maintained by the MEI Community since 2010.</p>
             <p>The separation between note and ornament is a fundamental philosophical difference from MusicXML. In MusicXML, the mordent is a child of <code>&lt;notations&gt;</code> inside <code>&lt;note&gt;</code>, structurally tied to it. In MEI, <code>&lt;mordent startid="#n1"/&gt;</code> is a sibling of <code>&lt;note xml:id="n1"/&gt;</code> within the measure: both are equal in the hierarchy and linked by reference. This allows adding, removing, or editing ornaments without modifying note data.</p>
-            <p>The file includes metadata that no other format in this demo can express as standard: the composer's GND identifier (<code>codedval="11850553X"</code>), BWV classification, performance medium (<code>&lt;perfRes&gt;</code>), and editorial declaration of encoding scope. These capabilities make MEI the preferred standard in digital musicology projects such as Bach Digital.</p>
+            <p>The file includes scholarly metadata that the other formats in this demo capture only in part (**kern, for instance, allows the catalogue number in <code>!!!ONM</code>): the composer's GND identifier (<code>codedval="11850553X"</code>), BWV classification, performance medium (<code>&lt;perfRes&gt;</code>), and editorial declaration of encoding scope. These capabilities make MEI the preferred standard in digital musicology projects such as Bach Digital.</p>
             </div>
           </div>
         </details>
@@ -1176,11 +1387,11 @@
       </div>
     </section>
 
-    <!-- 17 · KERN -->
-    <section id="s-kern" class="rep-section" data-cat="codigo" data-index="17">
+    <!-- 20 · KERN -->
+    <section id="s-kern" class="rep-section" data-cat="codigo" data-index="20">
       <div class="section-inner">
         <header class="section-head">
-          <div class="section-num">17</div>
+          <div class="section-num">20</div>
           <div class="section-title-group">
             <h2 data-i18n="s17.title">Humdrum /**kern</h2>
             <span class="cat-badge" data-cat="codigo" data-i18n="badge.codigo">CÓDIGO</span>
@@ -1200,12 +1411,12 @@
           <summary data-i18n="explain.summary">Explicación</summary>
           <div class="section-explain-body">
             <div data-lang="es">
-            <p class="section-desc">Formato del Humdrum Toolkit: texto tabular donde cada columna (<em>spine</em>) representa una voz separada por tabuladores y cada fila un instante temporal. El prefijo <code>**kern</code> declara el tipo de representación; otros tipos del toolkit incluyen <code>**harm</code> (armonía), <code>**dynam</code> (dinámica) o <code>**midi</code>. Las notas siguen el patrón <code>[duración][pitch][modificadores]</code>: la duración es un divisor de redonda (8=corchea, 4=negra, 2=mínima); el pitch usa letras repetidas para la octava —<code>a</code>=A4, <code>aa</code>=A5, <code>aaa</code>=A6—; los modificadores son sufijos: <code>;</code>=calderón, <code>M</code>=mordente, <code>r</code>=silencio. Los metadatos globales usan prefijos <code>!!!</code>: <code>!!!COM</code> (compositor), <code>!!!OTL</code> (título), <code>!!!CDT</code> (fechas). Desarrollado por David Huron (Ohio State University, 1993) para el análisis computacional de música.</p>
+            <p class="section-desc">Formato del Humdrum Toolkit: texto tabular donde cada columna (<em>spine</em>) representa una voz separada por tabuladores y cada fila un instante temporal. El prefijo <code>**kern</code> declara el tipo de representación; otros tipos del toolkit incluyen <code>**harm</code> (armonía), <code>**dynam</code> (dinámica) o <code>**midi</code>. Las notas siguen el patrón <code>[duración][pitch][modificadores]</code>: la duración es un divisor de redonda (8=corchea, 4=negra, 2=mínima); el pitch usa letras repetidas para la octava —<code>a</code>=A4, <code>aa</code>=A5, <code>aaa</code>=A6—; los modificadores son sufijos: <code>;</code>=calderón, <code>M</code>=mordente de tono entero (<code>m</code>, de semitono), <code>r</code>=silencio. Los metadatos globales usan prefijos <code>!!!</code>: <code>!!!COM</code> (compositor), <code>!!!OTL</code> (título), <code>!!!CDT</code> (fechas). Desarrollado por David Huron a finales de los años 80 y comienzos de los 90 para el análisis computacional de música.</p>
             <p>La codificación de octavas por repetición de letras es una de las características más distintivas de <code>**kern</code>. La letra <code>a</code> representa A4; duplicarla —<code>aa</code>— sube a A5; triplicarla —<code>aaa</code>— a A6. Las mayúsculas bajan: <code>A</code>=A3, <code>AA</code>=A2. Esto hace la octava directamente legible sin notación adicional, pero produce tokens de longitud variable que dependen del registro. El mismo principio aplica a todas las notas: <code>c</code>=Do4, <code>cc</code>=Do5, <code>C</code>=Do3.</p>
             <p>El sistema de spines es la arquitectura fundamental de Humdrum. Las spines se declaran con <code>**tipo</code> y terminan con <code>*-</code>; pueden bifurcarse (<code>*^</code>), fusionarse (<code>*v</code>) o intercambiarse (<code>*x</code>). Los registros de interpretación (líneas con <code>*</code>) modifican el contexto activo: <code>*M4/4</code> establece el compás, <code>*clefG2</code> la clave, <code>*k[b-]</code> la armadura. Los registros de medida (<code>=</code>) marcan barras. Esta separación entre datos, interpretaciones locales y metadatos globales hace de Humdrum un sistema analítico —diseñado para ser procesado con herramientas Unix como <code>grep</code>, <code>awk</code> y pipes— más que un formato de intercambio visual.</p>
             </div>
             <div data-lang="en" hidden>
-            <p class="section-desc">The Humdrum Toolkit format: tabular text where each column (<em>spine</em>) represents a voice separated by tabs and each row a temporal instant. The <code>**kern</code> prefix declares the representation type. Notes follow the pattern <code>[duration][pitch][modifiers]</code>: duration is a divisor of a whole note (8=eighth, 4=quarter); pitch uses repeated letters for octave—<code>a</code>=A4, <code>aa</code>=A5, <code>aaa</code>=A6; modifiers are suffixes: <code>;</code>=fermata, <code>M</code>=mordent, <code>r</code>=rest. Global metadata uses <code>!!!</code> prefixes: <code>!!!COM</code> (composer), <code>!!!OTL</code> (title), <code>!!!CDT</code> (dates). Developed by David Huron (Ohio State University, 1993).</p>
+            <p class="section-desc">The Humdrum Toolkit format: tabular text where each column (<em>spine</em>) represents a voice separated by tabs and each row a temporal instant. The <code>**kern</code> prefix declares the representation type. Notes follow the pattern <code>[duration][pitch][modifiers]</code>: duration is a divisor of a whole note (8=eighth, 4=quarter); pitch uses repeated letters for octave—<code>a</code>=A4, <code>aa</code>=A5, <code>aaa</code>=A6; modifiers are suffixes: <code>;</code>=fermata, <code>M</code>=whole-tone mordent (<code>m</code>, semitone), <code>r</code>=rest. Global metadata uses <code>!!!</code> prefixes: <code>!!!COM</code> (composer), <code>!!!OTL</code> (title), <code>!!!CDT</code> (dates). Developed by David Huron in the late 1980s and early 1990s.</p>
             <p>Octave encoding by letter repetition is one of <code>**kern</code>'s most distinctive features. The letter <code>a</code> represents A4; doubling it—<code>aa</code>—raises to A5; tripling—<code>aaa</code>—to A6. Uppercase lowers: <code>A</code>=A3, <code>AA</code>=A2.</p>
             <p>The spine system is Humdrum's fundamental architecture. Spines are declared with <code>**type</code> and terminate with <code>*-</code>; they can branch (<code>*^</code>), merge (<code>*v</code>), or swap (<code>*x</code>). Interpretation records (lines with <code>*</code>) modify the active context. This separation between data, local interpretations, and global metadata makes Humdrum an analytical system—designed to be processed with Unix tools like <code>grep</code>, <code>awk</code>, and pipes—rather than a visual interchange format.</p>
             </div>
@@ -1213,7 +1424,7 @@
         </details>
         <div class="section-meta">
           <dl class="meta-list">
-            <dt data-i18n="meta.creador">Creador</dt><dd>David Huron, Ohio State University (1993)</dd>
+            <dt data-i18n="meta.creador">Creador</dt><dd>David Huron (finales de los años 80)</dd>
             <dt data-i18n="meta.repositorio">Repositorio</dt><dd>KernScores, Josquin Research Project</dd>
             <dt data-i18n="meta.sintaxis">Sintaxis de nota</dt><dd>[duración][pitch][modificadores]</dd>
             <dt data-i18n="meta.uso">Uso</dt><dd data-i18n="meta.val.usoKern">Análisis musical computacional, musicología</dd>
@@ -1227,11 +1438,11 @@
       </div>
     </section>
 
-    <!-- 18 · MUSEDATA -->
-    <section id="s-musedata" class="rep-section" data-cat="codigo" data-index="18">
+    <!-- 21 · MUSEDATA -->
+    <section id="s-musedata" class="rep-section" data-cat="codigo" data-index="21">
       <div class="section-inner">
         <header class="section-head">
-          <div class="section-num">18</div>
+          <div class="section-num">21</div>
           <div class="section-title-group">
             <h2 data-i18n="s18.title">Musedata</h2>
             <span class="cat-badge" data-cat="codigo" data-i18n="badge.codigo">CÓDIGO</span>
@@ -1248,9 +1459,11 @@
           <div class="section-explain-body">
             <div data-lang="es">
             <p class="section-desc">Formato del Center for Computer Assisted Research in the Humanities (CCARH, Stanford). Uno de los primeros sistemas de codificación musical digital, desarrollado en los años 1980 por Walter Hewlett. Fue la base de las colecciones académicas de Bach, Beethoven, Vivaldi y Mozart digitalizadas por el CCARH. Precursor directo de MusicXML.</p>
+            <p>Es un formato de columnas fijas, heredero de las tarjetas perforadas: en cada registro de nota la altura ocupa las columnas 1–4, la duración (en divisiones de negra) la 6–8, la figura la 17, la plica la 23 y los adornos, a partir de la 32 (<code>M</code> = mordente, <code>F</code>/<code>E</code> = calderón arriba/abajo). El encabezado <code>$</code> fija armadura (<code>K:-1</code>), divisiones (<code>Q:2</code>), compás (<code>T:4/4</code>) y clave (<code>C:4</code>, sol).</p>
             </div>
             <div data-lang="en" hidden>
             <p class="section-desc">Format of the Center for Computer Assisted Research in the Humanities (CCARH, Stanford). One of the first digital music encoding systems, developed in the 1980s by Walter Hewlett. It served as the basis for the academic collections of Bach, Beethoven, Vivaldi, and Mozart digitized by the CCARH. A direct precursor to MusicXML.</p>
+            <p>It is a fixed-column format, inherited from punched cards: in each note record the pitch occupies columns 1–4, the duration (in quarter-note divisions) 6–8, the note type 17, the stem 23 and ornaments from 32 onwards (<code>M</code> = mordent, <code>F</code>/<code>E</code> = fermata above/below). The <code>$</code> record sets key (<code>K:-1</code>), divisions (<code>Q:2</code>), meter (<code>T:4/4</code>) and clef (<code>C:4</code>, treble).</p>
             </div>
           </div>
         </details>
@@ -1270,11 +1483,11 @@
       </div>
     </section>
 
-    <!-- 19 · BRAILLE -->
-    <section id="s-braille" class="rep-section" data-cat="braille" data-index="19">
+    <!-- 22 · BRAILLE -->
+    <section id="s-braille" class="rep-section" data-cat="braille" data-index="22">
       <div class="section-inner">
         <header class="section-head">
-          <div class="section-num">19</div>
+          <div class="section-num">22</div>
           <div class="section-title-group">
             <h2 data-i18n="s19.title">Braille Musical</h2>
             <span class="cat-badge" data-cat="braille" data-i18n="badge.braille">BRAILLE</span>
@@ -1284,10 +1497,12 @@
         <div class="section-content">
           <div class="braille-display">
             <div class="braille-score">
-              <div class="braille-line-label" data-i18n="braille.voice.upper">Voz superior (A5)</div>
-              <div class="braille-text">⠜⠇ ⠣⠐ ⠼⠙⠲⠙ ⠘⠐⠖⠊⠣⠂ ⠍ ⠥ ⠧</div>
-              <div class="braille-line-label" data-i18n="braille.voice.lower">Voz inferior (A4)</div>
-              <div class="braille-text">⠜⠇ ⠣⠐ ⠼⠙⠲⠙ ⠐⠐⠖⠊⠘⠂ ⠍ ⠥ ⠧</div>
+              <div class="braille-line-label" data-i18n="braille.voice.keytime">Armadura y compás</div>
+              <div class="braille-text">⠣⠼⠙⠲</div>
+              <div class="braille-line-label" data-i18n="braille.voice.upper">Mano derecha (A5)</div>
+              <div class="braille-text">⠨⠜⠐⠖⠇⠨⠊⠣⠇⠭⠧⠥⠣⠅</div>
+              <div class="braille-line-label" data-i18n="braille.voice.lower">Mano izquierda (A4)</div>
+              <div class="braille-text">⠸⠜⠐⠖⠇⠐⠊⠣⠇⠭⠧⠥⠣⠅</div>
             </div>
           </div>
         </div>
@@ -1295,26 +1510,28 @@
           <summary data-i18n="explain.summary">Explicación</summary>
           <div class="section-explain-body">
             <div data-lang="es">
-            <p class="section-desc">Sistema de notación táctil para músicos con discapacidad visual. Desarrollado por Louis Braille en 1829, solo tres años después de su sistema de escritura general. Cada célula de 6 puntos codifica simultáneamente la altura y la duración de una nota. No es una transliteración del pentagrama: tiene su propia gramática musical independiente.</p>
+            <p class="section-desc">Sistema de notación táctil para músicos con discapacidad visual. Louis Braille la incluyó ya en 1829, en la primera publicación de su sistema. Cada célula de nota codifica a la vez el nombre de la nota (puntos 1, 2, 4 y 5) y su valor (puntos 3 y 6). No es una transliteración del pentagrama: no hay pentagrama ni claves obligatorias; la altura absoluta la fijan las marcas de octava. Dentro de un compás las células van seguidas, sin espacios; el ornamento precede a la nota y el calderón la sigue.</p>
             </div>
             <div data-lang="en" hidden>
-            <p class="section-desc">A tactile notation system for musicians with visual impairments. Developed by Louis Braille in 1829, just three years after his general writing system. Each 6-dot cell simultaneously encodes both the pitch and the duration of a note. It is not a transliteration of the staff: it has its own independent musical grammar. The table below shows the symbols used to encode this opening mordent.</p>
+            <p class="section-desc">A tactile notation system for musicians with visual impairments. Louis Braille included it as early as 1829, in the first publication of his system. Each note cell encodes both the note name (dots 1, 2, 4 and 5) and its value (dots 3 and 6). It is not a transliteration of the staff: there is no staff and no mandatory clef; absolute pitch is set by octave marks. Within a bar, cells are written together without spaces; the ornament precedes the note and the fermata follows it. The table below shows the symbols used to encode this opening mordent.</p>
             </div>
             <div class="braille-legend">
               <table class="braille-table">
                 <thead><tr><th data-i18n="braille.th.symbol">Símbolo</th><th data-i18n="braille.th.dots">Puntos</th><th data-i18n="braille.th.meaning">Significado</th></tr></thead>
                 <tbody>
-                  <tr><td class="br-sym">⠜⠇</td><td>1,2,5·1,2,3</td><td data-i18n="braille.trebleClef">Clave de Sol</td></tr>
-                  <tr><td class="br-sym">⠣⠐</td><td>1,2,6·5</td><td data-i18n="braille.keySig">Armadura: 1 bemol</td></tr>
-                  <tr><td class="br-sym">⠼⠙⠲⠙</td><td>—</td><td data-i18n="braille.timeSig">Compás 4/4</td></tr>
-                  <tr><td class="br-sym">⠘</td><td>4,5</td><td data-i18n="braille.oct5">Marca octava 5ª (C5–B5)</td></tr>
-                  <tr><td class="br-sym">⠐</td><td>5</td><td data-i18n="braille.oct4">Marca octava 4ª (C4–B4)</td></tr>
-                  <tr><td class="br-sym">⠐⠖</td><td>5·3,5</td><td data-i18n="braille.mordent">Mordente</td></tr>
+                  <tr><td class="br-sym">⠣</td><td>1,2,6</td><td data-i18n="braille.keySig">Armadura: 1 bemol (re menor)</td></tr>
+                  <tr><td class="br-sym">⠼⠙⠲</td><td>3,4,5,6·1,4,5·2,5,6</td><td data-i18n="braille.timeSig">Compás 4/4 (signo de número + 4 arriba + 4 abajo)</td></tr>
+                  <tr><td class="br-sym">⠨⠜</td><td>4,6·3,4,5</td><td data-i18n="braille.rh">Mano derecha</td></tr>
+                  <tr><td class="br-sym">⠸⠜</td><td>4,5,6·3,4,5</td><td data-i18n="braille.lh">Mano izquierda</td></tr>
+                  <tr><td class="br-sym">⠐⠖⠇</td><td>5·2,3,5·1,2,3</td><td data-i18n="braille.mordent">Mordente (inferior), antes de la nota</td></tr>
+                  <tr><td class="br-sym">⠨</td><td>4,6</td><td data-i18n="braille.oct5">Marca de 5.ª octava (C5–B5)</td></tr>
+                  <tr><td class="br-sym">⠐</td><td>5</td><td data-i18n="braille.oct4">Marca de 4.ª octava (C4–B4)</td></tr>
                   <tr><td class="br-sym">⠊</td><td>2,4</td><td data-i18n="braille.noteA">La (A) — corchea ♪</td></tr>
-                  <tr><td class="br-sym">⠣⠂</td><td>1,2,6·2</td><td data-i18n="braille.fermata">Calderón (fermata)</td></tr>
-                  <tr><td class="br-sym">⠍</td><td>1,3,4</td><td data-i18n="braille.rest8">Silencio de corchea</td></tr>
-                  <tr><td class="br-sym">⠥</td><td>1,3,6</td><td data-i18n="braille.rest4">Silencio de negra</td></tr>
-                  <tr><td class="br-sym">⠧</td><td>1,2,3,6</td><td data-i18n="braille.rest2">Silencio de blanca</td></tr>
+                  <tr><td class="br-sym">⠣⠇</td><td>1,2,6·1,2,3</td><td data-i18n="braille.fermata">Calderón (fermata), tras la nota</td></tr>
+                  <tr><td class="br-sym">⠭</td><td>1,3,4,6</td><td data-i18n="braille.rest8">Silencio de corchea</td></tr>
+                  <tr><td class="br-sym">⠧</td><td>1,2,3,6</td><td data-i18n="braille.rest4">Silencio de negra</td></tr>
+                  <tr><td class="br-sym">⠥</td><td>1,3,6</td><td data-i18n="braille.rest2">Silencio de blanca</td></tr>
+                  <tr><td class="br-sym">⠣⠅</td><td>1,2,6·1,3</td><td data-i18n="braille.finalBar">Doble barra final</td></tr>
                 </tbody>
               </table>
             </div>
@@ -1323,7 +1540,7 @@
         <div class="section-meta">
           <dl class="meta-list">
             <dt data-i18n="meta.creador">Creador</dt><dd>Louis Braille (1829)</dd>
-            <dt data-i18n="meta.estandarSolo">Estándar</dt><dd>New International Manual of Braille Music Notation (1997/2015)</dd>
+            <dt data-i18n="meta.estandarSolo">Estándar</dt><dd>New International Manual of Braille Music Notation (WBU, 1996)</dd>
             <dt data-i18n="meta.celulas">Células base</dt><dd>28 combinaciones nota × duración</dd>
             <dt data-i18n="meta.lectura">Lectura</dt><dd data-i18n="meta.val.lecturaBraille">Táctil, lineal, voz por voz</dd>
           </dl>
@@ -1352,7 +1569,6 @@
 
   <!-- WaveSurfer.js v6 -->
   <script src="https://unpkg.com/wavesurfer.js@6/dist/wavesurfer.js"></script>
-  <script src="https://unpkg.com/wavesurfer.js@6/dist/plugin/wavesurfer.spectrogram.min.js"></script>
 
   <!-- html-midi-player -->
   <script src="https://cdn.jsdelivr.net/combine/npm/tone@14,npm/@magenta/music@1.23.1/es6/core.js,npm/html-midi-player@1.5.0"></script>
@@ -1366,9 +1582,9 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
 
   <!-- i18n -->
-  <script src="js/i18n.js?v=2"></script>
+  <script src="js/i18n.js?v=4"></script>
 
   <!-- App -->
-  <script src="js/app.js?v=14"></script>
+  <script src="js/app.js?v=17"></script>
 </body>
 </html>
