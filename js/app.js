@@ -1153,7 +1153,7 @@ function initPDFSections() {
   if (typeof pdfjsLib === 'undefined') return;
 
   pdfjsLib.GlobalWorkerOptions.workerSrc =
-    'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+    'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/6.4.299/pdf.worker.min.mjs';
 
   renderPDF(ASSET('manuscript.pdf'),    'canvas-manuscript', 'load-manuscript');
   initScanSection();
@@ -1179,7 +1179,7 @@ async function initScanSection() {
   try {
     // Load PDF + both zoom images in parallel
     const [pdf, img1, img2] = await Promise.all([
-      pdfjsLib.getDocument(ASSET('score-scan.pdf')).promise,
+      pdfjsLib.getDocument({ url: ASSET('score-scan.pdf') }).promise,
       loadImg(ASSET('scan-zoom1.png')),
       loadImg(ASSET('scan-zoom2.png')),
     ]);
@@ -1260,7 +1260,7 @@ async function initVectorSection() {
   const INFO_KEYS = ['vec.info0', 'vec.info1', 'vec.info2'];
 
   try {
-    const pdf  = await pdfjsLib.getDocument(ASSET('score-vector.pdf')).promise;
+    const pdf  = await pdfjsLib.getDocument({ url: ASSET('score-vector.pdf') }).promise;
     const page = await pdf.getPage(1);
     const base = page.getViewport({ scale: 1 });
     const dpr  = window.devicePixelRatio || 1;
@@ -1407,7 +1407,7 @@ function initSVGLayerDemo() {
 async function renderPDF(url, canvasId, loadingId) {
   const loading = document.getElementById(loadingId);
   try {
-    const pdf  = await pdfjsLib.getDocument(url).promise;
+    const pdf  = await pdfjsLib.getDocument({ url: url }).promise;
     const page = await pdf.getPage(1);
     const canvas = document.getElementById(canvasId);
     if (!canvas) return;
