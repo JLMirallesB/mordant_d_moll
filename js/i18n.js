@@ -14,7 +14,7 @@ window.I18N = (() => {
       // Header
       'header.about':   'acerca de',
       'header.tagline': 'La nota inicial en <strong>22 representaciones</strong> distintas',
-      'header.author':  'Idea original de <a href="https://www.jlmirall.es" target="_blank" rel="noopener">José Luis Miralles Bono</a>',
+      'header.author':  'Idea original de <a href="https://jlmirall.es" target="_blank" rel="noopener">José Luis Miralles Bono</a>',
       'header.github':  '↗ Repositorio en GitHub',
       'header.kofi':    '☕ Invitar a una horchata',
       'header.credit':  'Realizado con Claude',
@@ -96,7 +96,8 @@ window.I18N = (() => {
 
       // Footer
       'footer.main': 'Johann Sebastian Bach · <em>Toccata und Fuge d-Moll</em> · BWV 565 · c. 1703–1707',
-      'footer.note': 'Mordant d-Moll · <a href="https://www.jlmirall.es" target="_blank" rel="noopener">José Luis Miralles Bono</a> · Realizado con Claude',
+      'footer.note': 'Mordant d-Moll · <a href="https://jlmirall.es" target="_blank" rel="noopener">José Luis Miralles Bono</a> · Realizado con Claude · <a href="mailto:joseluismirallesbono@gmail.com">joseluismirallesbono@gmail.com</a><br><a href="https://elpulpoenelvaso.jlmirall.es/?p=709" target="_blank" rel="noopener">Más información sobre este proyecto</a> · <a href="https://ko-fi.com/miralles" target="_blank" rel="noopener">☕ Invítame a una horchata</a>',
+      'footer.license': 'Código bajo licencia <a href="https://www.gnu.org/licenses/agpl-3.0.html" rel="license" target="_blank">AGPL v3</a> · contenidos bajo <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.es" rel="license" target="_blank">CC BY-SA 4.0</a> (salvo la grabación de James Kibbie, <a href="https://creativecommons.org/licenses/by-nc-nd/3.0/deed.es" target="_blank">CC BY-NC-ND 3.0</a>, y el escaneo de la Neue Bach-Ausgabe) · <a href="https://github.com/JLMirallesB/mordant_d_moll" target="_blank" rel="noopener">código fuente</a>',
 
       // Metadata keys (dt)
       'meta.formato':           'Formato',
@@ -372,7 +373,7 @@ window.I18N = (() => {
       // Header
       'header.about':   'about',
       'header.tagline': 'The opening note in <strong>22 representations</strong>',
-      'header.author':  'Original concept by <a href="https://www.jlmirall.es" target="_blank" rel="noopener">José Luis Miralles Bono</a>',
+      'header.author':  'Original concept by <a href="https://jlmirall.es" target="_blank" rel="noopener">José Luis Miralles Bono</a>',
       'header.github':  '↗ Repository on GitHub',
       'header.kofi':    '☕ Buy me a coffee',
       'header.credit':  'Made with Claude',
@@ -454,7 +455,8 @@ window.I18N = (() => {
 
       // Footer
       'footer.main': 'Johann Sebastian Bach · <em>Toccata und Fuge d-Moll</em> · BWV 565 · c. 1703–1707',
-      'footer.note': 'Mordant d-Moll · <a href="https://www.jlmirall.es" target="_blank" rel="noopener">José Luis Miralles Bono</a> · Made with Claude',
+      'footer.note': 'Mordant d-Moll · <a href="https://jlmirall.es" target="_blank" rel="noopener">José Luis Miralles Bono</a> · Made with Claude · <a href="mailto:joseluismirallesbono@gmail.com">joseluismirallesbono@gmail.com</a><br><a href="https://elpulpoenelvaso.jlmirall.es/?p=709" target="_blank" rel="noopener">More about this project</a> · <a href="https://ko-fi.com/miralles" target="_blank" rel="noopener">☕ Buy me a horchata</a>',
+      'footer.license': 'Code licensed under <a href="https://www.gnu.org/licenses/agpl-3.0.html" rel="license" target="_blank">AGPL v3</a> · content under <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.en" rel="license" target="_blank">CC BY-SA 4.0</a> (except James Kibbie\'s recording, <a href="https://creativecommons.org/licenses/by-nc-nd/3.0/deed.en" target="_blank">CC BY-NC-ND 3.0</a>, and the Neue Bach-Ausgabe scan) · <a href="https://github.com/JLMirallesB/mordant_d_moll" target="_blank" rel="noopener">source code</a>',
 
       // Metadata keys (dt)
       'meta.formato':           'Format',
